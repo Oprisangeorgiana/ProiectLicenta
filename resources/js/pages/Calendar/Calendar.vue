@@ -92,6 +92,13 @@
             async mounted() {
                 await this.$store.dispatch(boardActions.FETCH_PAGE_DETAILS)
             },
+            // addTask:function(){
+            //   this.events.push({
+            //       name:this.listTasks.type,
+            //       start:this.listTasks.deadline,
+            //       end:this.listTasks.deadline
+            //   });
+            // },
         }
     }
 </script>

@@ -19,6 +19,9 @@ class CreateTasksTable extends Migration
             $table->string('task');
             $table->string('task_type');
             $table->date('deadline');
+            $table->date('start');
+//            $table->integer('start_hour');
+//            $table->integer('end_hour');
             $table->integer('project');
             $table->foreign('project')->references('id')->on('projects')->onDelete('cascade');
 
