@@ -15,6 +15,12 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
 // webpack.config.js
+mix.options({
+    hmrOptions: {
+        host: '192.168.10.10',
+        port: 8080
+    }
+})
 
 module.exports = {
     rules: [

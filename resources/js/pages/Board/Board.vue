@@ -12,7 +12,6 @@
                     </add-task>
                 </h1>
             </v-col>
-
             <v-col cols="3">
                 <h1>TO DO
                     <add-task>

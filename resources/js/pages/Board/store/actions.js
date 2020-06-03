@@ -22,6 +22,10 @@ export const actions = {
         const description = getters[pageGetters.GET_DESCRIPTION]
         const deadline = getters[pageGetters.GET_DEADLINE]
         const task_type = getters[pageGetters.GET_TASK_TYPE]
+        const start_date = getters[pageGetters.GET_START_DATE]
+        const start_hour = getters[pageGetters.GET_START_HOUR]
+        const end_hour = getters[pageGetters.GET_END_HOUR]
+        const project = getters[pageGetters.GET_PROJECT_TASK]
 
 
             const registerResponse = await axios.post( 'http://192.168.10.10/api/tasks',
@@ -29,6 +33,10 @@ export const actions = {
                     task: description,
                     deadline: deadline,
                     task_type: task_type,
+                    start_date: start_date,
+                    start_hour: start_hour,
+                    end_hour:end_hour,
+                    project:project
                 })
 
         }
