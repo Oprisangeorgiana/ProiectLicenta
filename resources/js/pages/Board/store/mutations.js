@@ -7,6 +7,7 @@ const MUTATION_TYPES = {
     SET_START_HOUR: 'board/SET_START_HOUR',
     SET_END_HOUR: 'board/SET_END_HOUR',
     SET_PROJECT_TASK: 'board/SET_PROJECT_TASK',
+    SET_TASK_CREATED_BY: 'board/SET_TASK_CREATED_BY',
 
 }
 export default MUTATION_TYPES
@@ -36,6 +37,9 @@ export const mutations = {
     },
     [MUTATION_TYPES.SET_PROJECT_TASK]: (state, data) => {
         state.project_task  = data
+    },
+    [MUTATION_TYPES.SET_TASK_CREATED_BY]: (state, data) => {
+        state.created_by  = data
     },
 
 }

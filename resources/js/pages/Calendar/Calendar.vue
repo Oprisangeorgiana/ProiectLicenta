@@ -50,6 +50,8 @@
                 v-model="value"
                 :weekdays="weekday"
                 :type="type"
+                :events="events"
+
             ></v-calendar>
         </v-sheet>
     </div>
@@ -92,13 +94,13 @@
             async mounted() {
                 await this.$store.dispatch(boardActions.FETCH_PAGE_DETAILS)
             },
-            // addTask:function(){
-            //   this.events.push({
-            //       name:this.listTasks.type,
-            //       start:this.listTasks.deadline,
-            //       end:this.listTasks.deadline
-            //   });
-            // },
+            addTask:function(){
+              this.events.push({
+                  name:this.listTasks.type,
+                  start:`${this.listTasks.start_date} ${this.listTasks.start_hour}`,
+                  end:`${this.listTasks.deadline} ${this.listTasks.end_hour}`,
+              });
+            },
         }
     }
 </script>

@@ -5,7 +5,7 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-btn fab dark small color="teal">
+      <v-btn fab dark small color="grey">
         <v-icon dark v-on="on">mdi-plus</v-icon>
       </v-btn>
     </template>
@@ -29,117 +29,117 @@
             </v-col>
           </v-row>
 
-            <v-row>
-                <v-col>
-                    <v-menu
-                      ref="menuDate"
-                      v-model="menuStartDate"
-                      :close-on-content-click="false"
-                      :return-value.sync="menuStartDate"
-                      transition="scale-transition"
-                      offset-y
-                    >
-                        <template v-slot:activator="{ on }">
-                            <v-text-field
-                              v-model="start_date"
-                              label="Pick start date*"
-                              readonly
-                              v-on="on"
-                            ></v-text-field>
-                        </template>
-                        <v-date-picker v-model="start_date" no-title scrollable>
-                            <v-spacer></v-spacer>
-                            <v-btn text color="primary" @click="menuStartDate = false">Cancel</v-btn>
-                            <v-btn text color="primary" @click="$refs.menuDate.save(start_date)">OK</v-btn>
-                        </v-date-picker>
-                    </v-menu>
-                </v-col>
-                <v-spacer></v-spacer>
-            </v-row>
+          <v-row>
+            <v-col>
+              <v-menu
+                ref="menuDate"
+                v-model="menuStartDate"
+                :close-on-content-click="false"
+                :return-value.sync="menuStartDate"
+                transition="scale-transition"
+                offset-y
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="start_date"
+                    label="Pick start date*"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker v-model="start_date" no-title scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="menuStartDate = false">Cancel</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuDate.save(start_date)">OK</v-btn>
+                </v-date-picker>
+              </v-menu>
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
 
-            <v-row>
-                <v-col>
-                    <v-menu
-                      ref="menuEndDate"
-                      v-model="menuDeadline"
-                      :close-on-content-click="false"
-                      :return-value.sync="menuDeadline"
-                      transition="scale-transition"
-                      offset-y
-                    >
-                        <template v-slot:activator="{ on }">
-                            <v-text-field
-                              v-model="deadline"
-                              label="Pick start date*"
-                              readonly
-                              v-on="on"
-                            ></v-text-field>
-                        </template>
-                        <v-date-picker v-model="deadline" no-title scrollable>
-                            <v-spacer></v-spacer>
-                            <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
-                            <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
-                        </v-date-picker>
-                    </v-menu>
-                </v-col>
-                <v-spacer></v-spacer>
-            </v-row>
+          <v-row>
+            <v-col>
+              <v-menu
+                ref="menuEndDate"
+                v-model="menuDeadline"
+                :close-on-content-click="false"
+                :return-value.sync="menuDeadline"
+                transition="scale-transition"
+                offset-y
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="deadline"
+                    label="Pick start date*"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker v-model="deadline" no-title scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
+                </v-date-picker>
+              </v-menu>
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
 
-            <v-row>
-                <v-col>
-                    <v-menu
-                      ref="menu1"
-                      v-model="menuStartHour"
-                      :close-on-content-click="false"
-                      :return-value.sync="start_hour"
-                      transition="scale-transition"
-                      offset-y
-                    >
-                        <template v-slot:activator="{ on }">
-                            <v-text-field
-                              v-model="start_hour"
-                              label="Pick start hour*"
-                              readonly
-                              v-on="on"
-                            ></v-text-field>
-                        </template>
-                        <v-time-picker
-                          v-if="menuStartHour"
-                          v-model="start_hour"
-                          @click:minute="$refs.menu1.save(start_hour)"
-                        ></v-time-picker>
-                    </v-menu>
-                </v-col>
-                <v-spacer></v-spacer>
-            </v-row>
+          <v-row>
+            <v-col>
+              <v-menu
+                ref="menu1"
+                v-model="menuStartHour"
+                :close-on-content-click="false"
+                :return-value.sync="start_hour"
+                transition="scale-transition"
+                offset-y
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="start_hour"
+                    label="Pick start hour*"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="menuStartHour"
+                  v-model="start_hour"
+                  @click:minute="$refs.menu1.save(start_hour)"
+                ></v-time-picker>
+              </v-menu>
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
 
-            <v-row>
-                <v-col>
-                    <v-menu
-                      ref="menu"
-                      v-model="menuEndHour"
-                      :close-on-content-click="false"
-                      :return-value.sync="end_hour"
-                      transition="scale-transition"
-                      offset-y
-                    >
-                        <template v-slot:activator="{ on }">
-                            <v-text-field
-                              v-model="end_hour"
-                              label="Pick end hour*"
-                              readonly
-                              v-on="on"
-                            ></v-text-field>
-                        </template>
-                        <v-time-picker
-                          v-if="menuEndHour"
-                          v-model="end_hour"
-                          @click:minute="$refs.menu.save(end_hour)"
-                        ></v-time-picker>
-                    </v-menu>
-                </v-col>
-                <v-spacer></v-spacer>
-            </v-row>
+          <v-row>
+            <v-col>
+              <v-menu
+                ref="menu"
+                v-model="menuEndHour"
+                :close-on-content-click="false"
+                :return-value.sync="end_hour"
+                transition="scale-transition"
+                offset-y
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="end_hour"
+                    label="Pick end hour*"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="menuEndHour"
+                  v-model="end_hour"
+                  @click:minute="$refs.menu.save(end_hour)"
+                ></v-time-picker>
+              </v-menu>
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
 
           <v-row>
             <v-select
@@ -178,8 +178,8 @@
       return {
         dialog: false,
 
-          menuStartDate:false,
-          menuDeadline:false,
+        menuStartDate: false,
+        menuDeadline: false,
 
         menuStartHour: false,
         menuEndHour: false,

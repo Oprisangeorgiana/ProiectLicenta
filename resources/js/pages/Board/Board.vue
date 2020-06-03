@@ -1,40 +1,50 @@
 <template>
     <v-container>
-        <v-row>
+        <v-layout row align-content-start  justify-space-around>
 
-            <v-col cols="3">
-                <!--                <span class="badge badge-secondary">-->
-                <!--                {{ TaskCount }}-->
-                <!--                  1-->
-                <!--            </span>-->
-                <h1>COMING
-                    <add-task>
-                    </add-task>
-                </h1>
-            </v-col>
-            <v-col cols="3">
-                <h1>TO DO
-                    <add-task>
-                    </add-task>
-                </h1>
-            </v-col>
+            <v-flex>
+                <v-card tile flat color="teal lighten-3">
+                    <!--                <span class="badge badge-secondary">-->
+                    <!--                {{ TaskCount }}-->
+                    <!--                  1-->
+                    <!--            </span>-->
+                    <h1>COMING
+                        <add-task>
+                        </add-task>
+                    </h1>
+                </v-card>
+            </v-flex>
 
-            <v-col cols="3">
-                <h1>DOING
-                    <add-task>
-                    </add-task>
-                </h1>
-            </v-col>
+            <v-flex>
+                <v-card tile flat color="teal lighten-4">
+                    <h1>TO DO
+                        <add-task>
+                        </add-task>
+                    </h1>
+                </v-card>
+            </v-flex>
 
-            <v-col cols="3">
-                <h1>FINISHED
-                </h1>
-            </v-col>
+            <v-flex>
+                <v-card tile flat color="teal lighten-3">
+                    <h1>DOING
+                        <add-task>
+                        </add-task>
+                    </h1>
+                </v-card>
+            </v-flex>
 
-        </v-row>
-        <v-row>
+            <v-flex>
+                <v-card tile flat color="teal lighten-4">
+                    <h1>FINISHED
+                    </h1>
+                </v-card>
+            </v-flex>
 
-            <v-col cols="3">
+        </v-layout>
+
+        <v-layout>
+
+            <v-card>
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -51,9 +61,9 @@
                         </v-card>
                     </div>
                 </draggable>
-            </v-col>
+            </v-card>
 
-            <v-col cols="3">
+            <v-card>
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -70,9 +80,9 @@
                         </v-card>
                     </div>
                 </draggable>
-            </v-col>
+            </v-card>
 
-            <v-col cols="3">
+            <v-card>
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -102,9 +112,9 @@
 <!--                        </v-card>-->
 <!--                    </div>-->
                 </draggable>
-            </v-col>
+            </v-card>
 
-            <v-col cols="3">
+            <v-card>
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -121,12 +131,8 @@
                         </v-card>
                     </div>
                 </draggable>
-            </v-col>
-
-
-
-<!--            <rawDisplayer class="col-3" :value="list2" title="List 2"/>-->
-        </v-row>
+            </v-card>
+        </v-layout>
     </v-container>
 </template>
 <script>
