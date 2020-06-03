@@ -3,8 +3,32 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class Employee extends Model
 {
-    //
+
+    use HasApiTokens, Notifiable;
+
+    protected $fillable = [
+        'CNP', 'first_name', 'last_name', 'birthday', 'sex', 'address', 'mail', 'phone_number',
+        'hire_date', 'intern_mail', 'department_id', 'authorisation_id','password',
+    ];
+    protected $hidden = ['password', 'remember_token',];
+
+
+
+    protected $with = ['authorisations', 'department'];
+
+    public function authorisations()
+    {
+        return $this->belongsToMany(Authorisation::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
 }

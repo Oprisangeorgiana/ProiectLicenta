@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EmployeeAuthorisationsTable extends Migration
+class EmployeeAuthorisationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class EmployeeAuthorisationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_authorisations', function (Blueprint $table) {
+        Schema::create('authorisation_employee', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
             $table->integer('employee_id');
-            $table->integer('authorisation_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
-            $table->foreign('authorisation_id')->references('id')->on('authorisations');
+            $table->integer('authorisation_id')->default('3');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('authorisation_id')->references('id')->on('authorisations')->onDelete('cascade');
         });
     }
 

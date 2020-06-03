@@ -14,6 +14,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->get('/employee', function (Request $request){
+   return $request->user() ;
 });
+
+Route::get('/employees', 'EmployeeController@getAll');
+Route::get('/employees/{id}', 'EmployeeController@getOne');
+Route::post('/employees', 'EmployeeController@create');
+Route::patch('/employees/{id}', 'EmployeeController@update');
+Route::delete('/employees/{id}', 'EmployeeController@delete');
+
+Route::get('/departments', 'DepartmentController@getAll');
+Route::get('/departments/{id}', 'DepartmentController@getOne');
+Route::post('/departments', 'DepartmentController@create');
+Route::patch('/departments/{id}', 'DepartmentController@update');
+Route::delete('/departments/{id}', 'DepartmentController@delete');
+
+Route::get('/locations', 'LocationController@getAll');
+Route::get('/locations/{id}', 'LocationController@getOne');
+Route::post('/locations', 'LocationController@create');
+Route::patch('/locations/{id}', 'LocationController@update');
+Route::delete('/locations/{id}', 'LocationController@delete');
+
+Route::get('/authorisations', 'AuthorisationController@getAll');
+Route::get('/authorisations/{id}', 'AuthorisationController@getOne');
+Route::post('/authorisations', 'AuthorisationController@create');
+Route::patch('/authorisations/{id}', 'AuthorisationController@update');
+Route::delete('/authorisations/{id}', 'AuthorisationController@delete');
+
+Route::get('/projects', 'ProjectController@getAll');
+Route::get('/projects/{id}', 'ProjectController@getOne');
+Route::post('/projects', 'ProjectController@create');
+Route::patch('/projects/{id}', 'ProjectController@update');
+Route::delete('/projects/{id}', 'ProjectController@delete');
+
+Route::get('/tasks', 'TaskController@getAll');
+Route::get('/tasks/{id}', 'TaskController@getOne');
+Route::post('/tasks', 'TaskController@create');
+Route::patch('/tasks/{id}', 'TaskController@update');
+Route::delete('/tasks/{id}', 'TaskController@delete');
+
+//Route::post('login', 'API\EmployeeController@login');
+//Route::post('register', 'API\EmployeeController@register');
+//Route::group(['middleware' => 'auth:api'], function(){
+//    Route::post('details', 'API\EmployeeController@details');
+//});

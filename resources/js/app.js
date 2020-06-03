@@ -1,13 +1,23 @@
+
+
 require('./bootstrap');
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vuetify from "./plugins/vuetify";
+// import '@mdi/font/css/materialdesignicons.css'
+import Settings from "./pages/Settings/Settings";
+import Workspaces from "./pages/Workspaces/Workspaces";
+import Help from "./pages/Help/Help";
+import store from './store/store'
+
 
 Vue.use(VueRouter)
 
 import Home from "./pages/Home/Home";
-import incercare from "./pages/Board/Board";
+import Board from "./pages/Board/Board";
 import App from "./layout/App/App";
+import Calendar from "./pages/Calendar/Calendar";
+import Login from "./pages/Login/Login";
 
 const router = new VueRouter({
     mode: 'history',
@@ -18,9 +28,34 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: '/Board',
-            name: 'incercare',
-            component: incercare,
+            path: '/board',
+            name: 'board',
+            component: Board,
+        },
+        {
+            path: '/calendar',
+            name: 'calendar',
+            component: Calendar,
+        },
+        {
+            path: '/settings',
+            name: 'settings',
+            component: Settings
+        },
+        {
+            path: '/workspaces',
+            name: 'workspaces',
+            component: Workspaces
+        },
+        {
+            path: '/help',
+            name: 'help',
+            component: Help
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
         },
 
     ],
@@ -29,6 +64,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     vuetify,
-    components: { App },
-    router,
+    components: {App},
+    router, store,
+
 });

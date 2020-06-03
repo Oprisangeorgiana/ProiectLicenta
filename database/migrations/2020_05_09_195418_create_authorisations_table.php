@@ -14,8 +14,9 @@ class CreateAuthorisationsTable extends Migration
     public function up()
     {
         Schema::create('authorisations', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
+            $table->string('role');
         });
     }
 

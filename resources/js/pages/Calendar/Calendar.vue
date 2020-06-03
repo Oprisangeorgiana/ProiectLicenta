@@ -1,13 +1,97 @@
 <template>
+    <div>
+        <v-sheet
+            tile
+            height="54"
+            color="teal lighten-4"
+            class="d-flex"
+        >
+            <v-btn
+                icon
+                class="ma-2"
+                @click="$refs.calendar.prev()"
+            >
+                <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-select
+                v-model="type"
+                :items="types"
+                dense
+                outlined
+                hide-details
+                class="ma-2"
+                label="type"
+            ></v-select>
+            <v-select
+                v-model="weekday"
+                :items="weekdays"
+                dense
+                outlined
+                hide-details
+                label="weekdays"
+                class="ma-2"
+            ></v-select>
+            <v-spacer></v-spacer>
 
+            <add-task>
+            </add-task>
+
+            <v-btn
+                icon
+                class="ma-2"
+                @click="$refs.calendar.next()"
+            >
+                <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+        </v-sheet>
+        <v-sheet height="600">
+            <v-calendar
+                ref="calendar"
+                v-model="value"
+                :weekdays="weekday"
+                :type="type"
+            ></v-calendar>
+        </v-sheet>
+    </div>
 </template>
 
 <script>
+
+    import AddTask from '../../../../resources/js/layout/UI-kit/AddTask'
+    import {mapGetters} from "vuex";
+    import boardGetters from '../../pages/Board/store/getters'
+    import boardActions from '../../pages/Board/store/actions'
+
+
     export default {
-        name: "Calendar"
+
+        components: {
+            AddTask,
+        },
+
+        data: () => ({
+            type: 'month',
+            types: ['month', 'week', 'day', '4day'],
+            weekday: [0, 1, 2, 3, 4, 5, 6],
+            weekdays: [
+                {text: 'Sun - Sat', value: [0, 1, 2, 3, 4, 5, 6]},
+                {text: 'Mon - Sun', value: [1, 2, 3, 4, 5, 6, 0]},
+                {text: 'Mon - Fri', value: [1, 2, 3, 4, 5]},
+                {text: 'Mon, Wed, Fri', value: [1, 3, 5]},
+            ],
+            value: '',
+            events: [],
+        }),
+
+        computed: {
+            ...mapGetters({
+                listTasks: boardGetters.GET_TASKS
+            }),
+
+            methods: {},
+            async mounted() {
+                await this.$store.dispatch(boardActions.FETCH_PAGE_DETAILS)
+            },
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

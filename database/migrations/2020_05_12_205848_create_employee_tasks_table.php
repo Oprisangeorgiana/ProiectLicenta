@@ -14,8 +14,12 @@ class CreateEmployeeTasksTable extends Migration
     public function up()
     {
         Schema::create('employee_tasks', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
+            $table->integer('employee_id');
+            $table->integer('task_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 
