@@ -85,7 +85,6 @@
                 <v-spacer></v-spacer>
             </v-row>
 
-
             <v-row>
                 <v-col>
                     <v-menu
@@ -145,7 +144,7 @@
           <v-row>
             <v-select
               v-model="project_task"
-              :items="`${listProjects.id} - ${listProjects.name}`"
+              :items="`${listProjects.id}-${listProjects.name}`"
               label="Project*"
               required
             ></v-select>
