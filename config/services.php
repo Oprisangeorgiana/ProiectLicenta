@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'passport'=>[
+        'login_endpoint'=>'http://192.168.10.10/oauth/token',
+        'client_id'=>'2',
+        'client_secret'=>'chB1vimR8KSKTXbdmIiBtV7Mbl26vommAqztIahM'
+    ]
+
 ];
