@@ -2,10 +2,14 @@ import pageMutations from './mutations'
 import TasksRepository from '../../../repositories/TasksRepository'
 import pageGetters from './getters'
 import axios from 'axios'
+import ProjectsRepository from '../../../repositories/ProjectsRepository'
+import globalGetters from '../../../store/global/getters'
 
 const ACTION_TYPES = {
   FETCH_PAGE_DETAILS: 'board/FETCH_PAGE_DETAILS',
   CREATE_TASK: 'board/CREATE_TASK',
+
+
 }
 
 export default ACTION_TYPES
@@ -15,8 +19,10 @@ export const actions = {
     let tasks = await new TasksRepository().getAll()
     //if
     //console.log('tasks', tasks),
-      commit(pageMutations.SET_TASKS, tasks)
+    commit(pageMutations.SET_TASKS, tasks)
   },
+
+
 
   async [ACTION_TYPES.CREATE_TASK] ({ commit, state, getters }) {
     const description = getters[pageGetters.GET_DESCRIPTION]
@@ -25,22 +31,22 @@ export const actions = {
     const start_date = getters[pageGetters.GET_START_DATE]
     const start_hour = getters[pageGetters.GET_START_HOUR]
     const end_hour = getters[pageGetters.GET_END_HOUR]
-    const project_data = getters[pageGetters.GET_PROJECT_TASK]
+    const project_data = getters[pageGetters.GET_TASK_PROJECT]
+    const employee = getters[globalGetters.GET_USER]
 
-    const created_by = getters[pageGetters.GET_TASK_CREATED_BY]//tre sa iau id-ul celui logat
-
-    const project = project_data.split('-', 1)
-
+    const project = project_data.id
+    console.log('project', project_data)
     const registerResponse = await axios.post('http://192.168.10.10/api/tasks',
       {
         task: description,
-        deadline: deadline,
         task_type: task_type,
+        employee: employee.id,
+        deadline: deadline,
         start_date: start_date,
         start_hour: start_hour,
         end_hour: end_hour,
         project: project,
-        created_by: created_by,
+
       })
 
   }

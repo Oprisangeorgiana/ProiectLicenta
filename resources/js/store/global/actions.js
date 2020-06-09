@@ -14,6 +14,7 @@ export default ACTION_TYPES
 export const actions = {
   async [ACTION_TYPES.FETCH_DETAILS] ({ commit, state }) {
     let projects = await new ProjectsRepository().getAll()
+    console.log('projects', projects)
     commit(pageMutations.SET_PROJECTS, projects)
   },
 

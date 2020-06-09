@@ -6,8 +6,8 @@ const GETTER_TYPES = {
   GET_START_DATE: 'board/GET_START_DATE',
   GET_START_HOUR: 'board/GET_START_HOUR',
   GET_END_HOUR: 'board/GET_END_HOUR',
-  GET_PROJECT_TASK: 'board/GET_PROJECT_TASK',
-  GET_TASK_CREATED_BY: 'board/GET_TASK_CREATED_BY'
+  GET_TASK_PROJECT: 'board/GET_TASK_PROJECT',
+  GET_TASK_CREATED_BY: 'board/GET_TASK_CREATED_BY',
 }
 export default GETTER_TYPES
 
@@ -38,13 +38,12 @@ export const getters = {
     return state.end_hour
   },
 
-  [GETTER_TYPES.GET_PROJECT_TASK]: (state, getters) => {
-    return state.project_task
+  [GETTER_TYPES.GET_TASK_PROJECT]: (state, getters) => {
+    return state.task_project
   },
   [GETTER_TYPES.GET_TASK_CREATED_BY]: (state, getters) => {
     return state.created_by
-  }
-
+  },
 }
 
 

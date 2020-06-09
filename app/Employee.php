@@ -12,10 +12,10 @@ class Employee extends Model
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'CNP', 'first_name', 'last_name', 'birthday', 'sex', 'address', 'mail', 'phone_number',
-        'hire_date', 'intern_mail', 'department_id', 'authorisation_id','password',
+        'CNP', 'first_name', 'last_name', 'birthday', 'sex', 'address',  'phone_number',
+        'hire_date', 'mail', 'department_id', 'authorisation_id',
     ];
-    protected $hidden = ['password', 'remember_token',];
+
 
 
 
@@ -23,12 +23,14 @@ class Employee extends Model
 
     public function authorisations()
     {
-        return $this->belongsToMany(Authorisation::class);
+        return $this->belongsTo(Authorisation::class);
     }
 
     public function department()
     {
         return $this->belongsTo(Department::class);
     }
+
+
 
 }

@@ -1,8 +1,7 @@
 <template>
     <v-container>
-        <v-layout row align-content-start  justify-space-around>
-
-            <v-flex>
+        <v-row>
+            <v-col cols ="3">
                 <v-card tile flat color="teal lighten-3">
                     <!--                <span class="badge badge-secondary">-->
                     <!--                {{ TaskCount }}-->
@@ -13,44 +12,43 @@
                         </add-task>
                     </h1>
                 </v-card>
-            </v-flex>
+            </v-col>
 
-            <v-flex>
+            <v-col cols ="3">
                 <v-card tile flat color="teal lighten-4">
                     <h1>TO DO
                         <add-task>
                         </add-task>
                     </h1>
                 </v-card>
-            </v-flex>
+            </v-col>
 
-            <v-flex>
+            <v-col cols ="3">
                 <v-card tile flat color="teal lighten-3">
-                    <h1>DOING
-                        <add-task>
-                        </add-task>
-                    </h1>
-                </v-card>
-            </v-flex>
-
-            <v-flex>
-                <v-card tile flat color="teal lighten-4">
                     <h1>FINISHED
                     </h1>
                 </v-card>
-            </v-flex>
+            </v-col>
 
-        </v-layout>
+            <v-col cols ="3">
+                <v-card tile flat color="teal lighten-4">
+                    <h1>CANCELED
+                    </h1>
+                </v-card>
+            </v-col>
 
-        <v-layout>
+        </v-row>
 
-            <v-card>
+        <v-row>
+
+            <v-col cols ="3">
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
                         v-for="listTask in listTasks"
                         v-if="listTask.task_type === 'subtask' "
                         :key="listTask.task"
+
 
                     >
                         <v-card
@@ -61,9 +59,9 @@
                         </v-card>
                     </div>
                 </draggable>
-            </v-card>
+            </v-col>
 
-            <v-card>
+            <v-col cols ="3">
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -80,9 +78,9 @@
                         </v-card>
                     </div>
                 </draggable>
-            </v-card>
+            </v-col>
 
-            <v-card>
+            <v-col cols ="3">
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -112,9 +110,9 @@
 <!--                        </v-card>-->
 <!--                    </div>-->
                 </draggable>
-            </v-card>
+            </v-col>
 
-            <v-card>
+            <v-col cols ="3">
                 <draggable class="list-group"  group="people" @change="log">
                     <div
                         class="list-group-item"
@@ -131,8 +129,8 @@
                         </v-card>
                     </div>
                 </draggable>
-            </v-card>
-        </v-layout>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 <script>

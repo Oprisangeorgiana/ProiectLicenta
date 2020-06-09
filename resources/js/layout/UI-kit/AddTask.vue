@@ -15,11 +15,15 @@
       </v-card-title>
       <v-card-text>
         <v-container>
+
           <v-row>
             <v-col cols="12">
-              <v-text-field label="Task*" required v-model="description"></v-text-field>
+              <v-text-field label="Task*" v-model="description"></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6">
+          </v-row>
+
+          <v-row>
+            <v-col>
               <v-select
                 :items="['task', 'subtask']"
                 label="Type*"
@@ -142,12 +146,17 @@
           </v-row>
 
           <v-row>
-            <v-select
-              v-model="project_task"
-              :items="`${listProjects.id}-${listProjects.name}`"
-              label="Project*"
-              required
-            ></v-select>
+            <v-col>
+              <v-select
+                v-model="project_task"
+                label="Project*"
+                required
+                :items="listProjects"
+                item-text="name"
+                return-object
+              >
+              </v-select>
+            </v-col>
           </v-row>
 
         </v-container>
@@ -193,7 +202,7 @@
 
       description: {
         get () {
-          return this.$store.getters[globalGetters.GET_PROJECTS]
+          return this.$store.getters[boardGetters.GET_DESCRIPTION]
         },
 
         set (value) {
@@ -247,11 +256,11 @@
       },
       project_task: {
         get () {
-          return this.$store.getters[boardGetters.GET_PROJECT_TASK]
+          return this.$store.getters[boardGetters.GET_TASK_PROJECT]
         },
 
         set (value) {
-          this.$store.commit(boardMutations.SET_PROJECT_TASK, value)
+          this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
         }
       },
     },
