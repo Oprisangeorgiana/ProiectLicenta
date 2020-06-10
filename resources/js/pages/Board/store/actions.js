@@ -34,8 +34,10 @@ export const actions = {
     const project_data = getters[pageGetters.GET_TASK_PROJECT]
     const employee = getters[globalGetters.GET_USER]
 
-    const project = project_data.id
-    console.log('project', project_data)
+    console.log('project_id', project_data.id)
+    console.log('employee_id', employee.id)
+    console.log('start_date', start_date)
+
     const registerResponse = await axios.post('http://192.168.10.10/api/tasks',
       {
         task: description,
@@ -45,7 +47,7 @@ export const actions = {
         start_date: start_date,
         start_hour: start_hour,
         end_hour: end_hour,
-        project: project,
+        project: project_data.id,
 
       })
 

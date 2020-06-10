@@ -74,7 +74,7 @@
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="deadline"
-                    label="Pick start date*"
+                    label="Pick end date*"
                     readonly
                     v-on="on"
                   ></v-text-field>

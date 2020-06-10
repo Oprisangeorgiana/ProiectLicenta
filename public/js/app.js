@@ -3320,6 +3320,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3369,20 +3377,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Workspaces",
   data: function data() {
     return {
-      projectList: [{
-        title: "Proiect 1",
-        id: 1
-      }, {
-        title: "Proiect 2",
-        id: 2
-      }, {
-        title: "Proiect 3",
-        id: 3
-      }],
+      search: '',
       taskList: [{
         title: "asdfghjkl qwertyui 1",
         subtitle: "qwertyuioplkjhgfdsazxcvbnm 1",
@@ -3398,8 +3405,23 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    projectsList: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_0__["default"].GET_PROJECTS
+  }), {
+    filteredProjects: function filteredProjects() {
+      var _this = this;
+
+      if (!this.search) return this.projectsList;
+      return this.projectsList.filter(function (project) {
+        return project.name.toLowerCase().match(_this.search);
+      });
+    }
+  }),
   methods: {
-    projectTasks: function projectTasks(currentProject, currentUser) {}
+    projectTasks: function projectTasks(currentProject, currentUser) {},
+    clear: function clear() {
+      return this.search = '';
+    }
   }
 });
 
@@ -26694,7 +26716,7 @@ var render = function() {
                                         _vm._g(
                                           {
                                             attrs: {
-                                              label: "Pick start date*",
+                                              label: "Pick end date*",
                                               readonly: ""
                                             },
                                             model: {
@@ -27828,17 +27850,21 @@ var render = function() {
     [
       _c(
         "v-layout",
-        { attrs: { "align-content-start": "", "justify-start": "" } },
+        { attrs: { "align-content-center": "", "justify-start": "" } },
         [
           _c(
             "v-card",
-            { staticClass: "mr-8", attrs: { width: "300" } },
+            { staticClass: "mr-8", attrs: { width: "400" } },
             [
               _c(
                 "v-toolbar",
                 { attrs: { color: "teal" } },
                 [
-                  _c("v-toolbar-title", [_vm._v("PROJECTS")]),
+                  _c(
+                    "v-toolbar-title",
+                    { staticClass: "align-content-center" },
+                    [_vm._v("PROJECTS")]
+                  ),
                   _vm._v(" "),
                   _c("v-spacer"),
                   _vm._v(" "),
@@ -27847,7 +27873,19 @@ var render = function() {
                     { attrs: { icon: "" } },
                     [_c("v-icon", [_vm._v("mdi-magnify")])],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: { clearable: "", placeholder: "Type keyword..." },
+                    on: { "click:clear": _vm.clear },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
                 ],
                 1
               ),
@@ -27857,7 +27895,7 @@ var render = function() {
                 [
                   _c(
                     "v-list-item-group",
-                    _vm._l(_vm.projectList, function(currentProject) {
+                    _vm._l(_vm.filteredProjects, function(currentProject) {
                       return _c(
                         "v-list-item",
                         { key: currentProject.id },
@@ -27867,7 +27905,7 @@ var render = function() {
                             [
                               _c("v-list-item-title", {
                                 domProps: {
-                                  innerHTML: _vm._s(currentProject.title)
+                                  innerHTML: _vm._s(currentProject.name)
                                 }
                               })
                             ],
@@ -27894,7 +27932,11 @@ var render = function() {
                 "v-toolbar",
                 { attrs: { color: "teal" } },
                 [
-                  _c("v-toolbar-title", [_vm._v("DETAILS")]),
+                  _c(
+                    "v-toolbar-title",
+                    { staticClass: "align-content-center" },
+                    [_vm._v("TASKS")]
+                  ),
                   _vm._v(" "),
                   _c("v-spacer")
                 ],
@@ -89484,7 +89526,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
   }))();
 }), _defineProperty(_actions, ACTION_TYPES.CREATE_TASK, function (_ref2) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-    var commit, state, getters, description, deadline, task_type, start_date, start_hour, end_hour, project_data, employee, project, registerResponse;
+    var commit, state, getters, description, deadline, task_type, start_date, start_hour, end_hour, project_data, employee, registerResponse;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -89498,9 +89540,10 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
             end_hour = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_END_HOUR];
             project_data = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASK_PROJECT];
             employee = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_USER];
-            project = project_data.id;
-            console.log('employee', project_data);
-            _context2.next = 13;
+            console.log('project_id', project_data.id);
+            console.log('employee_id', employee.id);
+            console.log('start_date', start_date);
+            _context2.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://192.168.10.10/api/tasks', {
               task: description,
               task_type: task_type,
@@ -89509,13 +89552,13 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
               start_date: start_date,
               start_hour: start_hour,
               end_hour: end_hour,
-              project: project
+              project: project_data.id
             });
 
-          case 13:
+          case 14:
             registerResponse = _context2.sent;
 
-          case 14:
+          case 15:
           case "end":
             return _context2.stop();
         }
