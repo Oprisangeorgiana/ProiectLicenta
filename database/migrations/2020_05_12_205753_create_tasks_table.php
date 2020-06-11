@@ -22,8 +22,8 @@ class CreateTasksTable extends Migration
             $table->foreign('employee')->references('id')->on('employees')->onDelete('cascade');
             $table->date('deadline');
             $table->date('start_date');
-            $table->integer('start_hour');
-            $table->integer('end_hour');
+            $table->time('start_hour');
+            $table->time('end_hour');
             $table->integer('project');
             $table->foreign('project')->references('id')->on('projects')->onDelete('cascade');
 

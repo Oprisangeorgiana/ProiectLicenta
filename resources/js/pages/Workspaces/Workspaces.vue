@@ -17,11 +17,10 @@
           </v-text-field>
         </v-toolbar>
         <v-list>
-          <v-list-item-group>
+          <v-list-item-group v-model="selectedProject">
             <v-list-item
               v-for="currentProject in filteredProjects"
               :key="currentProject.id"
-
             >
               <v-list-item-content>
                 <v-list-item-title v-html="currentProject.name"></v-list-item-title>
@@ -38,12 +37,14 @@
         </v-toolbar>
         <v-list :three-line="true">
           <v-list-item
-            v-for="task in taskList"
+            v-for="task in tasksList"
+            v-if="task.project ===selectedProject + 1"
             :key="task.id"
           >
             <v-list-item-content>
-              <v-list-item-title v-html="task.title"></v-list-item-title>
-              <v-list-item-subtitle v-html="task.subtitle"></v-list-item-subtitle>
+              <v-list-item-title v-html="task.task"></v-list-item-title>
+              <v-list-item-subtitle v-html="task.deadline"></v-list-item-subtitle>
+              <v-list-item-subtitle v-html="task.project"></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -56,6 +57,12 @@
 <script>
 
   import globalGetters from '../../../js/store/global/getters'
+  import globalActions from '../../../js/store/global/actions'
+  import workspaceGetters from '../../../js/pages/Workspaces/store/getters'
+  import workspaceMutations from '../../../js/pages/Workspaces/store/mutations'
+  import workspaceActions from '../../../js/pages/Workspaces/store/actions'
+
+
   import { mapGetters } from 'vuex'
 
 
@@ -66,49 +73,54 @@
       return {
 
         search: '',
-
-        taskList: [
-          {
-            title: "asdfghjkl qwertyui 1",
-            subtitle: "qwertyuioplkjhgfdsazxcvbnm 1",
-            id: 1,
-          },
-          {
-            title: "asdfghjnbvfdsadfgh 2",
-            subtitle: "qwertyuiqwertyuioplkjhgfdsazxcvbnmoplkjhgfdsazxcvbnm 1",
-            id: 2,
-          },
-          {
-            title: "asfdghjg  qwertyui ftrhutjhgnfgn  3",
-            subtitle: "qwe[poiuytrewqlkjhgfdsa,mnbvcxzrtyuiqwertyuioplkjhgfdsazxcvbnmoplkjhgfdsazxcvbnm 1",
-            id: 3,
-          }]
+        projectID: this.$store.getters[workspaceGetters.GET_CURRENT_PROJECT],
       };
     },
 
     computed: {
 
       ...mapGetters({
-        projectsList: globalGetters.GET_PROJECTS
+        projectsList: globalGetters.GET_PROJECTS,
+        tasksList: globalGetters.GET_TASKS,
+        user:globalGetters.GET_USER
       }),
+
+      selectedProject:{
+        get () {
+          return this.$store.getters[workspaceGetters.GET_CURRENT_PROJECT]
+        },
+        set (value) {
+          this.$store.commit(workspaceMutations.SET_CURRENT_PROJECT, value)
+        }
+      },
+      // filteredTasks:function(){
+      //   return this.tasksList.filter(function (task){ return task.project === this.selectedProject.id})
+      // },
+      // filteredTasks(){
+      //   let id = this.selectedProject.id
+      //   let tasks = this.tasksList.filter(function (tasks) {
+      //     if(this.selectedProject.id === tasks.project)
+      //       return tasks}).pop();
+      // },
 
       filteredProjects() {
         if(!this.search) return this.projectsList;
         return this.projectsList.filter((project) =>{
           return project.name.toLowerCase().match(this.search)
+
         })
       }
     },
 
     methods: {
 
-      projectTasks (currentProject, currentUser) {
-
-      },
       clear(){
         return this.search=''
       },
-    }
+    },
+    async mounted() {
+      await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
+    },
 
   }
 </script>

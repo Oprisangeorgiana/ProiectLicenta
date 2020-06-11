@@ -2379,6 +2379,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -2472,7 +2474,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 2:
                 return _context.abrupt("return", _this.dialog = false);
 
-              case 3:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -2741,8 +2743,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _resources_js_layout_UI_kit_AddTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../resources/js/layout/UI-kit/AddTask */ "./resources/js/layout/UI-kit/AddTask.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pages/Board/store/getters */ "./resources/js/pages/Board/store/getters.js");
-/* harmony import */ var _pages_Board_store_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../pages/Board/store/actions */ "./resources/js/pages/Board/store/actions.js");
+/* harmony import */ var _pages_Calendar_store_getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pages/Calendar/store/getters */ "./resources/js/pages/Calendar/store/getters.js");
+/* harmony import */ var _pages_Calendar_store_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../pages/Calendar/store/actions */ "./resources/js/pages/Calendar/store/actions.js");
+/* harmony import */ var _store_global_getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _store_global_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../store/global/actions */ "./resources/js/store/global/actions.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2814,6 +2818,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -2845,36 +2856,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
-    listTasks: _pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASKS
-  }), {
-    methods: {},
-    mounted: function mounted() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch(_pages_Board_store_actions__WEBPACK_IMPORTED_MODULE_4__["default"].FETCH_PAGE_DETAILS);
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    addTask: function addTask() {
-      this.events.push({
-        name: this.listTasks.type,
-        start: "".concat(this.listTasks.start_date, " ").concat(this.listTasks.start_hour),
-        end: "".concat(this.listTasks.deadline, " ").concat(this.listTasks.end_hour)
-      });
+    listTasks: _store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_TASKS
+  })),
+  methods: {
+    seeTasks: function seeTasks() {
+      var list = _store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_TASKS;
+      var events = [];
+      list.forEach(function (item) {
+        console.log('item', item);
+      }); // for (item in this.listTasks)
+      // this.events.push({
+      //   name: item.task,
+      //   start: `${item.start_date} ${item.start_hour}`,
+      //   end: `${item.deadline} ${item.end_hour}`,
+      // });
     }
-  })
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.seeTasks();
+
+              _context.next = 3;
+              return _this.$store.dispatch(_pages_Calendar_store_actions__WEBPACK_IMPORTED_MODULE_4__["default"].FETCH_PAGE_TASKS);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
 });
 
 /***/ }),
@@ -3320,8 +3338,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _js_store_global_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../js/store/global/actions */ "./resources/js/store/global/actions.js");
+/* harmony import */ var _js_pages_Workspaces_store_getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../js/pages/Workspaces/store/getters */ "./resources/js/pages/Workspaces/store/getters.js");
+/* harmony import */ var _js_pages_Workspaces_store_mutations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../js/pages/Workspaces/store/mutations */ "./resources/js/pages/Workspaces/store/mutations.js");
+/* harmony import */ var _js_pages_Workspaces_store_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../js/pages/Workspaces/store/actions */ "./resources/js/pages/Workspaces/store/actions.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3383,6 +3413,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3390,24 +3425,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       search: '',
-      taskList: [{
-        title: "asdfghjkl qwertyui 1",
-        subtitle: "qwertyuioplkjhgfdsazxcvbnm 1",
-        id: 1
-      }, {
-        title: "asdfghjnbvfdsadfgh 2",
-        subtitle: "qwertyuiqwertyuioplkjhgfdsazxcvbnmoplkjhgfdsazxcvbnm 1",
-        id: 2
-      }, {
-        title: "asfdghjg  qwertyui ftrhutjhgnfgn  3",
-        subtitle: "qwe[poiuytrewqlkjhgfdsa,mnbvcxzrtyuiqwertyuioplkjhgfdsazxcvbnmoplkjhgfdsazxcvbnm 1",
-        id: 3
-      }]
+      projectID: this.$store.getters[_js_pages_Workspaces_store_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_PROJECT]
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    projectsList: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_0__["default"].GET_PROJECTS
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
+    projectsList: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PROJECTS,
+    tasksList: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_TASKS,
+    user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_USER
   }), {
+    selectedProject: {
+      get: function get() {
+        return this.$store.getters[_js_pages_Workspaces_store_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_PROJECT];
+      },
+      set: function set(value) {
+        this.$store.commit(_js_pages_Workspaces_store_mutations__WEBPACK_IMPORTED_MODULE_4__["default"].SET_CURRENT_PROJECT, value);
+      }
+    },
+    // filteredTasks:function(){
+    //   return this.tasksList.filter(function (task){ return task.project === this.selectedProject.id})
+    // },
+    // filteredTasks(){
+    //   let id = this.selectedProject.id
+    //   let tasks = this.tasksList.filter(function (tasks) {
+    //     if(this.selectedProject.id === tasks.project)
+    //       return tasks}).pop();
+    // },
     filteredProjects: function filteredProjects() {
       var _this = this;
 
@@ -3418,10 +3460,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
-    projectTasks: function projectTasks(currentProject, currentUser) {},
     clear: function clear() {
       return this.search = '';
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_2__["default"].FETCH_PAGE_TASKS);
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -26866,8 +26926,9 @@ var render = function() {
                               _vm._v(" "),
                               _vm.menuStartHour
                                 ? _c("v-time-picker", {
+                                    attrs: { "use-seconds": "" },
                                     on: {
-                                      "click:minute": function($event) {
+                                      "click:second": function($event) {
                                         return _vm.$refs.menu1.save(
                                           _vm.start_hour
                                         )
@@ -26959,8 +27020,9 @@ var render = function() {
                               _vm._v(" "),
                               _vm.menuEndHour
                                 ? _c("v-time-picker", {
+                                    attrs: { "use-seconds": "" },
                                     on: {
-                                      "click:minute": function($event) {
+                                      "click:second": function($event) {
                                         return _vm.$refs.menu.save(_vm.end_hour)
                                       }
                                     },
@@ -27429,13 +27491,17 @@ var render = function() {
       _c(
         "v-sheet",
         { attrs: { height: "600" } },
-        [
-          _c("v-calendar", {
+        _vm._l(_vm.listTasks, function(item) {
+          return _c("v-calendar", {
+            key: item.id,
             ref: "calendar",
+            refInFor: true,
             attrs: {
               weekdays: _vm.weekday,
               type: _vm.type,
-              events: _vm.events
+              "event-name": item.task,
+              start: item.start_date + " " + item.start_hour,
+              end: item.deadline + " " + item.end_hour
             },
             model: {
               value: _vm.value,
@@ -27445,7 +27511,7 @@ var render = function() {
               expression: "value"
             }
           })
-        ],
+        }),
         1
       )
     ],
@@ -27895,6 +27961,15 @@ var render = function() {
                 [
                   _c(
                     "v-list-item-group",
+                    {
+                      model: {
+                        value: _vm.selectedProject,
+                        callback: function($$v) {
+                          _vm.selectedProject = $$v
+                        },
+                        expression: "selectedProject"
+                      }
+                    },
                     _vm._l(_vm.filteredProjects, function(currentProject) {
                       return _c(
                         "v-list-item",
@@ -27946,27 +28021,33 @@ var render = function() {
               _c(
                 "v-list",
                 { attrs: { "three-line": true } },
-                _vm._l(_vm.taskList, function(task) {
-                  return _c(
-                    "v-list-item",
-                    { key: task.id },
-                    [
-                      _c(
-                        "v-list-item-content",
+                _vm._l(_vm.tasksList, function(task) {
+                  return task.project === _vm.selectedProject + 1
+                    ? _c(
+                        "v-list-item",
+                        { key: task.id },
                         [
-                          _c("v-list-item-title", {
-                            domProps: { innerHTML: _vm._s(task.title) }
-                          }),
-                          _vm._v(" "),
-                          _c("v-list-item-subtitle", {
-                            domProps: { innerHTML: _vm._s(task.subtitle) }
-                          })
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", {
+                                domProps: { innerHTML: _vm._s(task.task) }
+                              }),
+                              _vm._v(" "),
+                              _c("v-list-item-subtitle", {
+                                domProps: { innerHTML: _vm._s(task.deadline) }
+                              }),
+                              _vm._v(" "),
+                              _c("v-list-item-subtitle", {
+                                domProps: { innerHTML: _vm._s(task.project) }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 }),
                 1
               )
@@ -89497,7 +89578,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var ACTION_TYPES = {
   FETCH_PAGE_DETAILS: 'board/FETCH_PAGE_DETAILS',
-  CREATE_TASK: 'board/CREATE_TASK'
+  CREATE_TASK: 'board/CREATE_TASK',
+  EDIT_TASK: 'board/EDIT_TASK'
 };
 /* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
 var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_DETAILS, function (_ref) {
@@ -89543,7 +89625,8 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
             console.log('project_id', project_data.id);
             console.log('employee_id', employee.id);
             console.log('start_date', start_date);
-            _context2.next = 14;
+            console.log('start_hour', start_hour);
+            _context2.next = 15;
             return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://192.168.10.10/api/tasks', {
               task: description,
               task_type: task_type,
@@ -89555,10 +89638,10 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
               project: project_data.id
             });
 
-          case 14:
+          case 15:
             registerResponse = _context2.sent;
 
-          case 15:
+          case 16:
           case "end":
             return _context2.stop();
         }
@@ -89787,6 +89870,160 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_template_id_469b2556___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/pages/Calendar/store/actions.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/Calendar/store/actions.js ***!
+  \******************************************************/
+/*! exports provided: default, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutations */ "./resources/js/pages/Calendar/store/mutations.js");
+/* harmony import */ var _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../repositories/TasksRepository */ "./resources/js/repositories/TasksRepository.js");
+
+
+var ACTION_TYPES = {
+  FETCH_PAGE_DETAILS: 'calendar/FETCH_PAGE_DETAILS'
+};
+/* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
+var actions = {// async [ACTION_TYPES.FETCH_PAGE_DETAILS] ({ commit, state }) {
+  //   let listTasks = await new TasksRepository().getAll()
+  //   let list = []
+  //   let item
+  //   for (item in listTasks)
+  //   list.push({
+  //     name: item.task,
+  //     // start: `${listTasks.start_date} ${listTasks.start_hour}`,
+  //     // end: `${listTasks.deadline} ${listTasks.end_hour}`,
+  //   });
+  //
+  //   //if
+  //   console.log('events list', list),
+  //   commit(pageMutations.SET_EVENTS, list)
+  // },
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Calendar/store/getters.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/Calendar/store/getters.js ***!
+  \******************************************************/
+/*! exports provided: default, getters */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+var _getters;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var GETTER_TYPES = {
+  GET_EVENTS: 'calendar/GET_EVENTS',
+  GET_START: 'calendar/GET_START',
+  GET_END: 'calendar/GET_END',
+  GET_NAME: 'calendar/GET_NAME'
+};
+/* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
+var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_EVENTS, function (state, getters) {
+  return state.events;
+}), _defineProperty(_getters, GETTER_TYPES.GET_START, function (state, getters) {
+  return state.start;
+}), _defineProperty(_getters, GETTER_TYPES.GET_END, function (state, getters) {
+  return state.end;
+}), _defineProperty(_getters, GETTER_TYPES.GET_NAME, function (state, getters) {
+  return state.name;
+}), _getters);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Calendar/store/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/Calendar/store/index.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/js/pages/Calendar/store/state.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/pages/Calendar/store/mutations.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters */ "./resources/js/pages/Calendar/store/getters.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions */ "./resources/js/pages/Calendar/store/actions.js");
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: false,
+  state: _state__WEBPACK_IMPORTED_MODULE_0__["default"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_1__["mutations"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_2__["getters"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_5__["actions"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/pages/Calendar/store/mutations.js":
+/*!********************************************************!*\
+  !*** ./resources/js/pages/Calendar/store/mutations.js ***!
+  \********************************************************/
+/*! exports provided: default, mutations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var MUTATION_TYPES = {
+  SET_EVENTS: 'calendar/SET_EVENTS',
+  SET_START: 'calendar/SET_START',
+  SET_END: 'calendar/SET_END',
+  SET_NAME: 'calendar/SET_NAME'
+};
+/* harmony default export */ __webpack_exports__["default"] = (MUTATION_TYPES);
+var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET_EVENTS, function (state, data) {
+  state.events = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_START, function (state, data) {
+  state.start = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_END, function (state, data) {
+  state.end = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_NAME, function (state, data) {
+  state.name = data;
+}), _mutations);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Calendar/store/state.js":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/Calendar/store/state.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  events: null,
+  start: '',
+  end: '',
+  name: ''
+});
 
 /***/ }),
 
@@ -90403,6 +90640,192 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/Workspaces/store/actions.js":
+/*!********************************************************!*\
+  !*** ./resources/js/pages/Workspaces/store/actions.js ***!
+  \********************************************************/
+/*! exports provided: default, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/pages/Workspaces/store/mutations.js");
+/* harmony import */ var _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../repositories/TasksRepository */ "./resources/js/repositories/TasksRepository.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getters */ "./resources/js/pages/Workspaces/store/getters.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _repositories_ProjectsRepository__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../repositories/ProjectsRepository */ "./resources/js/repositories/ProjectsRepository.js");
+/* harmony import */ var _store_global_getters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../store/global/getters */ "./resources/js/store/global/getters.js");
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+
+var ACTION_TYPES = {
+  FETCH_PAGE_DETAILS: 'workspace/FETCH_PAGE_DETAILS'
+};
+/* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
+var actions = _defineProperty({}, ACTION_TYPES.FETCH_PAGE_DETAILS, function (_ref) {
+  var _this = this;
+
+  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    var commit, state, tasks, currentProject, task, list;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            commit = _ref.commit, state = _ref.state;
+            _context.next = 3;
+            return new _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_2__["default"]().getAll();
+
+          case 3:
+            tasks = _context.sent;
+            currentProject = _getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_PROJECT;
+            list = [];
+
+            if (!(currentProject === null)) {
+              _context.next = 10;
+              break;
+            }
+
+            return _context.abrupt("return", null);
+
+          case 10:
+            console.log('task.project', tasks);
+
+          case 11:
+            for (task in tasks) {
+              if (currentProject === task.project) _this.list.push(task);
+            }
+
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASKS_FILTERED, tasks);
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }))();
+});
+
+/***/ }),
+
+/***/ "./resources/js/pages/Workspaces/store/getters.js":
+/*!********************************************************!*\
+  !*** ./resources/js/pages/Workspaces/store/getters.js ***!
+  \********************************************************/
+/*! exports provided: default, getters */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+var _getters;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var GETTER_TYPES = {
+  GET_CURRENT_PROJECT: 'workspaces/GET_CURRENT_PROJECT',
+  GET_TASKS_FILTERED: 'workspaces/GET_TASKS_FILTERED'
+};
+/* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
+var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_CURRENT_PROJECT, function (state) {
+  return state.current_project;
+}), _defineProperty(_getters, GETTER_TYPES.SET_CURRENT_PROJECT, function (state) {
+  return state.tasks_filtered;
+}), _getters);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Workspaces/store/index.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/Workspaces/store/index.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/js/pages/Workspaces/store/state.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/pages/Workspaces/store/mutations.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters */ "./resources/js/pages/Workspaces/store/getters.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions */ "./resources/js/pages/Workspaces/store/actions.js");
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: false,
+  state: _state__WEBPACK_IMPORTED_MODULE_0__["default"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_1__["mutations"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_2__["getters"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_5__["actions"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/pages/Workspaces/store/mutations.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/pages/Workspaces/store/mutations.js ***!
+  \**********************************************************/
+/*! exports provided: default, mutations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var MUTATION_TYPES = {
+  SET_CURRENT_PROJECT: 'products/SET_CURRENT_PROJECT',
+  SET_TASKS_FILTERED: 'products/SET_TASKS_FILTERED'
+};
+/* harmony default export */ __webpack_exports__["default"] = (MUTATION_TYPES);
+var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET_CURRENT_PROJECT, function (state, data) {
+  state.current_project = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_TASKS_FILTERED, function (state, data) {
+  state.tasks_filtered = data;
+}), _mutations);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Workspaces/store/state.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/Workspaces/store/state.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  current_project: null,
+  tasks_filtered: null
+});
+
+/***/ }),
+
 /***/ "./resources/js/plugins/vuetify.js":
 /*!*****************************************!*\
   !*** ./resources/js/plugins/vuetify.js ***!
@@ -90791,6 +91214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/global/mutations.js");
 /* harmony import */ var _repositories_ProjectsRepository__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../repositories/ProjectsRepository */ "./resources/js/repositories/ProjectsRepository.js");
 /* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../repositories/TasksRepository */ "./resources/js/repositories/TasksRepository.js");
 
 
 var _actions;
@@ -90804,11 +91228,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 var ACTION_TYPES = {
   FETCH_DETAILS: 'global/FETCH_DETAILS',
   FETCH_TOKEN: 'global/FETCH_TOKEN',
   FETCH_USER: 'global/FETCH_USER',
-  DESTROY_TOKEN: 'global/DESTROY_TOKEN'
+  DESTROY_TOKEN: 'global/DESTROY_TOKEN',
+  FETCH_PAGE_TASKS: 'global/FETCH_PAGE_TASKS'
 };
 /* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
 var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_DETAILS, function (_ref) {
@@ -90898,6 +91324,29 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_DETAI
       }
     }, _callee4);
   }))();
+}), _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_TASKS, function (_ref6) {
+  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+    var commit, state, tasks;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            commit = _ref6.commit, state = _ref6.state;
+            _context5.next = 3;
+            return new _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_4__["default"]().getAll();
+
+          case 3:
+            tasks = _context5.sent;
+            console.log('lista intreaga de taskuri', tasks);
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASKS, tasks);
+
+          case 6:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }))();
 }), _actions);
 
 /***/ }),
@@ -90919,7 +91368,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var GETTER_TYPES = {
   GET_PROJECTS: 'global/GET_PROJECTS',
   GET_TOKEN: 'global/GET_TOKEN',
-  GET_USER: 'global/GET_USER'
+  GET_USER: 'global/GET_USER',
+  GET_TASKS: 'global/GET_TASKS'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
 var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECTS, function (state, getters) {
@@ -90928,6 +91378,8 @@ var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECT
   return state.token;
 }), _defineProperty(_getters, GETTER_TYPES.GET_USER, function (state, getters) {
   return state.user;
+}), _defineProperty(_getters, GETTER_TYPES.GET_TASKS, function (state, getters) {
+  return state.tasks;
 }), _getters);
 
 /***/ }),
@@ -90982,7 +91434,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var MUTATION_TYPES = {
   SET_PROJECTS: 'global/SET_PROJECTS',
   SET_TOKEN: 'global/SET_TOKEN',
-  SET_USER: 'global/SET_USER'
+  SET_USER: 'global/SET_USER',
+  SET_TASKS: 'global/SET_TASKS'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATION_TYPES);
 var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET_PROJECTS, function (state, data) {
@@ -90991,6 +91444,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
   state.token = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_USER, function (state, data) {
   state.user = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_TASKS, function (state, data) {
+  state.tasks = data;
 }), _mutations);
 
 /***/ }),
@@ -91006,6 +91461,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   projects: null,
+  tasks: null,
   token: localStorage.getItem('access_token') || null,
   user: null
 });
@@ -91029,6 +91485,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Login_store_index__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_pages_Login_store_index__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _pages_Settings_store_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/Settings/store/index */ "./resources/js/pages/Settings/store/index.js");
 /* harmony import */ var _global_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./global/index */ "./resources/js/store/global/index.js");
+/* harmony import */ var _pages_Workspaces_store_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/Workspaces/store/index */ "./resources/js/pages/Workspaces/store/index.js");
+/* harmony import */ var _pages_Calendar_store_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/Calendar/store/index */ "./resources/js/pages/Calendar/store/index.js");
+
+
 
 
 
@@ -91041,7 +91501,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     boardStore: _pages_Board_store_index__WEBPACK_IMPORTED_MODULE_2__["default"],
     loginStore: _pages_Login_store_index__WEBPACK_IMPORTED_MODULE_3___default.a,
     settingsStore: _pages_Settings_store_index__WEBPACK_IMPORTED_MODULE_4__["default"],
-    globalStore: _global_index__WEBPACK_IMPORTED_MODULE_5__["default"]
+    globalStore: _global_index__WEBPACK_IMPORTED_MODULE_5__["default"],
+    workspaceStore: _pages_Workspaces_store_index__WEBPACK_IMPORTED_MODULE_6__["default"],
+    calendarStore: _pages_Calendar_store_index__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 }));
 

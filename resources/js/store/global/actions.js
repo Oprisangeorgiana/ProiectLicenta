@@ -1,12 +1,14 @@
 import pageMutations from './mutations'
 import ProjectsRepository from '../../repositories/ProjectsRepository'
 import pageGetters from './getters'
+import TasksRepository from '../../repositories/TasksRepository'
 
 const ACTION_TYPES = {
   FETCH_DETAILS: 'global/FETCH_DETAILS',
   FETCH_TOKEN: 'global/FETCH_TOKEN',
   FETCH_USER: 'global/FETCH_USER',
-  DESTROY_TOKEN: 'global/DESTROY_TOKEN'
+  DESTROY_TOKEN: 'global/DESTROY_TOKEN',
+  FETCH_PAGE_TASKS: 'global/FETCH_PAGE_TASKS'
 }
 
 export default ACTION_TYPES
@@ -45,6 +47,12 @@ export const actions = {
     localStorage.removeItem('access_token')
     commit(pageMutations.SET_USER, null)
     commit(pageMutations.SET_TOKEN, null)
-  }
+  },
+
+  async [ACTION_TYPES.FETCH_PAGE_TASKS] ({ commit, state }) {
+    let tasks = await new TasksRepository().getAll()
+    console.log('lista intreaga de taskuri', tasks)
+    commit(pageMutations.SET_TASKS, tasks)
+  },
 
 }

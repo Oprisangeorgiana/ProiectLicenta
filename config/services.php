@@ -33,7 +33,7 @@ return [
     'passport'=>[
         'login_endpoint'=>'http://192.168.10.10/oauth/token',
         'client_id'=>'2',
-        'client_secret'=>'vlF0Es9wDMhhLrbtTK6FGarPRMkwo3eSKXeUmCun'
+        'client_secret'=>'GoeKNrJe815O6biR0laPN6cXY15FKZZD8AnXAudh'
     ]
 
 ];

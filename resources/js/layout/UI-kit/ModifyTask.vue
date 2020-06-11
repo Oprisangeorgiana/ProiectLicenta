@@ -6,7 +6,7 @@
   >
     <template v-slot:activator="{on}">
       <v-btn fab dark small color="grey">
-        <v-icon dark v-on="on">mdi-plus</v-icon>
+        <v-icon dark v-on="on">mdi-pencil-add-outline</v-icon>
       </v-btn>
     </template>
     <v-card>
@@ -18,7 +18,7 @@
 
           <v-row>
             <v-col cols="12">
-              <v-text-field label="Task*" v-model="description"></v-text-field>
+              <v-text-field label="Task*" v-model="description">{{description}}</v-text-field>
             </v-col>
           </v-row>
 
@@ -111,7 +111,7 @@
                   use-seconds
                   v-if="menuStartHour"
                   v-model="start_hour"
-                  @click:second="$refs.menu1.save(start_hour)"
+                  @click:minute="$refs.menu1.save(start_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
@@ -140,7 +140,7 @@
                   use-seconds
                   v-if="menuEndHour"
                   v-model="end_hour"
-                  @click:second="$refs.menu.save(end_hour)"
+                  @click:minute="$refs.menu.save(end_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
@@ -273,14 +273,12 @@
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false
-        await this.$router.push('/board')
-
       },
 
-      async mounted () {
-        await this.$store.dispatch(globalActions.FETCH_DETAILS)
-      },
-    }
+    //   async mounted () {
+    //     await this.$store.dispatch(globalActions.FETCH_DETAILS)
+    //   },
+    // }
 
   }
 </script>

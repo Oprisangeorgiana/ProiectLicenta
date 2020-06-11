@@ -8,7 +8,7 @@ import globalGetters from '../../../store/global/getters'
 const ACTION_TYPES = {
   FETCH_PAGE_DETAILS: 'board/FETCH_PAGE_DETAILS',
   CREATE_TASK: 'board/CREATE_TASK',
-
+  EDIT_TASK: 'board/EDIT_TASK'
 
 }
 
@@ -21,8 +21,6 @@ export const actions = {
     //console.log('tasks', tasks),
     commit(pageMutations.SET_TASKS, tasks)
   },
-
-
 
   async [ACTION_TYPES.CREATE_TASK] ({ commit, state, getters }) {
     const description = getters[pageGetters.GET_DESCRIPTION]
@@ -37,6 +35,7 @@ export const actions = {
     console.log('project_id', project_data.id)
     console.log('employee_id', employee.id)
     console.log('start_date', start_date)
+    console.log('start_hour', start_hour)
 
     const registerResponse = await axios.post('http://192.168.10.10/api/tasks',
       {
@@ -47,10 +46,13 @@ export const actions = {
         start_date: start_date,
         start_hour: start_hour,
         end_hour: end_hour,
-        project: project_data.id,
+        project: project_data.id
 
       })
 
-  }
+  },
+
+
+
 
 }
