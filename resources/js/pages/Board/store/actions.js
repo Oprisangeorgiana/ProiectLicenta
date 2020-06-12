@@ -8,7 +8,7 @@ import globalGetters from '../../../store/global/getters'
 const ACTION_TYPES = {
   FETCH_PAGE_DETAILS: 'board/FETCH_PAGE_DETAILS',
   CREATE_TASK: 'board/CREATE_TASK',
-  EDIT_TASK: 'board/EDIT_TASK'
+  UPDATE_TASK: 'board/UPDATE_TASK'
 
 }
 
@@ -47,9 +47,11 @@ export const actions = {
         start_hour: start_hour,
         end_hour: end_hour,
         project: project_data.id
-
       })
+  },
 
+  async [ACTION_TYPES.UPDATE_TASK] ({ commit, state, getters }, updatedTask) {
+    const updateResponse = await new TasksRepository().update(updatedTask)
   },
 
 

@@ -32,9 +32,7 @@
         class="ma-2"
       ></v-select>
       <v-spacer></v-spacer>
-<!--      <v-btn-->
-<!--      @click="seeTasks"-->
-<!--      >See Tasks</v-btn>-->
+
       <add-task>
       </add-task>
 
@@ -48,16 +46,24 @@
     </v-sheet>
     <v-sheet height="600">
       <v-calendar
+        v-if="user"
         ref="calendar"
         v-model="value"
         :weekdays="weekday"
         :type="type"
-        v-for="item in listTasks"
-        :key="item.id"
-        :event-name="item.task"
-        :start="`${item.start_date} ${item.start_hour}`"
-        :end="`${item.deadline} ${item.end_hour}`"
+        :events="events"
+        :event-color="color[0]"
          ></v-calendar>
+
+
+      <v-calendar
+      v-else
+      ref="calendar"
+      v-model="value"
+      :weekdays="weekday"
+      :type="type"
+      >
+      </v-calendar>
     </v-sheet>
   </div>
 </template>
@@ -68,8 +74,8 @@
   import { mapGetters } from "vuex";
   import calendarGetters from '../../pages/Calendar/store/getters'
   import calendarActions from '../../pages/Calendar/store/actions'
-  import globalGetters from '../../store/global/getters'
-  import globalActions from '../../store/global/actions'
+  import globalGetters from '../../../js/store/global/getters'
+  import globalActions from '../../../js/store/global/actions'
 
   export default {
 
@@ -89,46 +95,50 @@
       ],
       value: '',
       events:[],
+      color: [ 'teal'],
     }),
 
     computed: {
       ...mapGetters({
-        listTasks: globalGetters.GET_TASKS,
+        listTasks:globalGetters.GET_TASKS,
+        user: globalGetters.GET_USER,
       }),
 
-      // tasks () {
-      //   this.events.push({
-      //     name: this.listTasks.type,
-      //     start: `${this.listTasks.start_date} ${this.listTasks.start_hour}`,
-      //     end: `${this.listTasks.deadline} ${this.listTasks.end_hour}`,
-      //   });
-      //
-      // }
+
 
     },
     methods: {
-      seeTasks: function () {
 
-        let list = globalGetters.GET_TASKS
+      // getEventColor (event) {
+      //   return event.color
+      // },
+
+
+
+       seeTasks () {
+
+        let list = this.listTasks
         let events =[];
-        list.forEach( item =>{
-          console.log('item', item)
-
+        Object.keys(list).forEach( key  =>{
+          const item = list[key]
+          // console.log('item', item)
+          let data = {}
+          data.name = item.task
+          data.start = `${item.start_date} ${item.start_hour}`
+          data.end = `${item.deadline} ${item.end_hour}`
+          events.push(data)
           });
+          this.events = events
+
+         console.log('user', this.user)
 
 
-        // for (item in this.listTasks)
-        // this.events.push({
-        //   name: item.task,
-        //   start: `${item.start_date} ${item.start_hour}`,
-        //   end: `${item.deadline} ${item.end_hour}`,
-        // });
-      }
-
+       }
     },
     async mounted () {
-      this.seeTasks(),
-      await this.$store.dispatch(calendarActions.FETCH_PAGE_TASKS)
+      await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
+      this.seeTasks();
+
     },
   }
 </script>

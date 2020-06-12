@@ -1,6 +1,6 @@
 export default {
   projects: null,
-  tasks:null,
+  tasks:[],
   token: localStorage.getItem('access_token') || null,
   user: null
 }

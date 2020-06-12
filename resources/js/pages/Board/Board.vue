@@ -8,7 +8,7 @@
                     <!--                  1-->
                     <!--            </span>-->
                     <h1>COMING
-                        <add-task>
+                        <add-task v-if="user">
                         </add-task>
                     </h1>
                 </v-card>
@@ -17,7 +17,7 @@
             <v-col cols ="3">
                 <v-card tile flat color="teal lighten-4">
                     <h1>TO DO
-                        <add-task>
+                        <add-task v-if="user">
                         </add-task>
                     </h1>
                 </v-card>
@@ -39,7 +39,7 @@
 
         </v-row>
 
-        <v-row>
+        <v-row v-if="user">
 
             <v-col cols ="3">
                 <draggable class="list-group"  group="people" @change="log">
@@ -121,11 +121,19 @@
                         :key="listTask.task"
 
                     >
-                        <v-card
-                            outlined
-                            class="mr-10"
-                        >
-                            {{ listTask.task }}
+                        <v-card>
+
+                            <v-card-text>
+                                Task: {{ listTask.task }}
+                            </v-card-text>
+                            <v-card-subtitle>
+                                Deadline: {{listTask.deadline}}
+                            </v-card-subtitle>
+                            <v-card-actions>
+                                <modify-task
+                                :currentTask="listTask"
+                                ></modify-task>
+                            </v-card-actions>
                         </v-card>
                     </div>
                 </draggable>
@@ -139,6 +147,8 @@
     import boardGetters from "./store/getters";
     import {mapGetters} from "vuex";
     import AddTask from '../../../../resources/js/layout/UI-kit/AddTask'
+    import ModifyTask from '../../../../resources/js/layout/UI-kit/ModifyTask'
+    import globalGetters from'../../../js/store/global/getters'
     // import {DraggableTree} from 'vue-draggable-nested-tree'
     // import nestedDraggable from '';
 
@@ -150,6 +160,7 @@
         components: {
             draggable,
             AddTask,
+            ModifyTask,
         },
         data() {
             return {};
@@ -158,7 +169,8 @@
 
         computed: {
             ...mapGetters({
-                listTasks: boardGetters.GET_TASKS
+                listTasks: boardGetters.GET_TASKS,
+                user: globalGetters.GET_USER
             }),
         },
         methods: {

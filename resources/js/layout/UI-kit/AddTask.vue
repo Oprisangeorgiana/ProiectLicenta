@@ -5,12 +5,12 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-btn fab dark small color="grey">
+      <v-btn fab dark x-small color="grey">
         <v-icon dark v-on="on">mdi-plus</v-icon>
       </v-btn>
     </template>
     <v-card>
-      <v-card-title>
+      <v-card-title class="teal">
         <span class="headline">New task</span>
       </v-card-title>
       <v-card-text>
@@ -82,7 +82,9 @@
                 <v-date-picker v-model="deadline" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
+                  <router-link :to="{ name: 'board' }">
                   <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
+                  </router-link>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -273,7 +275,6 @@
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false
-        await this.$router.push('/board')
 
       },
 

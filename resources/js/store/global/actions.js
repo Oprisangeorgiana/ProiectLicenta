@@ -2,6 +2,8 @@ import pageMutations from './mutations'
 import ProjectsRepository from '../../repositories/ProjectsRepository'
 import pageGetters from './getters'
 import TasksRepository from '../../repositories/TasksRepository'
+import axios from 'axios'
+
 
 const ACTION_TYPES = {
   FETCH_DETAILS: 'global/FETCH_DETAILS',
@@ -16,7 +18,7 @@ export default ACTION_TYPES
 export const actions = {
   async [ACTION_TYPES.FETCH_DETAILS] ({ commit, state }) {
     let projects = await new ProjectsRepository().getAll()
-    console.log('projects', projects)
+    // console.log('projects', projects)
     commit(pageMutations.SET_PROJECTS, projects)
   },
 
@@ -51,7 +53,6 @@ export const actions = {
 
   async [ACTION_TYPES.FETCH_PAGE_TASKS] ({ commit, state }) {
     let tasks = await new TasksRepository().getAll()
-    console.log('lista intreaga de taskuri', tasks)
     commit(pageMutations.SET_TASKS, tasks)
   },
 

@@ -71,7 +71,6 @@
 
     data () {
       return {
-
         search: '',
         projectID: this.$store.getters[workspaceGetters.GET_CURRENT_PROJECT],
       };
@@ -93,15 +92,6 @@
           this.$store.commit(workspaceMutations.SET_CURRENT_PROJECT, value)
         }
       },
-      // filteredTasks:function(){
-      //   return this.tasksList.filter(function (task){ return task.project === this.selectedProject.id})
-      // },
-      // filteredTasks(){
-      //   let id = this.selectedProject.id
-      //   let tasks = this.tasksList.filter(function (tasks) {
-      //     if(this.selectedProject.id === tasks.project)
-      //       return tasks}).pop();
-      // },
 
       filteredProjects() {
         if(!this.search) return this.projectsList;
