@@ -18,7 +18,12 @@ class CreateTasksTable extends Migration
             $table->timestamps();
             $table->string('task');
             $table->string('task_type');
+            $table->integer('employee');
+            $table->foreign('employee')->references('id')->on('employees')->onDelete('cascade');
             $table->date('deadline');
+            $table->date('start_date');
+            $table->time('start_hour');
+            $table->time('end_hour');
             $table->integer('project');
             $table->foreign('project')->references('id')->on('projects')->onDelete('cascade');
 

@@ -2,23 +2,28 @@
   <v-dialog
     v-model="dialog"
     persistent
+    keydown="KeyboardEvent"
     max-width="700"
   >
     <template v-slot:activator="{on}">
       <v-btn fab dark x-small color="grey">
-        <v-icon dark v-on="on">mdi-plus</v-icon>
+        <v-icon v-on="on"> mdi-pen</v-icon>
       </v-btn>
     </template>
     <v-card>
       <v-card-title class="teal">
-        <span class="headline">New task</span>
+        <span class="headline">Modify task</span>
       </v-card-title>
       <v-card-text>
         <v-container>
 
           <v-row>
             <v-col cols="12">
-              <v-text-field label="Task*" v-model="description"></v-text-field>
+              <v-text-field
+                v-model="currentTask.task"
+                clearable
+              >
+              </v-text-field>
             </v-col>
           </v-row>
 
@@ -26,9 +31,8 @@
             <v-col>
               <v-select
                 :items="['task', 'subtask']"
-                label="Type*"
                 required
-                v-model="task_type"
+                v-model="currentTask.task_type"
               ></v-select>
             </v-col>
           </v-row>
@@ -45,16 +49,14 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="start_date"
-                    label="Pick start date*"
-                    readonly
+                    v-model="currentTask.start_date"
                     v-on="on"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="start_date" no-title scrollable>
+                <v-date-picker v-model="startDate" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuStartDate = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menuDate.save(start_date)">OK</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuDate.save(startDate)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -73,18 +75,16 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="deadline"
+                    v-model="currentTask.deadline"
                     label="Pick end date*"
                     readonly
                     v-on="on"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="deadline" no-title scrollable>
+                <v-date-picker v-model="currentTask.deadline" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
-                  <router-link :to="{ name: 'board' }">
-                  <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
-                  </router-link>
+                  <v-btn text color="primary" @click="$refs.menuEndDate.save(currentTask.deadline)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -97,13 +97,13 @@
                 ref="menu1"
                 v-model="menuStartHour"
                 :close-on-content-click="false"
-                :return-value.sync="start_hour"
+                :return-value.sync="currentTask.start_hour"
                 transition="scale-transition"
                 offset-y
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="start_hour"
+                    v-model="currentTask.start_hour"
                     label="Pick start hour*"
                     readonly
                     v-on="on"
@@ -112,8 +112,8 @@
                 <v-time-picker
                   use-seconds
                   v-if="menuStartHour"
-                  v-model="start_hour"
-                  @click:second="$refs.menu1.save(start_hour)"
+                  v-model="currentTask.start_hour"
+                  @click:minute="$refs.menu1.save(currentTask.start_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
@@ -126,13 +126,13 @@
                 ref="menu"
                 v-model="menuEndHour"
                 :close-on-content-click="false"
-                :return-value.sync="end_hour"
+                :return-value.sync="currentTask.end_hour"
                 transition="scale-transition"
                 offset-y
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="end_hour"
+                    v-model="currentTask.end_hour"
                     label="Pick end hour*"
                     readonly
                     v-on="on"
@@ -141,8 +141,8 @@
                 <v-time-picker
                   use-seconds
                   v-if="menuEndHour"
-                  v-model="end_hour"
-                  @click:second="$refs.menu.save(end_hour)"
+                  v-model="currentTask.end_hour"
+                  @click:minute="$refs.menu.save(currentTask.end_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
@@ -152,8 +152,7 @@
           <v-row>
             <v-col>
               <v-select
-                v-model="project_task"
-                label="Project*"
+                v-model="currentTask.project"
                 required
                 :items="listProjects"
                 item-text="name"
@@ -164,12 +163,11 @@
           </v-row>
 
         </v-container>
-        <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="teal" text @click="dialog = false">Close</v-btn>
-        <v-btn color="teal" text @click="register">Save</v-btn>
+        <v-btn color="teal" text @click="modifyTask">Save</v-btn>
       </v-card-actions>
     </v-card>
 
@@ -186,7 +184,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: "add-task",
+    name: "modify-task",
     data () {
       return {
         dialog: false,
@@ -196,93 +194,114 @@
 
         menuStartHour: false,
         menuEndHour: false,
+
+        startDate: null,
       };
+    },
+    props: {
+      currentTask: Object,
     },
     computed: {
 
       ...mapGetters({
-        listProjects: globalGetters.GET_PROJECTS
+        listProjects: globalGetters.GET_PROJECTS,
+        user: globalGetters.GET_USER
       }),
 
-      description: {
-        get () {
-          return this.$store.getters[boardGetters.GET_DESCRIPTION]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_DESCRIPTION, value)
-        }
-      },
-      task_type: {
-        get () {
-          return this.$store.getters[boardGetters.GET_TASK_TYPE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_TASK_TYPE, value)
-        }
-      },
-      deadline: {
-        get () {
-          return this.$store.getters[boardGetters.GET_DEADLINE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_DEADLINE, value)
-        }
-      },
-      start_date: {
-        get () {
-          return this.$store.getters[boardGetters.GET_START_DATE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_START_DATE, value)
-        }
-      },
-      start_hour: {
-        get () {
-          return this.$store.getters[boardGetters.GET_START_HOUR]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_START_HOUR, value)
-        }
-      },
-      end_hour: {
-        get () {
-          return this.$store.getters[boardGetters.GET_END_HOUR]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_END_HOUR, value)
-        }
-      },
-      project_task: {
-        get () {
-          return this.$store.getters[boardGetters.GET_TASK_PROJECT]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
-        }
-      },
+      // description: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_DESCRIPTION]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_DESCRIPTION, value)
+      //   }
+      // },
+      // task_type: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_TASK_TYPE]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_TASK_TYPE, value)
+      //   }
+      // },
+      // deadline: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_DEADLINE]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_DEADLINE, value)
+      //   }
+      // },
+      // start_date: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_START_DATE]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_START_DATE, value)
+      //   }
+      // },
+      // start_hour: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_START_HOUR]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_START_HOUR, value)
+      //   }
+      // },
+      // end_hour: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_END_HOUR]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_END_HOUR, value)
+      //   }
+      // },
+      // project_task: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_TASK_PROJECT]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
+      //   }
+      // },
     },
 
     mounted () {},
 
     methods: {
-      async register () {
-        await this.$store.dispatch(boardActions.CREATE_TASK)
-        return this.dialog = false
 
+      modifyTask () {
+
+        let updatedTask = {
+          task: this.currentTask.description,
+          task_type: this.currentTask.task_type,
+          employee: this.user.id,
+          deadline: this.currentTask.deadline,
+          start_date: this.startDate,
+          start_hour: this.currentTask.start_hour,
+          end_hour: this.currentTask.end_hour,
+          project: this.currentTask.project.id,
+        }
+        console.log('id-ul vietii', this.currentTask.id)
+        console.log('task_type-ul vietii', this.currentTask.task_type)
+        console.log('employee-ul vietii', this.user.id)
+        console.log('project-ul vietii', this.currentTask.project.id)
+        this.$store.dispatch(boardActions.UPDATE_TASK, updatedTask)
+
+        // return this.dialog = false
       },
 
-      async mounted () {
-        await this.$store.dispatch(globalActions.FETCH_DETAILS)
-      },
+    },
+    async mounted () {
+
     }
-
   }
 </script>
 

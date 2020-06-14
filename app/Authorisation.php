@@ -11,6 +11,9 @@ class Authorisation extends Model
     ];
 
     protected $hidden = [];
-
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 
 }

@@ -70,10 +70,10 @@
                 <v-text-field placeholder="password"></v-text-field>
             </v-col>
             <v-col class="2">
-                <v-btn>
-<!--                    v-model ="password"-->
-<!--                    v-on:click="submitPassword"-->
-<!--                    color="teal" >-->
+                <v-btn
+                    v-model ="password"
+                    v-on:click="submitPassword"
+                    color="teal" >
                     SUBMIT
                 </v-btn>
             </v-col>
@@ -114,15 +114,15 @@
                     this.$store.commit(settingsMutations.SET_LAST_NAME, value)
                 }
             },
-            // password: {
-            //     get () {
-            //         return this.$store.getters[settingsGetters.GET_PASSWORD]
-            //     },
-            //
-            //     set (value) {
-            //         this.$store.commit(settingsMutations.SET_PASSWORD, value)
-            //     }
-            // },
+            password: {
+                get () {
+                    return this.$store.getters[settingsGetters.GET_PASSWORD]
+                },
+
+                set (value) {
+                    this.$store.commit(settingsMutations.SET_PASSWORD, value)
+                }
+            },
         },
 
 
@@ -133,9 +133,9 @@
             submitLastName() {
                 this.$store.dispatch(settingsActions.UPDATE_LAST_NAME)
             },
-            // submitPassword() {
-            //     this.$store.dispatch(settingsActions.UPDATE_PASSWORD)
-            // }
+            submitPassword() {
+                this.$store.dispatch(settingsActions.UPDATE_PASSWORD)
+            }
         },
     }
 

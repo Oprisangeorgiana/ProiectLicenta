@@ -22,14 +22,12 @@ class CreateEmployeesTable extends Migration
             $table->date('birthday');
             $table->string('sex',1);
             $table->text('address');
-            $table->string('mail')->unique();
             $table->text('phone_number');
             $table->date('hire_date');
-            $table->string('intern_mail')->unique();
-            $table->string('password');
-            $table->string('remember_token');
+            $table->string('mail')->unique();
             $table->integer('department_id');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+
         });
     }
 

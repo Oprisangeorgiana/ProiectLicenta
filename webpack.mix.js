@@ -21,6 +21,12 @@ mix.options({
 })
 
 // webpack.config.js
+mix.options({
+    hmrOptions: {
+        host: '192.168.10.10',
+        port: 8080
+    }
+})
 
 module.exports = {
   rules: [
