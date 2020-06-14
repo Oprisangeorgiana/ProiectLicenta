@@ -2122,6 +2122,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2132,6 +2136,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       drawer: null,
+      count: 0,
       items: [{
         title: 'Profile',
         action: 'profile'
@@ -2152,6 +2157,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //   return `${year}-${month}-${day}`;
     // },
     countNotifications: function countNotifications() {
+      var _this = this;
+
       var count = 0;
       var tomorrow = new Date();
       tomorrow.setDate(new Date().getDate() + 1);
@@ -2163,23 +2170,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var year = tomorrow.getFullYear();
       var month = toTwoDigits(tomorrow.getMonth() + 1);
       var day = toTwoDigits(tomorrow.getDate()); // console.log('tomorrow', `${year}-${month}-${day}`)
-      // let notificationsList=[]
 
+      var notificationsList = [];
       var list = this.tasksList;
-      Object.keys(list).forEach(function (key) {
+      Object.keys(this.tasksList).forEach(function (key) {
         var data = {};
-        var item = list[key];
-        console.log('item.deadline', item.deadline);
+        var item = _this.tasksList[key];
 
         if (list[key].deadline === "".concat(year, "-").concat(month, "-").concat(day)) {
-          count = count + 1; // data.id=list[key].id
-          // data.task_type=list[key].task_type
-          // data.name = list[key].task
-          // data.start = `${list[key].start_date} ${list[key].start_hour}`
-          // data.end = `${list[key].deadline} ${list[key].end_hour}`
-          // notificationsList.push(data)
+          count = count + 1;
+          data.id = list[key].id;
+          data.task_type = list[key].task_type;
+          data.name = list[key].task;
+          data.start = "".concat(list[key].start_date, " ").concat(list[key].start_hour);
+          data.end_date = list[key].deadline;
+          data.end_hour = list[key].end_hour;
+          notificationsList.push(data);
         }
-      }); // this.notificationsList = notificationsList
+      });
+      this.notificationsList = notificationsList; // console.log('item.deadline', notificationsList)
 
       return count;
     }
@@ -2189,7 +2198,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     tasksList: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASKS
   })),
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -2197,13 +2206,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_DETAILS);
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_DETAILS);
 
             case 2:
               _context.next = 4;
-              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER);
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER);
 
             case 4:
+              _context.next = 6;
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_PAGE_TASKS);
+
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -2568,6 +2581,168 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../pages/Board/store/mutations */ "./resources/js/pages/Board/store/mutations.js");
+/* harmony import */ var _pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../pages/Board/store/getters */ "./resources/js/pages/Board/store/getters.js");
+/* harmony import */ var _store_global_getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _pages_Board_store_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../pages/Board/store/actions */ "./resources/js/pages/Board/store/actions.js");
+/* harmony import */ var _store_global_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/global/actions */ "./resources/js/store/global/actions.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "delete-task",
+  data: function data() {
+    return {
+      dialog: false
+    };
+  },
+  props: {
+    currentTask: Object
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
+    listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS
+  }), {
+    description: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DESCRIPTION];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DESCRIPTION, value);
+      }
+    },
+    task_type: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_TYPE];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_TYPE, value);
+      }
+    },
+    deadline: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DEADLINE];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DEADLINE, value);
+      }
+    },
+    start_date: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_START_DATE];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_START_DATE, value);
+      }
+    },
+    start_hour: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_START_HOUR];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_START_HOUR, value);
+      }
+    },
+    end_hour: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_END_HOUR];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_END_HOUR, value);
+      }
+    },
+    project_task: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_PROJECT];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_PROJECT, value);
+      }
+    }
+  }),
+  mounted: function mounted() {},
+  methods: {
+    deleteTask: function deleteTask() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch(_pages_Board_store_actions__WEBPACK_IMPORTED_MODULE_4__["default"].DELETE_TASK, _this.currentTask);
+
+              case 2:
+                return _context.abrupt("return", _this.dialog = false);
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    } // async mounted () {
+    //   await this.$store.dispatch(globalActions.FETCH_DETAILS)
+    // },
+
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/ModifyTask.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/layout/UI-kit/ModifyTask.vue?vue&type=script&lang=js& ***!
@@ -2852,7 +3027,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _resources_js_layout_UI_kit_AddTask__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../resources/js/layout/UI-kit/AddTask */ "./resources/js/layout/UI-kit/AddTask.vue");
 /* harmony import */ var _resources_js_layout_UI_kit_ModifyTask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../resources/js/layout/UI-kit/ModifyTask */ "./resources/js/layout/UI-kit/ModifyTask.vue");
-/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _resources_js_layout_UI_kit_DeleteTask__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../resources/js/layout/UI-kit/DeleteTask */ "./resources/js/layout/UI-kit/DeleteTask.vue");
+/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3008,6 +3184,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -3024,14 +3205,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_1___default.a,
     AddTask: _resources_js_layout_UI_kit_AddTask__WEBPACK_IMPORTED_MODULE_5__["default"],
-    ModifyTask: _resources_js_layout_UI_kit_ModifyTask__WEBPACK_IMPORTED_MODULE_6__["default"]
+    ModifyTask: _resources_js_layout_UI_kit_ModifyTask__WEBPACK_IMPORTED_MODULE_6__["default"],
+    DeleteTask: _resources_js_layout_UI_kit_DeleteTask__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {};
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])({
     listTasks: _store_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASKS,
-    user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_7__["default"].GET_USER
+    user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_8__["default"].GET_USER
   })),
   methods: {
     add: function add() {
@@ -26729,33 +26911,104 @@ var render = function() {
                     "v-col",
                     { attrs: { cols: "1", align: "right" } },
                     [
-                      _vm.countNotifications !== 0
-                        ? _c("v-badge", {
-                            attrs: { color: "red" },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "badge",
-                                  fn: function() {
-                                    return [
-                                      _c("span", [
-                                        _vm._v(_vm._s(_vm.countNotifications))
-                                      ])
-                                    ]
-                                  },
-                                  proxy: true
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: { "offset-y": "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  return [
+                                    _vm.countNotifications !== 0
+                                      ? _c(
+                                          "v-badge",
+                                          {
+                                            attrs: { color: "red", left: "" },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "badge",
+                                                  fn: function() {
+                                                    return [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.countNotifications
+                                                          )
+                                                        )
+                                                      ])
+                                                    ]
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              true
+                                            )
+                                          },
+                                          [
+                                            _c(
+                                              "v-icon",
+                                              _vm._g(
+                                                {
+                                                  attrs: {
+                                                    large: "",
+                                                    color: "white"
+                                                  }
+                                                },
+                                                on
+                                              ),
+                                              [_vm._v("mdi-bell")]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e()
+                                  ]
                                 }
-                              ],
-                              null,
-                              false,
-                              4235112883
-                            )
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("v-icon", { attrs: { large: "", color: "white" } }, [
-                        _vm._v("mdi-bell")
-                      ])
+                              }
+                            ],
+                            null,
+                            false,
+                            2982978562
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "v-list",
+                            [
+                              _vm._l(_vm.notificationsList, function(item) {
+                                return _c(
+                                  "v-list-item",
+                                  { key: item.id },
+                                  [
+                                    _c("v-list-item-content", [
+                                      _vm._v(
+                                        "\n                " +
+                                          _vm._s(item.name) +
+                                          " is going to end on " +
+                                          _vm._s(item.end_date) +
+                                          " at " +
+                                          _vm._s(item.end_hour) +
+                                          "\n              "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              }),
+                              _vm._v(" "),
+                              _c("v-spacer")
+                            ],
+                            2
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -27504,6 +27757,105 @@ var render = function() {
                 {
                   attrs: { color: "teal", text: "" },
                   on: { click: _vm.register }
+                },
+                [_vm._v("Save")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { persistent: "", "max-width": "300" },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function(ref) {
+            var on = ref.on
+            return [
+              _c(
+                "v-btn",
+                { attrs: { fab: "", dark: "", "x-small": "", color: "grey" } },
+                [
+                  _c("v-icon", _vm._g({}, on), [
+                    _vm._v("mdi-trash-can-outline")
+                  ])
+                ],
+                1
+              )
+            ]
+          }
+        }
+      ]),
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-card",
+        [
+          _c("v-card-text", [
+            _vm._v("\n     Are you sure you want to delete the task?\n   ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "teal", text: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.dialog = false
+                    }
+                  }
+                },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "teal", text: "" },
+                  on: { click: _vm.deleteTask }
                 },
                 [_vm._v("Save")]
               )
@@ -28448,6 +28800,10 @@ var render = function() {
                                     "v-card-actions",
                                     [
                                       _c("modify-task", {
+                                        attrs: { currentTask: listTask }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("delete-task", {
                                         attrs: { currentTask: listTask }
                                       })
                                     ],
@@ -90582,6 +90938,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/layout/UI-kit/DeleteTask.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/layout/UI-kit/DeleteTask.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteTask_vue_vue_type_template_id_3e66f10a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true& */ "./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true&");
+/* harmony import */ var _DeleteTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteTask.vue?vue&type=script&lang=js& */ "./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteTask_vue_vue_type_template_id_3e66f10a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteTask_vue_vue_type_template_id_3e66f10a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "3e66f10a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/layout/UI-kit/DeleteTask.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteTask.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteTask_vue_vue_type_template_id_3e66f10a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/DeleteTask.vue?vue&type=template&id=3e66f10a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteTask_vue_vue_type_template_id_3e66f10a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteTask_vue_vue_type_template_id_3e66f10a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/layout/UI-kit/ModifyTask.vue":
 /*!***************************************************!*\
   !*** ./resources/js/layout/UI-kit/ModifyTask.vue ***!
@@ -90758,7 +91183,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var ACTION_TYPES = {
   FETCH_PAGE_DETAILS: 'board/FETCH_PAGE_DETAILS',
   CREATE_TASK: 'board/CREATE_TASK',
-  UPDATE_TASK: 'board/UPDATE_TASK'
+  UPDATE_TASK: 'board/UPDATE_TASK',
+  DELETE_TASK: 'board/DELETE_TASK'
 };
 /* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
 var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_DETAILS, function (_ref) {
@@ -90840,13 +91266,36 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
 
           case 3:
             updateResponse = _context3.sent;
+            console.log('update', updatedTask);
 
-          case 4:
+          case 5:
           case "end":
             return _context3.stop();
         }
       }
     }, _callee3);
+  }))();
+}), _defineProperty(_actions, ACTION_TYPES.DELETE_TASK, function (_ref4, deletedTask) {
+  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+    var commit, state, getters, updateResponse;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            commit = _ref4.commit, state = _ref4.state, getters = _ref4.getters;
+            _context4.next = 3;
+            return new _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_2__["default"]()["delete"](deletedTask);
+
+          case 3:
+            updateResponse = _context4.sent;
+            console.log('update', deletedTask);
+
+          case 5:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
   }))();
 }), _actions);
 

@@ -55,7 +55,6 @@
         :event-color="color[0]"
          ></v-calendar>
 
-
       <v-calendar
       v-else
       ref="calendar"
@@ -129,9 +128,6 @@
           events.push(data)
           });
           this.events = events
-
-         console.log('user', this.user)
-
 
        }
     },

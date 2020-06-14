@@ -133,6 +133,10 @@
                                 <modify-task
                                 :currentTask="listTask"
                                 ></modify-task>
+                                <delete-task
+                                  :currentTask="listTask"
+                                >
+                                </delete-task>
                             </v-card-actions>
                         </v-card>
                     </div>
@@ -148,6 +152,7 @@
     import {mapGetters} from "vuex";
     import AddTask from '../../../../resources/js/layout/UI-kit/AddTask'
     import ModifyTask from '../../../../resources/js/layout/UI-kit/ModifyTask'
+    import DeleteTask from '../../../../resources/js/layout/UI-kit/DeleteTask'
     import globalGetters from'../../../js/store/global/getters'
     // import {DraggableTree} from 'vue-draggable-nested-tree'
     // import nestedDraggable from '';
@@ -161,6 +166,7 @@
             draggable,
             AddTask,
             ModifyTask,
+            DeleteTask,
         },
         data() {
             return {};
