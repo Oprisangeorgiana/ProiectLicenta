@@ -18,7 +18,6 @@ export default ACTION_TYPES
 export const actions = {
   async [ACTION_TYPES.FETCH_PAGE_DETAILS] ({ commit, state }) {
     let tasks = await new TasksRepository().getAll()
-    //if
     //console.log('tasks', tasks),
     commit(pageMutations.SET_TASKS, tasks)
   },
@@ -53,7 +52,7 @@ export const actions = {
 
   async [ACTION_TYPES.UPDATE_TASK] ({ commit, state, getters }, updatedTask) {
     const updateResponse = await new TasksRepository().update(updatedTask)
-    console.log('update', updatedTask)
+    console.log('update', updateResponse)
   },
 
   async [ACTION_TYPES.DELETE_TASK] ({ commit, state, getters }, deletedTask) {

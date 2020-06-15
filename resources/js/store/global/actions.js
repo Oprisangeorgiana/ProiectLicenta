@@ -3,14 +3,16 @@ import ProjectsRepository from '../../repositories/ProjectsRepository'
 import pageGetters from './getters'
 import TasksRepository from '../../repositories/TasksRepository'
 import axios from 'axios'
-
+import DepartmentsRepository from '../../repositories/DepartmentsRepository'
 
 const ACTION_TYPES = {
   FETCH_DETAILS: 'global/FETCH_DETAILS',
   FETCH_TOKEN: 'global/FETCH_TOKEN',
   FETCH_USER: 'global/FETCH_USER',
   DESTROY_TOKEN: 'global/DESTROY_TOKEN',
-  FETCH_PAGE_TASKS: 'global/FETCH_PAGE_TASKS'
+  FETCH_PAGE_TASKS: 'global/FETCH_PAGE_TASKS',
+  FETCH_DEPARTMENTS: 'global/FETCH_DEPARTMENTS',
+  CREATE_PROJECT: 'global/CREATE_PROJECT'
 }
 
 export default ACTION_TYPES
@@ -55,5 +57,30 @@ export const actions = {
     let tasks = await new TasksRepository().getAll()
     commit(pageMutations.SET_TASKS, tasks)
   },
+  async [ACTION_TYPES.FETCH_DEPARTMENTS] ({ commit, state }) {
+    let departments = await axios.get('http://192.168.10.10/api/departments')
+      // new DepartmentsRepository().getAll()
+    console.log('departmentsList',departments)
+    commit(pageMutations.SET_DEPARTMENTS, departments)
+  },
+  async [ACTION_TYPES.CREATE_PROJECT] ({ commit, state, getters }) {
+    const project_name = getters[pageGetters.GET_PROJECT_NAME]
+    const project_deadline = getters[pageGetters.GET_PROJECT_DEADLINE]
+    const project_department = getters[pageGetters.GET_PROJECT_DEPARTMENT]
+
+
+    console.log('project_name', project_name)
+    console.log('project_deadline', project_deadline)
+    console.log('project_department', project_department)
+
+    const registerResponse = await axios.post('http://192.168.10.10/api/projects',
+      {
+        name: project_name,
+        deadline: project_deadline,
+        department_id: project_department.id,
+
+      })
+  },
+
 
 }

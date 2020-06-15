@@ -58,8 +58,4 @@ Route::post('/tasks', 'TaskController@create');
 Route::patch('/tasks/{id}', 'TaskController@update');
 Route::delete('/tasks/{id}', 'TaskController@delete');
 
-//Route::post('login', 'API\EmployeeController@login');
-//Route::post('register', 'API\EmployeeController@register');
-//Route::group(['middleware' => 'auth:api'], function(){
-//    Route::post('details', 'API\EmployeeController@details');
-//});
+

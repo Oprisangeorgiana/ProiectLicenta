@@ -25,7 +25,7 @@ class LocationController extends Controller
     public function update(Request $request)
     {
         $location = Location::findOrFail($request->id);
-        return $location->fill($request->all());
+        return $location->fill($request->all())->save();
     }
 
     public function delete(Request $request)

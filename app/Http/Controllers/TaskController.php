@@ -25,7 +25,7 @@ class TaskController extends Controller
     public function update(Request $request)
     {
         $task = Task::findOrFail($request->id);
-        return $task->fill($request->all());
+        return $task->fill($request->all())->save() ;
     }
 
     public function delete(Request $request)

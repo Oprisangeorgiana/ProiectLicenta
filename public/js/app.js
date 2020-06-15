@@ -2604,12 +2604,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2651,66 +2645,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     currentTask: Object
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
-    listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS
-  }), {
-    description: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DESCRIPTION];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DESCRIPTION, value);
-      }
-    },
-    task_type: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_TYPE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_TYPE, value);
-      }
-    },
-    deadline: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DEADLINE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DEADLINE, value);
-      }
-    },
-    start_date: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_START_DATE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_START_DATE, value);
-      }
-    },
-    start_hour: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_START_HOUR];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_START_HOUR, value);
-      }
-    },
-    end_hour: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_END_HOUR];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_END_HOUR, value);
-      }
-    },
-    project_task: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_PROJECT];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_PROJECT, value);
-      }
-    }
-  }),
+  computed: {},
   mounted: function mounted() {},
   methods: {
     deleteTask: function deleteTask() {
@@ -2734,10 +2669,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
-    } // async mounted () {
-    //   await this.$store.dispatch(globalActions.FETCH_DETAILS)
-    // },
-
+    }
   }
 });
 
@@ -3188,6 +3120,81 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3353,7 +3360,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -3408,7 +3414,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         events.push(data);
       });
       this.events = events;
-      console.log('user', this.user);
     }
   },
   mounted: function mounted() {
@@ -3735,9 +3740,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/actions */ "./resources/js/pages/Settings/store/actions.js");
-/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/getters */ "./resources/js/pages/Settings/store/getters.js");
-/* harmony import */ var _store_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/mutations */ "./resources/js/pages/Settings/store/mutations.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/actions */ "./resources/js/pages/Settings/store/actions.js");
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/getters */ "./resources/js/pages/Settings/store/getters.js");
+/* harmony import */ var _store_mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/mutations */ "./resources/js/pages/Settings/store/mutations.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3822,47 +3843,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Settings",
-  computed: {
-    firstName: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_FIRST_NAME];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_FIRST_NAME, value);
-      }
-    },
-    lastName: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_LAST_NAME];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_LAST_NAME, value);
-      }
-    },
-    password: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PASSWORD];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_PASSWORD, value);
-      }
-    }
+  data: function data() {
+    return {
+      newPassword: null,
+      confirmNewPassword: null
+    };
   },
-  methods: {
-    submitFirstName: function submitFirstName() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_FIRST_NAME);
-    },
-    submitLastName: function submitLastName() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_LAST_NAME);
-    },
-    submitPassword: function submitPassword() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_PASSWORD);
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])({
+    user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_USER
+  }), {
+    phone_number: {
+      get: function get() {
+        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_PHONE_NUMBER];
+      },
+      set: function set(value) {
+        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_3__["default"].SET_PHONE_NUMBER, value);
+      }
     }
+  }),
+  methods: {},
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              console.log('settings', _this.user);
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -27848,7 +27873,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Close")]
+                [_vm._v("NO")]
               ),
               _vm._v(" "),
               _c(
@@ -27857,7 +27882,7 @@ var render = function() {
                   attrs: { color: "teal", text: "" },
                   on: { click: _vm.deleteTask }
                 },
-                [_vm._v("Save")]
+                [_vm._v("YES")]
               )
             ],
             1
@@ -28562,7 +28587,53 @@ var render = function() {
                     1
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _vm.user
+                ? _c(
+                    "v-card",
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          staticClass: "list-group",
+                          attrs: { group: "people" },
+                          on: { change: _vm.log }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "COMING"
+                            ? _c(
+                                "div",
+                                {
+                                  key: listTask.task,
+                                  staticClass: "list-group-item"
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "mr-10",
+                                      attrs: { outlined: "" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(listTask.task) +
+                                          "\n                            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        }),
+                        0
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           ),
@@ -28584,7 +28655,53 @@ var render = function() {
                     1
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _vm.user
+                ? _c(
+                    "v-card",
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          staticClass: "list-group",
+                          attrs: { group: "people" },
+                          on: { change: _vm.log }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "TO DO"
+                            ? _c(
+                                "div",
+                                {
+                                  key: listTask.task,
+                                  staticClass: "list-group-item"
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "mr-10",
+                                      attrs: { outlined: "" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(listTask.task) +
+                                          "\n                            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        }),
+                        0
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           ),
@@ -28597,7 +28714,53 @@ var render = function() {
                 "v-card",
                 { attrs: { tile: "", flat: "", color: "teal lighten-3" } },
                 [_c("h1", [_vm._v("FINISHED\n                    ")])]
-              )
+              ),
+              _vm._v(" "),
+              _vm.user
+                ? _c(
+                    "v-card",
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          staticClass: "list-group",
+                          attrs: { group: "people" },
+                          on: { change: _vm.log }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "FINISHED"
+                            ? _c(
+                                "div",
+                                {
+                                  key: listTask.task,
+                                  staticClass: "list-group-item"
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "mr-10",
+                                      attrs: { outlined: "" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(listTask.task) +
+                                          "\n                            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        }),
+                        0
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           ),
@@ -28610,222 +28773,80 @@ var render = function() {
                 "v-card",
                 { attrs: { tile: "", flat: "", color: "teal lighten-4" } },
                 [_c("h1", [_vm._v("CANCELED\n                    ")])]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm.user
-        ? _c(
-            "v-row",
-            [
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "subtask"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  staticClass: "mr-10",
-                                  attrs: { outlined: "" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(listTask.task) +
-                                      "\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ],
-                1
               ),
               _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "task"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
+              _vm.user
+                ? _c(
+                    "v-card",
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          staticClass: "list-group",
+                          attrs: { group: "people" },
+                          on: { change: _vm.log }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "CANCELED"
+                            ? _c(
+                                "div",
                                 {
-                                  staticClass: "mr-10",
-                                  attrs: { outlined: "" }
+                                  key: listTask.task,
+                                  staticClass: "list-group-item"
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(listTask.task) +
-                                      "\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "task"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  staticClass: "mr-10",
-                                  attrs: { outlined: "" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(listTask.task) +
-                                      "\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "task"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                [
-                                  _c("v-card-text", [
-                                    _vm._v(
-                                      "\n                                Task: " +
-                                        _vm._s(listTask.task) +
-                                        "\n                            "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-card-subtitle", [
-                                    _vm._v(
-                                      "\n                                Deadline: " +
-                                        _vm._s(listTask.deadline) +
-                                        "\n                            "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
                                   _c(
-                                    "v-card-actions",
+                                    "v-card",
                                     [
-                                      _c("modify-task", {
-                                        attrs: { currentTask: listTask }
-                                      }),
+                                      _c("v-card-text", [
+                                        _vm._v(
+                                          "\n                                    Task: " +
+                                            _vm._s(listTask.task) +
+                                            "\n                                "
+                                        )
+                                      ]),
                                       _vm._v(" "),
-                                      _c("delete-task", {
-                                        attrs: { currentTask: listTask }
-                                      })
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                                    Deadline: " +
+                                            _vm._s(listTask.deadline) +
+                                            "\n                                "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        [
+                                          _c("modify-task", {
+                                            attrs: { currentTask: listTask }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("delete-task", {
+                                            attrs: { currentTask: listTask }
+                                          })
+                                        ],
+                                        1
+                                      )
                                     ],
                                     1
                                   )
                                 ],
                                 1
                               )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
+                            : _vm._e()
+                        }),
+                        0
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ],
             1
           )
-        : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
@@ -29164,6 +29185,17 @@ var render = function() {
     [
       _c(
         "v-row",
+        { staticClass: "mb-8", attrs: { justify: "center" } },
+        [
+          _c("v-card", { attrs: { color: "teal" } }, [
+            _c("h1", [_vm._v(_vm._s(this.user.name))])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
         { staticClass: "mb-8" },
         [
           _c(
@@ -29206,7 +29238,11 @@ var render = function() {
                           placeholder: "Change your photo",
                           "prepend-icon": "mdi-camera"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c("v-btn", { attrs: { color: "teal" } }, [
+                        _vm._v("\n            SUBMIT\n          ")
+                      ])
                     ],
                     1
                   )
@@ -29227,80 +29263,35 @@ var render = function() {
           _c(
             "v-col",
             { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("First Name")])],
+            [_c("v-label", [_vm._v("Phone number")])],
             1
           ),
           _vm._v(" "),
           _c(
             "v-col",
             { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "First Name" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
             [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitFirstName },
-                  model: {
-                    value: _vm.firstName,
-                    callback: function($$v) {
-                      _vm.firstName = $$v
-                    },
-                    expression: "firstName"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
+              _c("v-text-field", {
+                attrs: { placeholder: "password" },
+                model: {
+                  value: _vm.phone_number,
+                  callback: function($$v) {
+                    _vm.phone_number = $$v
+                  },
+                  expression: "phone_number"
+                }
+              })
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "mb-6" },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("Last Name")])],
-            1
           ),
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "Last Name" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
+            { attrs: { cols: "2" } },
             [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitLastName },
-                  model: {
-                    value: _vm.lastName,
-                    callback: function($$v) {
-                      _vm.lastName = $$v
-                    },
-                    expression: "lastName"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
+              _c("v-btn", { attrs: { color: "teal" } }, [
+                _vm._v("\n        SUBMIT\n      ")
+              ])
             ],
             1
           )
@@ -29322,7 +29313,50 @@ var render = function() {
           _c(
             "v-col",
             { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "password" } })],
+            [
+              _c("v-text-field", {
+                attrs: { placeholder: "password" },
+                model: {
+                  value: _vm.newPassword,
+                  callback: function($$v) {
+                    _vm.newPassword = $$v
+                  },
+                  expression: "newPassword"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { staticClass: "mb-6" },
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "3" } },
+            [_c("v-label", [_vm._v("Confirm New Password")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "7" } },
+            [
+              _c("v-text-field", {
+                attrs: { placeholder: "password", required: "" },
+                model: {
+                  value: _vm.confirmNewPassword,
+                  callback: function($$v) {
+                    _vm.confirmNewPassword = $$v
+                  },
+                  expression: "confirmNewPassword"
+                }
+              })
+            ],
             1
           ),
           _vm._v(" "),
@@ -29330,21 +29364,9 @@ var render = function() {
             "v-col",
             { staticClass: "2" },
             [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitPassword },
-                  model: {
-                    value: _vm.password,
-                    callback: function($$v) {
-                      _vm.password = $$v
-                    },
-                    expression: "password"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
+              _c("v-btn", { attrs: { color: "teal" } }, [
+                _vm._v("\n        SUBMIT\n      ")
+              ])
             ],
             1
           )
@@ -91288,9 +91310,8 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
 
           case 3:
             updateResponse = _context4.sent;
-            console.log('update', deletedTask);
 
-          case 5:
+          case 4:
           case "end":
             return _context4.stop();
         }
@@ -92094,15 +92115,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var GETTER_TYPES = {
   GET_IMG: 'settings/GET_IMG',
-  GET_FIRST_NAME: 'settings/GET_FIRST_NAME',
+  GET_PHONE_NUMBER: 'settings/GET_PHONE_NUMBER',
   GET_LAST_NAME: 'settings/GET_LAST_NAME',
   GET_PASSWORD: 'settings/GET_PASSWORD'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
 var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_IMG, function (state) {
   return state.img;
-}), _defineProperty(_getters, GETTER_TYPES.GET_FIRST_NAME, function (state) {
-  return state.first_name;
+}), _defineProperty(_getters, GETTER_TYPES.GET_PHONE_NUMBER, function (state) {
+  return state.phone_number;
 }), _defineProperty(_getters, GETTER_TYPES.GET_LAST_NAME, function (state) {
   return state.last_name;
 }), _defineProperty(_getters, GETTER_TYPES.GET_PASSWORD, function (state) {
@@ -92160,15 +92181,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var MUTATIONS_TYPES = {
   SET_IMG: 'settings/SET_IMG',
-  SET_FIRST_NAME: 'settings/SET_FIRST_NAME',
+  SET_PHONE_NUMBER: 'settings/SET_PHONE_NUMBER',
   SET_LAST_NAME: 'settings/SET_LAST_NAME',
   SET_PASSWORD: 'settings/SET_PASSWORD'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATIONS_TYPES);
 var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SET_IMG, function (state, data) {
   state.img = data;
-}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_FIRST_NAME, function (state, data) {
-  state.first_name = data;
+}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_PHONE_NUMBER, function (state, data) {
+  state.phone_number = data;
 }), _defineProperty(_mutations, MUTATIONS_TYPES.SET_LAST_NAME, function (state, data) {
   state.last_name = data;
 }), _defineProperty(_mutations, MUTATIONS_TYPES.SET_PASSWORD, function (state, data) {
@@ -92188,7 +92209,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SE
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   img: '',
-  first_name: '',
+  phone_number: '',
   last_name: '',
   password: ''
 });

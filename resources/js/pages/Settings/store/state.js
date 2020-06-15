@@ -1,6 +1,6 @@
 export default {
     img: '',
-    first_name: '',
+    phone_number: '',
     last_name: '',
     password: '',
 }

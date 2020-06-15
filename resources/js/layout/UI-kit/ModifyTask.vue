@@ -207,70 +207,6 @@
         listProjects: globalGetters.GET_PROJECTS,
         user: globalGetters.GET_USER
       }),
-
-      // description: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_DESCRIPTION]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_DESCRIPTION, value)
-      //   }
-      // },
-      // task_type: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_TASK_TYPE]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_TASK_TYPE, value)
-      //   }
-      // },
-      // deadline: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_DEADLINE]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_DEADLINE, value)
-      //   }
-      // },
-      // start_date: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_START_DATE]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_START_DATE, value)
-      //   }
-      // },
-      // start_hour: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_START_HOUR]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_START_HOUR, value)
-      //   }
-      // },
-      // end_hour: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_END_HOUR]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_END_HOUR, value)
-      //   }
-      // },
-      // project_task: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_TASK_PROJECT]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
-      //   }
-      // },
     },
 
     mounted () {},
@@ -280,22 +216,25 @@
       modifyTask () {
 
         let updatedTask = {
-          task: this.currentTask.description,
+          id: this.currentTask.id,
+          task: this.currentTask.task,
           task_type: this.currentTask.task_type,
           employee: this.user.id,
           deadline: this.currentTask.deadline,
-          start_date: this.startDate,
+          start_date: this.currentTask.start_date,
           start_hour: this.currentTask.start_hour,
           end_hour: this.currentTask.end_hour,
           project: this.currentTask.project.id,
         }
         console.log('id-ul vietii', this.currentTask.id)
         console.log('task_type-ul vietii', this.currentTask.task_type)
+        console.log('task-ul vietii', this.currentTask.task)
         console.log('employee-ul vietii', this.user.id)
         console.log('project-ul vietii', this.currentTask.project.id)
         this.$store.dispatch(boardActions.UPDATE_TASK, updatedTask)
 
-        // return this.dialog = false
+        return this.dialog = false
+
       },
 
     },

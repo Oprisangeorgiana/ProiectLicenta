@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+
 
 
 
@@ -36,7 +35,7 @@ class EmployeeController extends Controller
     public function update(Request $request)
     {
         $employee = Employee::findOrFail($request->id);
-        return $employee->fill($request->all());//->save()
+        return $employee->fill($request->all())->save();
     }
 
     public function delete(Request $request)

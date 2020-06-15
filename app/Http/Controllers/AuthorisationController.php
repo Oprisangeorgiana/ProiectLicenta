@@ -25,7 +25,7 @@ class AuthorisationController extends Controller
     public function update(Request $request)
     {
         $authorisation = Authorisation::findOrFail($request->id);
-        return $authorisation->fill($request->all());
+        return $authorisation->fill($request->all())->save();
     }
 
     public function delete(Request $request)

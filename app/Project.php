@@ -18,4 +18,8 @@ class Project extends Model
     {
         return $this->belongsTo(Department::class);
     }
+    public function task()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

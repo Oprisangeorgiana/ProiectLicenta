@@ -12,7 +12,7 @@ class Department extends Model
 
     protected $hidden = [];
 
-    protected $with = ['locations'];
+//    protected $with = ['locations'];
 
     public function locations()
     {

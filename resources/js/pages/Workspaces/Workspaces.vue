@@ -28,6 +28,9 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
+        <v-card-actions>
+          <add-project></add-project>
+        </v-card-actions>
       </v-card>
 
       <v-card width="700">
@@ -61,14 +64,15 @@
   import workspaceGetters from '../../../js/pages/Workspaces/store/getters'
   import workspaceMutations from '../../../js/pages/Workspaces/store/mutations'
   import workspaceActions from '../../../js/pages/Workspaces/store/actions'
-
+  import AddProject from '../../../js/layout/UI-kit/AddProject'
 
   import { mapGetters } from 'vuex'
 
-
   export default {
     name: "Workspaces",
-
+    components: {
+      AddProject,
+    },
     data () {
       return {
         search: '',
@@ -81,10 +85,10 @@
       ...mapGetters({
         projectsList: globalGetters.GET_PROJECTS,
         tasksList: globalGetters.GET_TASKS,
-        user:globalGetters.GET_USER
+        user: globalGetters.GET_USER
       }),
 
-      selectedProject:{
+      selectedProject: {
         get () {
           return this.$store.getters[workspaceGetters.GET_CURRENT_PROJECT]
         },
@@ -93,9 +97,9 @@
         }
       },
 
-      filteredProjects() {
-        if(!this.search) return this.projectsList;
-        return this.projectsList.filter((project) =>{
+      filteredProjects () {
+        if (!this.search) return this.projectsList;
+        return this.projectsList.filter((project) => {
           return project.name.toLowerCase().match(this.search)
 
         })
@@ -104,11 +108,11 @@
 
     methods: {
 
-      clear(){
-        return this.search=''
+      clear () {
+        return this.search = ''
       },
     },
-    async mounted() {
+    async mounted () {
       await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
     },
 
