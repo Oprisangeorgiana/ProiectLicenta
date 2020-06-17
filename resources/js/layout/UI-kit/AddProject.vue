@@ -44,13 +44,12 @@
                 <v-date-picker v-model="project_deadline" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
-                    <v-btn text color="primary" @click="$refs.menuEndDate.save(project_deadline)">OK</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuEndDate.save(project_deadline)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
             <v-spacer></v-spacer>
           </v-row>
-
 
 
           <v-row>
@@ -101,6 +100,7 @@
 
       ...mapGetters({
         departmentsList: globalGetters.GET_DEPARTMENTS
+
       }),
 
       project_name: {
@@ -145,9 +145,6 @@
 
       async mounted () {
         await this.$store.dispatch(globalActions.FETCH_DETAILS)
-        console.log('1234',this.departmentsList)
-        await this.$store.dispatch(globalActions.FETCH_DEPARTMENTS)
-
       },
     }
 

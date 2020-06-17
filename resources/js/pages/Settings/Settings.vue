@@ -41,12 +41,11 @@
           <v-label>Phone number</v-label>
         </v-col>
         <v-col cols="7">
-          <v-text-field placeholder="password" v-model="phone_number"></v-text-field>
+          <v-text-field placeholder="Phone number" v-model="employee.phone_number"></v-text-field>
         </v-col>
       <v-col cols="2">
         <v-btn
-
-
+          @click="modifyPhoneNumber"
           color="teal">
           SUBMIT
         </v-btn>
@@ -91,6 +90,8 @@
   import settingsMutations from './store/mutations'
   import { mapGetters } from 'vuex'
   import globalGetters from '../../../js/store/global/getters'
+  import globalActions from '../../../js/store/global/actions'
+  import EmployeesRepository from '../../repositories/EmployeesRepository'
 
   export default {
 
@@ -109,23 +110,26 @@
 
       ...mapGetters({
         user: globalGetters.GET_USER,
+        employee: globalGetters.GET_CURRENT_EMPLOYEE,
 
       }),
 
-        phone_number: {
-            get () {
-                return this.$store.getters[settingsGetters.GET_PHONE_NUMBER]
-            },
-            set (value) {
-                this.$store.commit(settingsMutations.SET_PHONE_NUMBER, value)
-            }
-        },
 
     },
 
-    methods: {},
+    methods: {
+      modifyPhoneNumber: async function (item) {
+        let modifyPhoneNumber = {
+          id: this.employee.id,
+          phone_number: this.employee.phone_number
+        }
+        await new EmployeesRepository().update(modifyPhoneNumber)
+        console.log('modifyPhoneNumber', modifyPhoneNumber)
+      },
+    },
 
     async mounted () {
+      await this.$store.dispatch(globalActions.FETCH_CURRENT_EMPLOYEE)
       console.log('settings', this.user)
     },
   }

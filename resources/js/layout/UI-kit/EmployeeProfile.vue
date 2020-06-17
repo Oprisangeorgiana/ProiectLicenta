@@ -1,83 +1,149 @@
 <template>
-  <div>
-    <v-row class="mb-8">
-      <v-card color="teal">
-        <!--        <h1>Numele</h1>-->
-      </v-card>
-    </v-row>
+  <v-container class="teal" >
+    <v-container class="white pt-6 pb-6 pr-6 pl-6">
+      <div align="center">
+      <v-row class="mb-8"
+             align="center"
+             justify="center"
+      >
+        <v-card color="teal">
+          <h1 align="center" class="ma-8">
+            {{`${employee.last_name} ${employee.first_name}`}}
+          </h1>
+        </v-card>
 
-    <v-row class="mb-8">
-      // imaginea, daca nu are pun un avatar
-    </v-row>
+      </v-row>
 
-
-    <v-row class="mb-6">
-
-      <v-card>
-        <v-card-title>
-          E-mail
-        </v-card-title>
-        <v-card-text>
-          <!--                    {{this.user.intern_email}}-->
-        </v-card-text>
-      </v-card>
-    </v-row>
-
-    <v-row>
-      <v-card>
-        <v-card-title>
-          Phone number
-        </v-card-title>
-        <v-card-text>
-          <!--                    {{this.user.phone_number}}-->
-        </v-card-text>
-      </v-card>
-    </v-row>
-
-    <v-row>
-      <v-card>
-        <v-card-title>
-          Department
-        </v-card-title>
-        <v-card-text>
-          <!--                  departamentul-->
-        </v-card-text>
-      </v-card>
-    </v-row>
-
-    <v-row>
-      <v-card>
-        <v-card-title>
-          Authorisation
-        </v-card-title>
-        <v-card-text>
-          <!--                  autorizarea-->
-        </v-card-text>
-      </v-card>
-    </v-row>
+      <v-row
+        align="center"
+        justify="center"
+        class="mb-8"
+      >
+        // imaginea, daca nu are pun un avatar
+      </v-row>
 
 
-  </div>
+      <v-row
+        align="center"
+        justify="center"
+        class="mb-6"
+      >
+        <v-card>
+          <v-card-title>
+            E-mail
+          </v-card-title>
+          <v-card-text>
+            <!--                      {{// this.user.intern_email}}&ndash;&gt;-->
+          </v-card-text>
+        </v-card>
+      </v-row>
+
+      <v-row
+        align="center"
+        justify="center"
+        class="mb-8"
+      >
+        <v-card
+          color="teal lighten-4"
+          width="700"
+        >
+          <v-card-title
+          align="center"
+          justify="center"
+          >
+            Phone number
+          </v-card-title>
+          <v-card-text>
+            <h1>{{employee.phone_number}}</h1>
+          </v-card-text>
+        </v-card>
+      </v-row>
+
+      <v-row
+        align="center"
+        justify="center"
+        class="mb-8"
+      >
+        <v-card
+          color="teal lighten-4"
+          width="700"
+        >
+          <v-card-title>
+            Department
+          </v-card-title>
+          <v-card-text
+            v-for="department in departments"
+            :key="department.id"
+            v-if="department.id === employee.department_id"
+          >
+            <h1>{{department.department_name}}</h1>
+          </v-card-text>
+        </v-card>
+      </v-row>
+
+      <v-row
+        align="center"
+        justify="center"
+        class="mb-8"
+      >
+        <v-card
+          color="teal lighten-4"
+          width="700"
+        >
+          <v-card-title>
+            Authorisation
+          </v-card-title>
+          <v-card-text
+            v-for="auth in authorisations"
+            :key="auth.id"
+            v-if="auth.id === employee.authorisation_id"
+          >
+           <h1>{{auth.role}}</h1>
+          </v-card-text>
+        </v-card>
+      </v-row>
+    </div>
+    </v-container>
+
+  </v-container>
 </template>
 
 <script>
+  import globalActions from '../../../js/store/global/actions'
+  import globalGetters from '../../../js/store/global/getters'
+  import { mapGetters } from 'vuex'
 
   export default {
 
     name: "employee-profile",
-    props: {
-      selectedUser: Object,
-    },
+    props: {},
 
     data () {
-      return {};
+      return {
+        selectedUserID: this.$route.params.id
+      };
 
     },
-    computed: {},
+    computed: {
+      ...mapGetters({
+        employee: globalGetters.GET_EMPLOYEE_PAGE,
+        departments: globalGetters.GET_DEPARTMENTS,
+        authorisations: globalGetters.GET_AUTHORISATIONS,
+
+      }),
+
+    },
 
     methods: {},
 
-    async mounted () {},
+    async mounted () {
+
+      // modifica fetch page task cu get page employee
+      await this.$store.dispatch(globalActions.FETCH_EMPLOYEE_PAGE, this.selectedUserID)
+      await this.$store.dispatch(globalActions.FETCH_AUTHORISATIONS)
+      await console.log('employeeasdfgh', this.employee)
+      await console.log('selectedUserID', this.selectedUserID)
+    },
   }
 
 

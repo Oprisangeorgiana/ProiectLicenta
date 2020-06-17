@@ -4,12 +4,16 @@ import pageGetters from './getters'
 import axios from 'axios'
 import ProjectsRepository from '../../../repositories/ProjectsRepository'
 import globalGetters from '../../../store/global/getters'
+import SubtasksRepository from '../../../repositories/SubtasksRepository'
 
 const ACTION_TYPES = {
   FETCH_PAGE_DETAILS: 'board/FETCH_PAGE_DETAILS',
   CREATE_TASK: 'board/CREATE_TASK',
+  CREATE_SUBTASK: 'board/CREATE_SUBTASK',
   UPDATE_TASK: 'board/UPDATE_TASK',
-  DELETE_TASK: 'board/DELETE_TASK'
+  DELETE_TASK: 'board/DELETE_TASK',
+  DELETE_SUBTASK: 'board/DELETE_SUBTASK',
+  UPDATE_SUBTASK: 'board/UPDATE_SUBTASK'
 
 }
 
@@ -30,10 +34,9 @@ export const actions = {
     const start_hour = getters[pageGetters.GET_START_HOUR]
     const end_hour = getters[pageGetters.GET_END_HOUR]
     const project_data = getters[pageGetters.GET_TASK_PROJECT]
-    const employee = getters[globalGetters.GET_USER]
+    const user = getters[globalGetters.GET_USER]
 
     console.log('project_id', project_data.id)
-    console.log('employee_id', employee.id)
     console.log('start_date', start_date)
     console.log('start_hour', start_hour)
 
@@ -41,25 +44,32 @@ export const actions = {
       {
         task: description,
         task_type: task_type,
-        employee: employee.id,
+        employee: user.employee_id,
         deadline: deadline,
         start_date: start_date,
         start_hour: start_hour,
         end_hour: end_hour,
-        project: project_data.id
+        project: project_data.id,
+        state:'COMING'
       })
   },
-
-  async [ACTION_TYPES.UPDATE_TASK] ({ commit, state, getters }, updatedTask) {
-    const updateResponse = await new TasksRepository().update(updatedTask)
-    console.log('update', updateResponse)
+  async [ACTION_TYPES.CREATE_SUBTASK] ({ commit, state, getters }, newSubtask) {
+        const registerResponse = await axios.post('http://192.168.10.10/api/subtasks', newSubtask
+    )
   },
+  async [ACTION_TYPES.UPDATE_TASK] ({ commit, state, getters }, updated) {
+    const updateResponse = await new TasksRepository().update(updated)
+    console.log('updatetask',updated)
+  },
+  async [ACTION_TYPES.UPDATE_SUBTASK] ({ commit, state, getters }, updatedTask) {
+    const updateResponse = await new SubtasksRepository().update(updatedTask)
 
+  },
   async [ACTION_TYPES.DELETE_TASK] ({ commit, state, getters }, deletedTask) {
     const updateResponse = await new TasksRepository().delete(deletedTask)
   },
-
-
-
+  async [ACTION_TYPES.DELETE_SUBTASK] ({ commit, state, getters }, deletedTask) {
+    const updateResponse = await new SubtasksRepository().delete(deletedTask)
+  }
 
 }

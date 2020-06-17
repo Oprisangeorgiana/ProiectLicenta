@@ -17,10 +17,12 @@
           </v-text-field>
         </v-toolbar>
         <v-list>
-          <v-list-item-group v-model="selectedProject">
+          <v-list-item-group v-model="selectedProject" >
             <v-list-item
-              v-for="currentProject in filteredProjects"
+              v-for="(currentProject,index) in filteredProjects"
               :key="currentProject.id"
+              :value="currentProject.id"
+
             >
               <v-list-item-content>
                 <v-list-item-title v-html="currentProject.name"></v-list-item-title>
@@ -28,7 +30,9 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-        <v-card-actions>
+        <v-card-actions
+        v-if="userAuthorisation>1"
+        >
           <add-project></add-project>
         </v-card-actions>
       </v-card>
@@ -38,17 +42,47 @@
           <v-toolbar-title class="align-content-center">TASKS</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
-        <v-list :three-line="true">
+        <v-list>
           <v-list-item
             v-for="task in tasksList"
-            v-if="task.project ===selectedProject + 1"
+            v-if="task.project === selectedProject"
             :key="task.id"
           >
             <v-list-item-content>
               <v-list-item-title v-html="task.task"></v-list-item-title>
-              <v-list-item-subtitle v-html="task.deadline"></v-list-item-subtitle>
-              <v-list-item-subtitle v-html="task.project"></v-list-item-subtitle>
+              <v-list-item-subtitle v-html="task.state"> </v-list-item-subtitle>
+              <v-list-item-subtitle v-html="`Deadline: ${task.deadline} `"></v-list-item-subtitle>
+              <v-list-item-subtitle
+                v-for="prj in projectsList"
+                :key="prj.id"
+                v-if="prj.id===task.project"
+                v-html="`Project: ${prj.name} `">
+              </v-list-item-subtitle>
+              <v-btn
+
+                v-for="currentEmployee in employeesList"
+                :key="currentEmployee.id"
+                v-if="currentEmployee.id === task.employee"
+                v-html="`${currentEmployee.last_name} ${currentEmployee.first_name}`"
+                @click="goToEmployee(currentEmployee)"
+              >
+              </v-btn>
             </v-list-item-content>
+            <v-list-item-action>
+              <add-task
+                :currentTask="task">
+              </add-task>
+              <modify-task
+                v-if="userAuthorisation > 1"
+                :currentTask="task"
+              >
+              </modify-task>
+              <delete-task
+                v-if="userAuthorisation > 1"
+                :currentTask="task"
+              >
+              </delete-task>
+            </v-list-item-action>
           </v-list-item>
         </v-list>
       </v-card>
@@ -65,6 +99,10 @@
   import workspaceMutations from '../../../js/pages/Workspaces/store/mutations'
   import workspaceActions from '../../../js/pages/Workspaces/store/actions'
   import AddProject from '../../../js/layout/UI-kit/AddProject'
+  import AddTask from '../../../js/layout/UI-kit/AddTask'
+  import ModifyTask from '../../../js/layout/UI-kit/ModifyTask'
+  import DeleteTask from '../../../js/layout/UI-kit/DeleteTask'
+  import EmployeeProfile from '../../../js/layout/UI-kit/EmployeeProfile'
 
   import { mapGetters } from 'vuex'
 
@@ -72,11 +110,15 @@
     name: "Workspaces",
     components: {
       AddProject,
+      AddTask,
+      ModifyTask,
+      DeleteTask,
+      EmployeeProfile,
     },
     data () {
       return {
         search: '',
-        projectID: this.$store.getters[workspaceGetters.GET_CURRENT_PROJECT],
+        authorisation:null,
       };
     },
 
@@ -85,7 +127,9 @@
       ...mapGetters({
         projectsList: globalGetters.GET_PROJECTS,
         tasksList: globalGetters.GET_TASKS,
-        user: globalGetters.GET_USER
+        user: globalGetters.GET_USER,
+        employeesList: globalGetters.GET_EMPLOYEES,
+        userAuthorisation: globalGetters.GET_USER_AUTH,
       }),
 
       selectedProject: {
@@ -95,6 +139,7 @@
         set (value) {
           this.$store.commit(workspaceMutations.SET_CURRENT_PROJECT, value)
         }
+
       },
 
       filteredProjects () {
@@ -103,10 +148,29 @@
           return project.name.toLowerCase().match(this.search)
 
         })
+      },
+
+      userAuthorisation(){
+        let employees = this.employeesList
+        let user = this.user
+        let auth = null
+        Object.keys(employees).forEach(key =>{
+          if(employees[key].id === this.user.employee_id){
+            auth = employees[key].authorisation_id
+          }
+        })
+        return auth
       }
+
     },
 
     methods: {
+      goToEmployee(employee){
+        let route= '/workspaces/:id'
+        route = route.replace(/:[a-zA-Z]+/, employee.id)
+        console.log('route', route)
+        this.$router.push(route)
+      },
 
       clear () {
         return this.search = ''
@@ -114,11 +178,16 @@
     },
     async mounted () {
       await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
+      await this.$store.dispatch(globalActions.FETCH_PROJECTS)
+      await this.$store.dispatch(globalActions.FETCH_USER_AUTH)
+      await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
+
     },
 
   }
 </script>
 
 <style scoped>
+
 
 </style>

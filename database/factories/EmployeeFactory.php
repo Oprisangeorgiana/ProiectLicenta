@@ -17,6 +17,7 @@ $factory->define(Employee::class, function (Faker $faker) {
         'phone_number'=>$faker->phoneNumber,
         'hire_date'=>$faker->date(),
         'mail'=>$faker->safeEmail,
+        'authorisation_id'=>'1',
         'department_id'=>factory(Department::class)->create()->id,
 
 

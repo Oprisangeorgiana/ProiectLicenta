@@ -135,7 +135,8 @@
                 dark
                 v-on="on"
               >
-                {{user.name}}
+                {{user_name}}
+<!--                {{currentEmployee.first_name}}sfdgf {{currentEmployee.last_name}}-->
               </v-btn>
 
             </template>
@@ -223,6 +224,8 @@
       //   return `${year}-${month}-${day}`;
       // },
 
+
+
       countNotifications () {
         let count =0
         let tomorrow = new Date();
@@ -257,15 +260,23 @@
 
       ...mapGetters({
         user: globalGetters.GET_USER,
+        user_name: globalGetters.GET_USER_NAME,
         projectList: globalGetters.GET_PROJECTS,
         tasksList: globalGetters.GET_TASKS,
+        employeesList: globalGetters.GET_EMPLOYEES,
       }),
+
 
     },
     async mounted () {
-      await this.$store.dispatch(globalActions.FETCH_DETAILS)
       await this.$store.dispatch(globalActions.FETCH_USER)
       await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
+      await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
+      await this.$store.dispatch(globalActions.FETCH_DEPARTMENTS)
+      await this.$store.dispatch(globalActions.FETCH_SUBTASKS)
+      await this.$store.dispatch(globalActions.FETCH_PROJECTS)
+      await this.$store.dispatch(globalActions.FETCH_USER_NAME)
+
     },
 
     methods: {

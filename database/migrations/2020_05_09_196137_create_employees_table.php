@@ -25,6 +25,8 @@ class CreateEmployeesTable extends Migration
             $table->text('phone_number');
             $table->date('hire_date');
             $table->string('mail')->unique();
+            $table->integer('authorisation_id');
+            $table->foreign('authorisation_id')->references('id')->on('authorisations')->onDelete('cascade');
             $table->integer('department_id');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 

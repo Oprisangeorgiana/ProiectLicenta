@@ -6,9 +6,7 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-btn fab dark x-small color="grey">
-        <v-icon v-on="on"> mdi-pen</v-icon>
-      </v-btn>
+      <v-icon v-on="on"> mdi-pen</v-icon>
     </template>
     <v-card>
       <v-card-title class="teal">
@@ -24,16 +22,6 @@
                 clearable
               >
               </v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col>
-              <v-select
-                :items="['task', 'subtask']"
-                required
-                v-model="currentTask.task_type"
-              ></v-select>
             </v-col>
           </v-row>
 
@@ -151,14 +139,16 @@
 
           <v-row>
             <v-col>
+
               <v-select
-                v-model="currentTask.project"
                 required
                 :items="listProjects"
                 item-text="name"
                 return-object
+                v-model="currentTask.project"
               >
               </v-select>
+
             </v-col>
           </v-row>
 
@@ -175,7 +165,6 @@
 </template>
 
 <script>
-
   import boardMutations from '../../pages/Board/store/mutations'
   import boardGetters from '../../pages/Board/store/getters'
   import globalGetters from '../../store/global/getters'
@@ -188,13 +177,10 @@
     data () {
       return {
         dialog: false,
-
         menuStartDate: false,
         menuDeadline: false,
-
         menuStartHour: false,
         menuEndHour: false,
-
         startDate: null,
       };
     },
@@ -202,48 +188,36 @@
       currentTask: Object,
     },
     computed: {
-
       ...mapGetters({
         listProjects: globalGetters.GET_PROJECTS,
-        user: globalGetters.GET_USER
+        user: globalGetters.GET_USER,
       }),
+
     },
-
     mounted () {},
-
     methods: {
-
       modifyTask () {
-
-        let updatedTask = {
+        let updated = {
           id: this.currentTask.id,
           task: this.currentTask.task,
-          task_type: this.currentTask.task_type,
-          employee: this.user.id,
+          task_type: 'task',
+          employee: this.user.employee_id,
           deadline: this.currentTask.deadline,
           start_date: this.currentTask.start_date,
           start_hour: this.currentTask.start_hour,
           end_hour: this.currentTask.end_hour,
           project: this.currentTask.project.id,
         }
-        console.log('id-ul vietii', this.currentTask.id)
-        console.log('task_type-ul vietii', this.currentTask.task_type)
-        console.log('task-ul vietii', this.currentTask.task)
-        console.log('employee-ul vietii', this.user.id)
-        console.log('project-ul vietii', this.currentTask.project.id)
-        this.$store.dispatch(boardActions.UPDATE_TASK, updatedTask)
+
+        this.$store.dispatch(boardActions.UPDATE_TASK, updated)
 
         return this.dialog = false
-
       },
-
     },
     async mounted () {
-
     }
   }
 </script>
 
 <style scoped>
-
 </style>

@@ -100,6 +100,7 @@
     computed: {
       ...mapGetters({
         listTasks:globalGetters.GET_TASKS,
+        listSubtasks:globalGetters.GET_SUBTASKS,
         user: globalGetters.GET_USER,
       }),
 
@@ -117,6 +118,7 @@
        seeTasks () {
 
         let list = this.listTasks
+        let listSubtasks = this.listSubtasks
         let events =[];
         Object.keys(list).forEach( key  =>{
           const item = list[key]
@@ -127,12 +129,23 @@
           data.end = `${item.deadline} ${item.end_hour}`
           events.push(data)
           });
+        Object.keys(listSubtasks).forEach( key  =>{
+          const item = listSubtasks[key]
+          // console.log('item', item)
+          let data = {}
+          data.name = item.description
+          data.start = `${item.start_subtask_date} ${item.start_subtask_hour}`
+          data.end = `${item.end_subtask_date} ${item.end_subtask_hour}`
+          events.push(data)
+          });
           this.events = events
+
 
        }
     },
     async mounted () {
       await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
+      await this.$store.dispatch(globalActions.FETCH_SUBTASKS)
       this.seeTasks();
 
     },

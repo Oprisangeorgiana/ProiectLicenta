@@ -23,7 +23,7 @@ class Employee extends Model
 
     public function authorisations()
     {
-        return $this->belongsToMany(Authorisation::class);
+        return $this->belongsTo(Authorisation::class);
     }
 
     public function department()
@@ -31,6 +31,10 @@ class Employee extends Model
         return $this->belongsTo(Department::class);
     }
     public function task()
+    {
+        return $this->hasMany(Task::class);
+    }
+    public function subtask()
     {
         return $this->hasMany(Task::class);
     }

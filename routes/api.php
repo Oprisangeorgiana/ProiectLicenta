@@ -58,4 +58,10 @@ Route::post('/tasks', 'TaskController@create');
 Route::patch('/tasks/{id}', 'TaskController@update');
 Route::delete('/tasks/{id}', 'TaskController@delete');
 
+Route::get('/subtasks', 'SubtaskController@getAll');
+Route::get('/subtasks/{id}', 'SubtaskController@getOne');
+Route::post('/subtasks', 'SubtaskController@create');
+Route::patch('/subtasks/{id}', 'SubtaskController@update');
+Route::delete('/subtasks/{id}', 'SubtaskController@delete');
+
 

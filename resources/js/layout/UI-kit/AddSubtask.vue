@@ -5,7 +5,9 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-        <v-icon x-large v-on="on">mdi-plus-circle-outline</v-icon>
+<!--      <v-btn fab dark x-small color="grey">-->
+        <v-icon v-on="on">mdi-plus-thick</v-icon>
+<!--      </v-btn>-->
     </template>
     <v-card>
       <v-card-title class="teal">
@@ -16,20 +18,10 @@
 
           <v-row>
             <v-col cols="12">
-              <v-text-field label="Task*" v-model="description"></v-text-field>
+              <v-text-field label="Subask*" v-model="description"></v-text-field>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col>
-              <v-select
-                :items="['task']"
-                label="Type*"
-                required
-                v-model="task_type"
-              ></v-select>
-            </v-col>
-          </v-row>
 
           <v-row>
             <v-col>
@@ -43,16 +35,14 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="start_date"
-                    label="Pick start date*"
-                    readonly
+                    v-model="start_subtask_date"
                     v-on="on"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="start_date" no-title scrollable>
+                <v-date-picker v-model="start_subtask_date" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuStartDate = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menuDate.save(start_date)">OK</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuDate.save(start_subtask_date)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -71,18 +61,16 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="deadline"
+                    v-model="end_subtask_date"
                     label="Pick end date*"
                     readonly
                     v-on="on"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="deadline" no-title scrollable>
+                <v-date-picker v-model="end_subtask_date" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
-                  <router-link :to="{ name: 'board' }">
-                  <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
-                  </router-link>
+                  <v-btn text color="primary" @click="$refs.menuEndDate.save(end_subtask_date)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -95,13 +83,13 @@
                 ref="menu1"
                 v-model="menuStartHour"
                 :close-on-content-click="false"
-                :return-value.sync="start_hour"
+                :return-value.sync="start_subtask_hour"
                 transition="scale-transition"
                 offset-y
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="start_hour"
+                    v-model="start_subtask_hour"
                     label="Pick start hour*"
                     readonly
                     v-on="on"
@@ -110,8 +98,8 @@
                 <v-time-picker
                   use-seconds
                   v-if="menuStartHour"
-                  v-model="start_hour"
-                  @click:second="$refs.menu1.save(start_hour)"
+                  v-model="start_subtask_hour"
+                  @click:second="$refs.menu1.save(start_subtask_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
@@ -124,13 +112,13 @@
                 ref="menu"
                 v-model="menuEndHour"
                 :close-on-content-click="false"
-                :return-value.sync="end_hour"
+                :return-value.sync="end_subtask_hour"
                 transition="scale-transition"
                 offset-y
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="end_hour"
+                    v-model="end_subtask_hour"
                     label="Pick end hour*"
                     readonly
                     v-on="on"
@@ -139,42 +127,20 @@
                 <v-time-picker
                   use-seconds
                   v-if="menuEndHour"
-                  v-model="end_hour"
-                  @click:second="$refs.menu.save(end_hour)"
+                  v-model="end_subtask_hour"
+                  @click:second="$refs.menu.save(end_subtask_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
             <v-spacer></v-spacer>
           </v-row>
 
-          <v-row>
-            <v-col>
-              <v-select
-                v-model="project_task"
-                label="Project*"
-                required
-                :items="listProjects"
-                item-text="name"
-                return-object
-              >
-              </v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col>
-              <v-select
-                required
-                :items="employees"
-                item-text="last_name"
-
-              >
-              </v-select>
-            </v-col>
-          </v-row>
-
         </v-container>
         <small>*indicates required field</small>
+        <v-spacer></v-spacer>
+        <small>**Subtask deadline must be smaller or equal with task date</small>
+        <v-spacer></v-spacer>
+        <small>***Subtask end hour must be smaller or equal with task end hour</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -196,7 +162,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: "add-task",
+    name: "add-subtask",
     data () {
       return {
         dialog: false,
@@ -206,92 +172,111 @@
 
         menuStartHour: false,
         menuEndHour: false,
+
+        description:null,
+        start_subtask_date:null,
+        end_subtask_date:null,
+        start_subtask_hour:null,
+        end_subtask_hour:null,
+
+
       };
+    },
+    props: {
+      currentTask: Object,
     },
     computed: {
 
       ...mapGetters({
-        listProjects: globalGetters.GET_PROJECTS,        employees: globalGetters.GET_EMPLOYEES,
-        employees: globalGetters.GET_EMPLOYEES,
+        listProjects: globalGetters.GET_PROJECTS,
+        user: globalGetters.GET_USER
       }),
 
-      description: {
-        get () {
-          return this.$store.getters[boardGetters.GET_DESCRIPTION]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_DESCRIPTION, value)
-        }
-      },
-      task_type: {
-        get () {
-          return this.$store.getters[boardGetters.GET_TASK_TYPE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_TASK_TYPE, value)
-        }
-      },
-      deadline: {
-        get () {
-          return this.$store.getters[boardGetters.GET_DEADLINE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_DEADLINE, value)
-        }
-      },
-      start_date: {
-        get () {
-          return this.$store.getters[boardGetters.GET_START_DATE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_START_DATE, value)
-        }
-      },
-      start_hour: {
-        get () {
-          return this.$store.getters[boardGetters.GET_START_HOUR]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_START_HOUR, value)
-        }
-      },
-      end_hour: {
-        get () {
-          return this.$store.getters[boardGetters.GET_END_HOUR]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_END_HOUR, value)
-        }
-      },
-      project_task: {
-        get () {
-          return this.$store.getters[boardGetters.GET_TASK_PROJECT]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
-        }
-      },
+      // description: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_DESCRIPTION]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_DESCRIPTION, value)
+      //   }
+      // },
+      // task_type: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_TASK_TYPE]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_TASK_TYPE, value)
+      //   }
+      // },
+      // deadline: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_DEADLINE]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_DEADLINE, value)
+      //   }
+      // },
+      // start_date: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_START_DATE]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_START_DATE, value)
+      //   }
+      // },
+      // start_hour: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_START_HOUR]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_START_HOUR, value)
+      //   }
+      // },
+      // end_hour: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_END_HOUR]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_END_HOUR, value)
+      //   }
+      // },
+      // project_task: {
+      //   get () {
+      //     return this.$store.getters[boardGetters.GET_TASK_PROJECT]
+      //   },
+      //
+      //   set (value) {
+      //     this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
+      //   }
+      // },
     },
 
     mounted () {},
 
     methods: {
       async register () {
-        await this.$store.dispatch(boardActions.CREATE_TASK)
+        let newSubtask = {
+
+          description: this.description,
+          start_subtask_date: this.start_subtask_date,
+          end_subtask_date: this.end_subtask_date,
+          start_subtask_hour: this.start_subtask_hour,
+          end_subtask_hour: this.end_subtask_hour,
+          employee_id: this.user.employee_id,
+          task_id: this.currentTask.id
+        }
+        await this.$store.dispatch(boardActions.CREATE_SUBTASK,newSubtask)
         return this.dialog = false
 
       },
 
       async mounted () {
-        await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
-
       },
     }
 
@@ -299,5 +284,7 @@
 </script>
 
 <style scoped>
-
+small{
+  color: red;
+}
 </style>
