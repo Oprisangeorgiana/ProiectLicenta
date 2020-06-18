@@ -5,7 +5,7 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-        <v-icon x-large v-on="on">mdi-plus-circle-outline</v-icon>
+      <v-icon x-large v-on="on">mdi-plus-circle-outline</v-icon>
     </template>
     <v-card>
       <v-card-title class="teal">
@@ -81,7 +81,7 @@
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
                   <router-link :to="{ name: 'board' }">
-                  <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
+                    <v-btn text color="primary" @click="$refs.menuEndDate.save(deadline)">OK</v-btn>
                   </router-link>
                 </v-date-picker>
               </v-menu>
@@ -167,7 +167,9 @@
                 required
                 :items="employees"
                 item-text="last_name"
-
+                label="Employee*"
+                v-model="employee_assigned"
+                return-object
               >
               </v-select>
             </v-col>
@@ -211,9 +213,15 @@
     computed: {
 
       ...mapGetters({
-        listProjects: globalGetters.GET_PROJECTS,        employees: globalGetters.GET_EMPLOYEES,
-        employees: globalGetters.GET_EMPLOYEES,
+        listProjects: globalGetters.GET_PROJECTS,
+        employees: globalGetters.GET_FILTERED_EMPLOYEES,
+        departments: globalGetters.GET_DEPARTMENTS,
+        auth: globalGetters.GET_USER_AUTH,
+        currentEmployee: globalGetters.GET_CURRENT_EMPLOYEE,
+
       }),
+
+
 
       description: {
         get () {
@@ -278,6 +286,15 @@
           this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
         }
       },
+      employee_assigned: {
+        get () {
+          return this.$store.getters[boardGetters.GET_EMPLOYEE_ASSIGNED]
+        },
+
+        set (value) {
+          this.$store.commit(boardMutations.SET_EMPLOYEE_ASSIGNED, value)
+        }
+      },
     },
 
     mounted () {},
@@ -286,12 +303,11 @@
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false
-
       },
 
       async mounted () {
         await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
-
+        await this.$store.dispatch(globalActions.FETCH_FILTERED_EMPLOYEES)
       },
     }
 

@@ -14,6 +14,8 @@ const MUTATION_TYPES = {
   SET_CURRENT_EMPLOYEE: 'global/SET_CURRENT_EMPLOYEE',
   SET_EMPLOYEE_PAGE: 'global/SET_EMPLOYEE_PAGE',
   SET_AUTHORISATIONS: 'global/SET_AUTHORISATIONS',
+  SET_FILTERED_EMPLOYEES: 'board/SET_FILTERED_EMPLOYEES',
+
 }
 export default MUTATION_TYPES
 
@@ -64,6 +66,9 @@ export const mutations = {
   },
   [MUTATION_TYPES.SET_AUTHORISATIONS]: (state, data) => {
     state.authorisations = data
-  }
+  },
+  [MUTATION_TYPES.SET_FILTERED_EMPLOYEES]: (state, data) => {
+    state.filtered_employees = data
+  },
 
 }

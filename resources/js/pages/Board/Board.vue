@@ -491,7 +491,6 @@
           subtask_state: 'TO DO'
         }
         await new SubtasksRepository().update(modifyState)
-        console.log('fmmmm', item)
       },
 
     },
@@ -501,7 +500,8 @@
       await this.$store.dispatch(globalActions.FETCH_USER)
       await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
       await this.$store.dispatch(globalActions.FETCH_USER_AUTH)
-      await console.log('myTasks', this.myTasks)
+
+      // await console.log('myTasks', this.myTasks)
     },
 
   };

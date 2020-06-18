@@ -14,4 +14,5 @@ export default {
   currentEmployee:null,
   employee_page:null,
   authorisations:null,
+  filtered_employees:null,
 }

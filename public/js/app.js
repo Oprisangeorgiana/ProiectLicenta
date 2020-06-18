@@ -2933,6 +2933,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2950,9 +2964,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       menuEndHour: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
-    listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS
-  }), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])(_defineProperty({
+    listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS,
+    employees: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEES
+  }, "employees", _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEES)), {
     description: {
       get: function get() {
         return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DESCRIPTION];
@@ -3008,6 +3023,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       set: function set(value) {
         this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_PROJECT, value);
       }
+    },
+    employee_assigned: {
+      get: function get() {
+        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_EMPLOYEE_ASSIGNED];
+      },
+      set: function set(value) {
+        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_EMPLOYEE_ASSIGNED, value);
+      }
     }
   }),
   mounted: function mounted() {},
@@ -3035,11 +3058,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     mounted: function mounted() {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_5__["default"].FETCH_EMPLOYEES);
+
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -3266,6 +3295,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -3861,18 +3892,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3896,8 +3915,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
     listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS,
-    user: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER,
-    employees: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEES
+    user: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER
   })),
   mounted: function mounted() {},
   methods: {
@@ -3918,20 +3936,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 }, "mounted", function mounted() {
-  var _this = this;
-
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_5__["default"].FETCH_EMPLOYEES);
-
-          case 2:
-            console.log('employees', _this.employees);
-
-          case 3:
           case "end":
             return _context.stop();
         }
@@ -3969,6 +3978,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../repositories/TasksRepository */ "./resources/js/repositories/TasksRepository.js");
+/* harmony import */ var _repositories_SubtasksRepository__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../repositories/SubtasksRepository */ "./resources/js/repositories/SubtasksRepository.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4281,6 +4291,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -4522,7 +4572,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return onAddCanceled;
-    }() // replace: function () {
+    }(),
+    // replace: function () {
     //   this.list = [this.listTasks.task];
     // },
     // clone: function (el) {
@@ -4533,45 +4584,105 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // log: function (evt) {
     //   window.console.log(evt);
     // }
+    fromToDoTOFinished: function () {
+      var _fromToDoTOFinished = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(item) {
+        var ID, modifyState;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                ID = item.id;
+                modifyState = {
+                  id: ID,
+                  subtask_state: 'FINISHED'
+                };
+                _context7.next = 4;
+                return new _repositories_SubtasksRepository__WEBPACK_IMPORTED_MODULE_15__["default"]().update(modifyState);
 
+              case 4:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      function fromToDoTOFinished(_x7) {
+        return _fromToDoTOFinished.apply(this, arguments);
+      }
+
+      return fromToDoTOFinished;
+    }(),
+    fromFinishedToToDo: function () {
+      var _fromFinishedToToDo = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(item) {
+        var ID, modifyState;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                ID = item.id;
+                modifyState = {
+                  id: ID,
+                  subtask_state: 'TO DO'
+                };
+                _context8.next = 4;
+                return new _repositories_SubtasksRepository__WEBPACK_IMPORTED_MODULE_15__["default"]().update(modifyState);
+
+              case 4:
+                console.log('fmmmm', item);
+
+              case 5:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+
+      function fromFinishedToToDo(_x8) {
+        return _fromFinishedToToDo.apply(this, arguments);
+      }
+
+      return fromFinishedToToDo;
+    }()
   },
   mounted: function mounted() {
     var _this2 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              _context7.next = 2;
+              _context9.next = 2;
               return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_12__["default"].FETCH_PAGE_TASKS);
 
             case 2:
-              _context7.next = 4;
+              _context9.next = 4;
               return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_12__["default"].FETCH_SUBTASKS);
 
             case 4:
-              _context7.next = 6;
+              _context9.next = 6;
               return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_12__["default"].FETCH_USER);
 
             case 6:
-              _context7.next = 8;
+              _context9.next = 8;
               return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_12__["default"].FETCH_EMPLOYEES);
 
             case 8:
-              _context7.next = 10;
+              _context9.next = 10;
               return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_12__["default"].FETCH_USER_AUTH);
 
             case 10:
-              _context7.next = 12;
+              _context9.next = 12;
               return console.log('myTasks', _this2.myTasks);
 
             case 12:
             case "end":
-              return _context7.stop();
+              return _context9.stop();
           }
         }
-      }, _callee7);
+      }, _callee9);
     }))();
   }
 });
@@ -5308,6 +5419,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30159,6 +30275,35 @@ var render = function() {
                       )
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              required: "",
+                              items: _vm.employees,
+                              "item-text": "last_name",
+                              label: "Employee*",
+                              "return-object": ""
+                            },
+                            model: {
+                              value: _vm.employee_assigned,
+                              callback: function($$v) {
+                                _vm.employee_assigned = $$v
+                              },
+                              expression: "employee_assigned"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -30519,7 +30664,7 @@ var render = function() {
                     _vm._v(" "),
                     _vm._l(_vm.departments, function(department) {
                       return department.id === _vm.employee.department_id
-                        ? _c("v-card-text", [
+                        ? _c("v-card-text", { key: department.id }, [
                             _c("h1", [
                               _vm._v(_vm._s(department.department_name))
                             ])
@@ -30550,7 +30695,7 @@ var render = function() {
                     _vm._v(" "),
                     _vm._l(_vm.authorisations, function(auth) {
                       return auth.id === _vm.employee.authorisation_id
-                        ? _c("v-card-text", [
+                        ? _c("v-card-text", { key: auth.id }, [
                             _c("h1", [_vm._v(_vm._s(auth.role))])
                           ])
                         : _vm._e()
@@ -31744,26 +31889,6 @@ var render = function() {
                           _c("v-select", {
                             attrs: {
                               required: "",
-                              items: _vm.employees,
-                              "item-text": "last_name"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              required: "",
                               items: _vm.listProjects,
                               "item-text": "name",
                               "return-object": ""
@@ -31928,7 +32053,7 @@ var render = function() {
                                                 [
                                                   _c("v-card-title", [
                                                     _vm._v(
-                                                      "\n                    Task: " +
+                                                      "\n                    " +
                                                         _vm._s(
                                                           item.description
                                                         ) +
@@ -31946,6 +32071,18 @@ var render = function() {
                                                     )
                                                   ]),
                                                   _vm._v(" "),
+                                                  _c("v-card-subtitle", [
+                                                    _c("h2", [
+                                                      _vm._v(
+                                                        "\n                      " +
+                                                          _vm._s(
+                                                            item.subtask_state
+                                                          ) +
+                                                          "\n                    "
+                                                      )
+                                                    ])
+                                                  ]),
+                                                  _vm._v(" "),
                                                   _c(
                                                     "v-card-actions",
                                                     [
@@ -31959,7 +32096,58 @@ var render = function() {
                                                         attrs: {
                                                           currentSubtask: item
                                                         }
-                                                      })
+                                                      }),
+                                                      _vm._v(" "),
+                                                      item.subtask_state ===
+                                                      "TO DO"
+                                                        ? _c(
+                                                            "v-chip",
+                                                            {
+                                                              attrs: {
+                                                                outlined: "",
+                                                                color: "teal",
+                                                                small: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.fromToDoTOFinished(
+                                                                    item
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                      Finished\n                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _c(
+                                                            "v-chip",
+                                                            {
+                                                              attrs: {
+                                                                outlined: "",
+                                                                color: "teal",
+                                                                small: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.fromFinishedToToDo(
+                                                                    item
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                      To do\n                    "
+                                                              )
+                                                            ]
+                                                          )
                                                     ],
                                                     1
                                                   )
@@ -32126,17 +32314,13 @@ var render = function() {
                                                 )
                                               ]),
                                               _vm._v(" "),
-                                              item.subtask_state === "TO DO"
-                                                ? _c("v-card-subtitle", [
-                                                    _vm._v(
-                                                      "\n                  TO DO\n                "
-                                                    )
-                                                  ])
-                                                : _c("v-card-subtitle", [
-                                                    _vm._v(
-                                                      "\n                  FINISHED\n                "
-                                                    )
-                                                  ]),
+                                              _c("v-card-subtitle", [
+                                                _c("h2", [
+                                                  _vm._v(
+                                                    _vm._s(item.subtask_state)
+                                                  )
+                                                ])
+                                              ]),
                                               _vm._v(" "),
                                               _c(
                                                 "v-card-actions",
@@ -32151,7 +32335,57 @@ var render = function() {
                                                     attrs: {
                                                       currentSubtask: item
                                                     }
-                                                  })
+                                                  }),
+                                                  _vm._v(" "),
+                                                  item.subtask_state === "TO DO"
+                                                    ? _c(
+                                                        "v-chip",
+                                                        {
+                                                          attrs: {
+                                                            outlined: "",
+                                                            color: "teal",
+                                                            small: ""
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.fromToDoTOFinished(
+                                                                item
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                    Finished\n                  "
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _c(
+                                                        "v-chip",
+                                                        {
+                                                          attrs: {
+                                                            outlined: "",
+                                                            color: "teal",
+                                                            small: ""
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.fromFinishedToToDo(
+                                                                item
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                    To do\n                  "
+                                                          )
+                                                        ]
+                                                      )
                                                 ],
                                                 1
                                               )
@@ -33151,12 +33385,17 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              _c("v-list-item-subtitle", {
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    "Project: " + task.project + " "
-                                  )
-                                }
+                              _vm._l(_vm.projectsList, function(prj) {
+                                return prj.id === task.project
+                                  ? _c("v-list-item-subtitle", {
+                                      key: prj.id,
+                                      domProps: {
+                                        innerHTML: _vm._s(
+                                          "Project: " + prj.name + " "
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
                               }),
                               _vm._v(" "),
                               _vm._l(_vm.employeesList, function(
@@ -95299,7 +95538,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
   }))();
 }), _defineProperty(_actions, ACTION_TYPES.CREATE_TASK, function (_ref2) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-    var commit, state, getters, description, deadline, task_type, start_date, start_hour, end_hour, project_data, user, registerResponse;
+    var commit, state, getters, description, deadline, task_type, start_date, start_hour, end_hour, project_data, user, employee_assigned, registerResponse;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -95313,14 +95552,12 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
             end_hour = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_END_HOUR];
             project_data = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASK_PROJECT];
             user = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_USER];
-            console.log('project_id', project_data.id);
-            console.log('start_date', start_date);
-            console.log('start_hour', start_hour);
-            _context2.next = 14;
+            employee_assigned = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_EMPLOYEE_ASSIGNED];
+            _context2.next = 12;
             return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://192.168.10.10/api/tasks', {
               task: description,
               task_type: task_type,
-              employee: user.employee_id,
+              employee: employee_assigned.id,
               deadline: deadline,
               start_date: start_date,
               start_hour: start_hour,
@@ -95329,10 +95566,10 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
               state: 'COMING'
             });
 
-          case 14:
+          case 12:
             registerResponse = _context2.sent;
 
-          case 15:
+          case 13:
           case "end":
             return _context2.stop();
         }
@@ -95373,9 +95610,8 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
 
           case 3:
             updateResponse = _context4.sent;
-            console.log('updatetask', updated);
 
-          case 5:
+          case 4:
           case "end":
             return _context4.stop();
         }
@@ -95472,7 +95708,8 @@ var GETTER_TYPES = {
   GET_START_HOUR: 'board/GET_START_HOUR',
   GET_END_HOUR: 'board/GET_END_HOUR',
   GET_TASK_PROJECT: 'board/GET_TASK_PROJECT',
-  GET_TASK_CREATED_BY: 'board/GET_TASK_CREATED_BY'
+  GET_TASK_CREATED_BY: 'board/GET_TASK_CREATED_BY',
+  GET_EMPLOYEE_ASSIGNED: 'board/GET_EMPLOYEE_ASSIGNED'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
 var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_TASKS, function (state, getters) {
@@ -95493,6 +95730,8 @@ var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_TASKS, 
   return state.task_project;
 }), _defineProperty(_getters, GETTER_TYPES.GET_TASK_CREATED_BY, function (state, getters) {
   return state.created_by;
+}), _defineProperty(_getters, GETTER_TYPES.GET_EMPLOYEE_ASSIGNED, function (state, getters) {
+  return state.employee_assigned;
 }), _getters);
 
 /***/ }),
@@ -95553,7 +95792,8 @@ var MUTATION_TYPES = {
   SET_START_HOUR: 'board/SET_START_HOUR',
   SET_END_HOUR: 'board/SET_END_HOUR',
   SET_TASK_PROJECT: 'board/SET_TASK_PROJECT',
-  SET_TASK_CREATED_BY: 'board/SET_TASK_CREATED_BY'
+  SET_TASK_CREATED_BY: 'board/SET_TASK_CREATED_BY',
+  SET_EMPLOYEE_ASSIGNED: 'board/SET_EMPLOYEE_ASSIGNED'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATION_TYPES);
 var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET_TASKS, function (state, data) {
@@ -95574,6 +95814,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
   state.task_project = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_TASK_CREATED_BY, function (state, data) {
   state.created_by = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_EMPLOYEE_ASSIGNED, function (state, data) {
+  state.employee_assigned = data;
 }), _mutations);
 
 /***/ }),
@@ -95596,7 +95838,8 @@ __webpack_require__.r(__webpack_exports__);
   start_hour: '',
   end_hour: '',
   task_project: '',
-  created_by: ''
+  created_by: '',
+  employee_assigned: ''
 });
 
 /***/ }),
@@ -97331,7 +97574,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
             }); // aduc task-urile celor care au autorizare mai mica
 
             Object.keys(employees).forEach(function (key2) {
-              if (auth !== 1) {
+              if (auth === 2) {
                 if (employees[key2].authorisation_id < auth) {
                   if (employees[key2].department_id === dept) {
                     Object.keys(tasks).forEach(function (key1) {
@@ -97340,6 +97583,16 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
                       }
                     });
                   }
+                }
+              }
+
+              if (auth === 3) {
+                if (employees[key2].authorisation_id < auth) {
+                  Object.keys(tasks).forEach(function (key1) {
+                    if (employees[key2].id === tasks[key1].employee) {
+                      tasksList.push(tasks[key1]);
+                    }
+                  });
                 }
               }
             }); // console.log('tasksListactions', tasksList)

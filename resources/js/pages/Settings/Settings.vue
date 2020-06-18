@@ -124,13 +124,11 @@
           phone_number: this.employee.phone_number
         }
         await new EmployeesRepository().update(modifyPhoneNumber)
-        console.log('modifyPhoneNumber', modifyPhoneNumber)
       },
     },
 
     async mounted () {
       await this.$store.dispatch(globalActions.FETCH_CURRENT_EMPLOYEE)
-      console.log('settings', this.user)
     },
   }
 

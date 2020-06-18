@@ -8,6 +8,7 @@ const MUTATION_TYPES = {
   SET_END_HOUR: 'board/SET_END_HOUR',
   SET_TASK_PROJECT: 'board/SET_TASK_PROJECT',
   SET_TASK_CREATED_BY: 'board/SET_TASK_CREATED_BY',
+  SET_EMPLOYEE_ASSIGNED: 'board/SET_EMPLOYEE_ASSIGNED',
 
 
 }
@@ -42,5 +43,9 @@ export const mutations = {
   [MUTATION_TYPES.SET_TASK_CREATED_BY]: (state, data) => {
     state.created_by = data
   },
+  [MUTATION_TYPES.SET_EMPLOYEE_ASSIGNED]: (state, data) => {
+    state.employee_assigned = data
+  },
+
 
 }

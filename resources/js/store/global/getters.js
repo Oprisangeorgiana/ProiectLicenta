@@ -14,6 +14,8 @@ const GETTER_TYPES = {
   GET_CURRENT_EMPLOYEE: 'global/GET_CURRENT_EMPLOYEE',
   GET_EMPLOYEE_PAGE: 'global/GET_EMPLOYEE_PAGE',
   GET_AUTHORISATIONS: 'global/GET_AUTHORISATIONS',
+  GET_FILTERED_EMPLOYEES: 'board/GET_FILTERED_EMPLOYEES',
+
 
 }
 export default GETTER_TYPES
@@ -65,6 +67,9 @@ export const getters = {
   },
   [GETTER_TYPES.GET_AUTHORISATIONS]: (state, getters) => {
     return state.authorisations
+  },
+  [GETTER_TYPES.GET_FILTERED_EMPLOYEES]: (state, getters) => {
+    return state.filtered_employees
   },
 }
 

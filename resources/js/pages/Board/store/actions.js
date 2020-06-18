@@ -13,7 +13,7 @@ const ACTION_TYPES = {
   UPDATE_TASK: 'board/UPDATE_TASK',
   DELETE_TASK: 'board/DELETE_TASK',
   DELETE_SUBTASK: 'board/DELETE_SUBTASK',
-  UPDATE_SUBTASK: 'board/UPDATE_SUBTASK'
+  UPDATE_SUBTASK: 'board/UPDATE_SUBTASK',
 
 }
 
@@ -35,31 +35,28 @@ export const actions = {
     const end_hour = getters[pageGetters.GET_END_HOUR]
     const project_data = getters[pageGetters.GET_TASK_PROJECT]
     const user = getters[globalGetters.GET_USER]
-
-    console.log('project_id', project_data.id)
-    console.log('start_date', start_date)
-    console.log('start_hour', start_hour)
+    const employee_assigned = getters[pageGetters.GET_EMPLOYEE_ASSIGNED]
 
     const registerResponse = await axios.post('http://192.168.10.10/api/tasks',
       {
         task: description,
         task_type: task_type,
-        employee: user.employee_id,
+        employee: employee_assigned.id,
         deadline: deadline,
         start_date: start_date,
         start_hour: start_hour,
         end_hour: end_hour,
         project: project_data.id,
-        state:'COMING'
+        state: 'COMING'
       })
   },
   async [ACTION_TYPES.CREATE_SUBTASK] ({ commit, state, getters }, newSubtask) {
-        const registerResponse = await axios.post('http://192.168.10.10/api/subtasks', newSubtask
+    const registerResponse = await axios.post('http://192.168.10.10/api/subtasks', newSubtask
     )
   },
   async [ACTION_TYPES.UPDATE_TASK] ({ commit, state, getters }, updated) {
     const updateResponse = await new TasksRepository().update(updated)
-    console.log('updatetask',updated)
+    // console.log('updatetask',updated)
   },
   async [ACTION_TYPES.UPDATE_SUBTASK] ({ commit, state, getters }, updatedTask) {
     const updateResponse = await new SubtasksRepository().update(updatedTask)
@@ -70,6 +67,7 @@ export const actions = {
   },
   async [ACTION_TYPES.DELETE_SUBTASK] ({ commit, state, getters }, deletedTask) {
     const updateResponse = await new SubtasksRepository().delete(deletedTask)
-  }
+  },
+
 
 }

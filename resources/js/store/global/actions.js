@@ -22,7 +22,9 @@ const ACTION_TYPES = {
   FETCH_SUBTASKS: 'global/FETCH_SUBTASKS',
   FETCH_CURRENT_EMPLOYEE: 'global/FETCH_CURRENT_EMPLOYEE',
   FETCH_EMPLOYEE_PAGE: 'global/FETCH_EMPLOYEE_PAGE',
-  FETCH_AUTHORISATIONS: 'global/FETCH_AUTHORISATIONS'
+  FETCH_AUTHORISATIONS: 'global/FETCH_AUTHORISATIONS',
+  FETCH_FILTERED_EMPLOYEES: 'board/FETCH_FILTERED_EMPLOYEES',
+
 }
 
 export default ACTION_TYPES
@@ -211,6 +213,27 @@ export const actions = {
     })
     // console.log('selected_employee', selected_employee)
     commit(pageMutations.SET_EMPLOYEE_PAGE, selected_employee)
+  },
+  async [ACTION_TYPES.FETCH_FILTERED_EMPLOYEES] ({ commit, state, getters }) {
+    const auth = getters[pageGetters.GET_USER_AUTH]
+    const employees = await new EmployeesRepository().getAll()
+    const currentEmployee = getters[pageGetters.GET_CURRENT_EMPLOYEE]
+    let list = []
+
+    if (auth === 2) {
+      Object.keys(employees).forEach(key => {
+        if (employees[key].department_id === currentEmployee.department_id) {
+          list.push(employees[key])
+        }
+      })
+    }
+    if (auth === 3) {
+      Object.keys(employees).forEach(key => {
+        list.push(employees[key])
+      })
+    }
+    // console.log('list',list)
+    commit(pageMutations.SET_FILTERED_EMPLOYEES, list)
   }
 
 }

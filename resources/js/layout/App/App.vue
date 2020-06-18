@@ -276,6 +276,8 @@
       await this.$store.dispatch(globalActions.FETCH_SUBTASKS)
       await this.$store.dispatch(globalActions.FETCH_PROJECTS)
       await this.$store.dispatch(globalActions.FETCH_USER_NAME)
+      await this.$store.dispatch(globalActions.FETCH_CURRENT_EMPLOYEE)
+      await this.$store.dispatch(globalActions.FETCH_FILTERED_EMPLOYEES)
 
     },
 
