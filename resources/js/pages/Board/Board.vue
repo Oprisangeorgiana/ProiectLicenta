@@ -10,7 +10,7 @@
           <!--                  1-->
           <!--            </span>-->
           <h1>COMING
-            <add-task v-if="user">
+            <add-task v-if="userAuthorisation > 1">
             </add-task>
           </h1>
         </v-card>

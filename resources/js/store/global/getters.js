@@ -15,6 +15,8 @@ const GETTER_TYPES = {
   GET_EMPLOYEE_PAGE: 'global/GET_EMPLOYEE_PAGE',
   GET_AUTHORISATIONS: 'global/GET_AUTHORISATIONS',
   GET_FILTERED_EMPLOYEES: 'board/GET_FILTERED_EMPLOYEES',
+  GET_NOTIFICATIONS: 'board/GET_NOTIFICATIONS',
+  GET_COUNT_NOTIFICATIONS: 'board/GET_COUNT_NOTIFICATIONS',
 
 
 }
@@ -70,6 +72,12 @@ export const getters = {
   },
   [GETTER_TYPES.GET_FILTERED_EMPLOYEES]: (state, getters) => {
     return state.filtered_employees
+  },
+  [GETTER_TYPES.GET_NOTIFICATIONS]: (state, getters) => {
+    return state.notifications
+  },
+  [GETTER_TYPES.GET_COUNT_NOTIFICATIONS]: (state, getters) => {
+    return state.countNotifications
   },
 }
 

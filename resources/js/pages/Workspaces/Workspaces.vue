@@ -19,7 +19,7 @@
         <v-list>
           <v-list-item-group v-model="selectedProject" >
             <v-list-item
-              v-for="(currentProject,index) in filteredProjects"
+              v-for="currentProject in filteredProjects"
               :key="currentProject.id"
               :value="currentProject.id"
 
@@ -70,6 +70,7 @@
             </v-list-item-content>
             <v-list-item-action>
               <add-task
+                v-if="userAuthorisation > 1"
                 :currentTask="task">
               </add-task>
               <modify-task
@@ -152,7 +153,6 @@
 
       userAuthorisation(){
         let employees = this.employeesList
-        let user = this.user
         let auth = null
         Object.keys(employees).forEach(key =>{
           if(employees[key].id === this.user.employee_id){

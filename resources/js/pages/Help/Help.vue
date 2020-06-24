@@ -1,27 +1,12 @@
 <template>
   <div>
-    <v-row>
-      <v-layout justify-center align-content-start>
-        <h2> Hi! How can we help you?</h2>
-        <h2>
-          Our mission
-          While we absolutely love productivity software, we believe productivity, in general, is broken. There's just too many tools to keep track of, too many things in entirely separate ecosystems.
-          There has to be a better way to work - that's why we created ClickUp, first an internal tool, now as a way to fulfill our vision of making the world more productive.
 
-          Eventually, our goal is to have all work live in ClickUp - thereby making people more productive and giving back at least 20% of time to dedicate to other things. One app to replace them
-          all. We're just getting started, and are so grateful for all of the 100,000+ teams that are in this together with our team.
-        </h2>
-      </v-layout>
-    </v-row>
-
-
-    <div class="col-4">
-      If you are having trouble accesing your account please send an e-mail at: example@gmail.com
-    </div>
-    <div class="col-4">
-      You can contact us at: contact@example.com
-    </div>
-
+    <v-img
+      max-width="150"
+      max-height="150"
+      src="Screenshot_1.png"
+    ></v-img>
+<!--        <img src="Screenshot_1.png" alt="help" width="500" height="500">-->
 
   </div>
 </template>
@@ -58,7 +43,8 @@
     //  ============================   LOCAL STATE   ===================================
     //  ================================================================================
     data: function () {
-      return {}
+      return {
+      }
     },
     computed: {},
     //  ================================================================================

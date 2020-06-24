@@ -201,7 +201,6 @@
           id: this.currentTask.id,
           task: this.currentTask.task,
           task_type: 'task',
-          employee: this.user.employee_id,
           deadline: this.currentTask.deadline,
           start_date: this.currentTask.start_date,
           start_hour: this.currentTask.start_hour,

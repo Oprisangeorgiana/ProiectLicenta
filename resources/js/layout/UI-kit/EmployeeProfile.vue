@@ -1,25 +1,17 @@
 <template>
   <v-container class="teal" >
     <v-container class="white pt-6 pb-6 pr-6 pl-6">
-      <div align="center">
+      <div>
       <v-row class="mb-8"
              align="center"
              justify="center"
       >
         <v-card color="teal">
-          <h1 align="center" class="ma-8">
+          <h1 class="ma-8">
             {{`${employee.last_name} ${employee.first_name}`}}
           </h1>
         </v-card>
 
-      </v-row>
-
-      <v-row
-        align="center"
-        justify="center"
-        class="mb-8"
-      >
-        // imaginea, daca nu are pun un avatar
       </v-row>
 
 
@@ -28,12 +20,15 @@
         justify="center"
         class="mb-6"
       >
-        <v-card>
+        <v-card
+          color="teal lighten-4"
+          width="700"
+          >
           <v-card-title>
             E-mail
           </v-card-title>
           <v-card-text>
-            <!--                      {{// this.user.intern_email}}&ndash;&gt;-->
+           <h1> {{`${employee.last_name}.${employee.first_name}@intern.com`}} </h1>
           </v-card-text>
         </v-card>
       </v-row>
@@ -47,10 +42,7 @@
           color="teal lighten-4"
           width="700"
         >
-          <v-card-title
-          align="center"
-          justify="center"
-          >
+          <v-card-title          >
             Phone number
           </v-card-title>
           <v-card-text>
@@ -141,8 +133,6 @@
       // modifica fetch page task cu get page employee
       await this.$store.dispatch(globalActions.FETCH_EMPLOYEE_PAGE, this.selectedUserID)
       await this.$store.dispatch(globalActions.FETCH_AUTHORISATIONS)
-      await console.log('employeeasdfgh', this.employee)
-      await console.log('selectedUserID', this.selectedUserID)
     },
   }
 

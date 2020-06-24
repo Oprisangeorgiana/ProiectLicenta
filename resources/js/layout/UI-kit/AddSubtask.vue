@@ -269,7 +269,8 @@
           start_subtask_hour: this.start_subtask_hour,
           end_subtask_hour: this.end_subtask_hour,
           employee_id: this.user.employee_id,
-          task_id: this.currentTask.id
+          task_id: this.currentTask.id,
+          subtask_state: 'TO DO'
         }
         await this.$store.dispatch(boardActions.CREATE_SUBTASK,newSubtask)
         return this.dialog = false

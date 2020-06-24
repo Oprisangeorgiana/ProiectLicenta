@@ -15,4 +15,6 @@ export default {
   employee_page:null,
   authorisations:null,
   filtered_employees:null,
+  notifications:null,
+  countNotifications:null,
 }

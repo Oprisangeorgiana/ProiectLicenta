@@ -105,7 +105,9 @@
                 color="red"
                 left
               >
-                <v-icon large color="white" v-on="on" >mdi-bell</v-icon>
+                <v-icon large color="white" v-on="on"
+                @click="setCountToZero"
+                >mdi-bell</v-icon>
                 <template v-slot:badge>
                   <span>{{countNotifications}}</span>
                 </template>
@@ -192,6 +194,7 @@
   import { mapGetters } from 'vuex'
   import globalGetters from '../../store/global/getters'
   import globalActions from '../../store/global/actions'
+  import globalMutations from '../../store/global/mutations'
 
   export default {
     props: {
@@ -211,7 +214,6 @@
         },
       ],
 
-      notificationsList: [],
     }),
 
     computed: {
@@ -225,38 +227,35 @@
       // },
 
 
-
-      countNotifications () {
-        let count =0
-        let tomorrow = new Date();
-        tomorrow.setDate(new Date().getDate() + 1);
-        const toTwoDigits = num => num < 10 ? '0' + num : num;
-        let year = tomorrow.getFullYear();
-        let month = toTwoDigits(tomorrow.getMonth() + 1);
-        let day = toTwoDigits(tomorrow.getDate());
-        // console.log('tomorrow', `${year}-${month}-${day}`)
-        let notificationsList = []
-        let list = this.tasksList
-        Object.keys(this.tasksList).forEach(key => {
-          let data = {}
-          const item = this.tasksList[key]
-          if (list[key].deadline === `${year}-${month}-${day}`) {
-            count = count  + 1
-
-            data.id = list[key].id
-            data.task_type = list[key].task_type
-            data.name = list[key].task
-            data.start = `${list[key].start_date} ${list[key].start_hour}`
-            data.end_date = list[key].deadline
-            data.end_hour = list[key].end_hour
-            notificationsList.push(data)
-          }
-        });
-        this.notificationsList = notificationsList
-        // console.log('item.deadline', notificationsList)
-
-        return count
-      },
+      // countNotifications () {
+      //   let count =0
+      //   let tomorrow = new Date();
+      //   tomorrow.setDate(new Date().getDate() + 1);
+      //   const toTwoDigits = num => num < 10 ? '0' + num : num;
+      //   let year = tomorrow.getFullYear();
+      //   let month = toTwoDigits(tomorrow.getMonth() + 1);
+      //   let day = toTwoDigits(tomorrow.getDate());
+      //   console.log('tomorrow', `${year}-${month}-${day}`)
+      //   let notificationsList = []
+      //   let list = this.tasksList
+      //   Object.keys(list).forEach(key => {
+      //     console.log('item.deadline', list[key].deadline)
+      //     let data = {}
+      //     if (list[key].deadline === `${year}-${month}-${day}`) {
+      //       count = count  + 1
+      //       data.id = list[key].id
+      //       data.task_type = list[key].task_type
+      //       data.name = list[key].task
+      //       data.start = `${list[key].start_date} ${list[key].start_hour}`
+      //       data.end_date = list[key].deadline
+      //       data.end_hour = list[key].end_hour
+      //       notificationsList.push(data)
+      //     }
+      //   });
+      //   this.notificationsList = notificationsList
+      //
+      //   return count
+      // },
 
       ...mapGetters({
         user: globalGetters.GET_USER,
@@ -264,6 +263,8 @@
         projectList: globalGetters.GET_PROJECTS,
         tasksList: globalGetters.GET_TASKS,
         employeesList: globalGetters.GET_EMPLOYEES,
+        notificationsList: globalGetters.GET_NOTIFICATIONS,
+        countNotifications: globalGetters.GET_COUNT_NOTIFICATIONS,
       }),
 
 
@@ -278,12 +279,19 @@
       await this.$store.dispatch(globalActions.FETCH_USER_NAME)
       await this.$store.dispatch(globalActions.FETCH_CURRENT_EMPLOYEE)
       await this.$store.dispatch(globalActions.FETCH_FILTERED_EMPLOYEES)
+      await this.$store.dispatch(globalActions.FETCH_NOTIFICATIONS)
+      await this.$store.dispatch(globalActions.FETCH_COUNT_NOTIFICATIONS)
+      console.log('notif', this.notificationsList)
+      console.log('count', this.countNotifications)
+
 
     },
 
     methods: {
 
-
+      setCountToZero(){
+        this.$store.commit(globalMutations.SET_COUNT_NOTIFICATIONS, 0)
+      },
       actionPressed (action) {
         // console.log(action)
         switch (action) {

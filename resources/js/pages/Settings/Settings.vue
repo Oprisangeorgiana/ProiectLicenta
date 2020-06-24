@@ -1,38 +1,38 @@
 <template>
   <div>
-    <v-row class="mb-8" justify="center">
+    <v-row class="mb-8" justify="center" align="center">
       <v-card color="teal">
         <h1>{{this.user.name}}</h1>
       </v-card>
     </v-row>
 
-    <v-row class="mb-8">
-      <v-expansion-panels popout>
-        <v-expansion-panel>
-          <v-expansion-panel-header>
-            <v-layout justify-center>
-              <v-avatar
-                color="teal"
-                size="100px"
-              >
-                <v-icon large>mdi-account-circle</v-icon>
-              </v-avatar>
-            </v-layout>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <v-file-input
-              accept="image/png, image/jpeg, image/bmp"
-              placeholder="Change your photo"
-              prepend-icon="mdi-camera"
-            >
-            </v-file-input>
-            <v-btn color="teal">
-              SUBMIT
-            </v-btn>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-row>
+<!--    <v-row class="mb-8">-->
+<!--      <v-expansion-panels popout>-->
+<!--        <v-expansion-panel>-->
+<!--          <v-expansion-panel-header>-->
+<!--            <v-layout justify-center>-->
+<!--              <v-avatar-->
+<!--                color="teal"-->
+<!--                size="100px"-->
+<!--              >-->
+<!--                <v-icon large>mdi-account-circle</v-icon>-->
+<!--              </v-avatar>-->
+<!--            </v-layout>-->
+<!--          </v-expansion-panel-header>-->
+<!--          <v-expansion-panel-content>-->
+<!--            <v-file-input-->
+<!--              accept="image/png, image/jpeg, image/bmp"-->
+<!--              placeholder="Change your photo"-->
+<!--              prepend-icon="mdi-camera"-->
+<!--            >-->
+<!--            </v-file-input>-->
+<!--            <v-btn color="teal">-->
+<!--              SUBMIT-->
+<!--            </v-btn>-->
+<!--          </v-expansion-panel-content>-->
+<!--        </v-expansion-panel>-->
+<!--      </v-expansion-panels>-->
+<!--    </v-row>-->
 
 
     <v-row class="mb-6">

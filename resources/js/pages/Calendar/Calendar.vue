@@ -33,7 +33,9 @@
       ></v-select>
       <v-spacer></v-spacer>
 
-      <add-task>
+      <add-task
+        v-if="userAuthorisation > 1"
+      >
       </add-task>
 
       <v-btn
@@ -102,18 +104,13 @@
         listTasks:globalGetters.GET_TASKS,
         listSubtasks:globalGetters.GET_SUBTASKS,
         user: globalGetters.GET_USER,
+        userAuthorisation: globalGetters.GET_USER_AUTH,
       }),
 
 
 
     },
     methods: {
-
-      // getEventColor (event) {
-      //   return event.color
-      // },
-
-
 
        seeTasks () {
 

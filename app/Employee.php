@@ -36,7 +36,11 @@ class Employee extends Model
     }
     public function subtask()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Subtask::class);
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 
 

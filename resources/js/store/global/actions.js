@@ -24,6 +24,8 @@ const ACTION_TYPES = {
   FETCH_EMPLOYEE_PAGE: 'global/FETCH_EMPLOYEE_PAGE',
   FETCH_AUTHORISATIONS: 'global/FETCH_AUTHORISATIONS',
   FETCH_FILTERED_EMPLOYEES: 'board/FETCH_FILTERED_EMPLOYEES',
+  FETCH_NOTIFICATIONS: 'board/FETCH_NOTIFICATIONS',
+  FETCH_COUNT_NOTIFICATIONS: 'board/FETCH_COUNT_NOTIFICATIONS'
 
 }
 
@@ -32,22 +34,44 @@ export default ACTION_TYPES
 export const actions = {
   async [ACTION_TYPES.FETCH_PROJECTS] ({ commit, state, getters }) {
     let projects = await new ProjectsRepository().getAll()
+    let tasksList = getters[pageGetters.GET_TASKS]
     let user = getters[pageGetters.GET_USER]
+    let currentEmployee = getters[pageGetters.GET_CURRENT_EMPLOYEE]
     let employees = await new EmployeesRepository().getAll()
+    let authorisation = getters[pageGetters.GET_USER_AUTH]
     let dept = null
+    let idProjectsList = []
     let projectsList = []
     //din ce departamnent face parte user-ul curent
-    Object.keys(employees).forEach(key => {
-      if (employees[key].id === user.employee_id) {
-        dept = employees[key].department
-      }
-    })
 
-    Object.keys(projects).forEach(key => {
-      if (projects[key].department_id === dept.id) {
+    if (authorisation === 1) {
+      Object.keys(tasksList).forEach(key1 => {
+        idProjectsList.push(tasksList[key1].project)
+      })
+      idProjectsList = _.uniq(idProjectsList)
+      idProjectsList.forEach(function (id) {
+        // for(let id in idProjectsList){
+        Object.keys(projects).forEach(key2 => {
+          if (id === projects[key2].id) {
+            projectsList.push(projects[key2])
+          }
+        })
+      })
+    }
+    // console.log('projectsList', projectsList)
+    // console.log('idProjectsList', idProjectsList)
+
+    if (authorisation === 2) {
+      Object.keys(projects).forEach(key => {
         projectsList.push(projects[key])
-      }
-    })
+      })
+    }
+
+    if (authorisation === 3) {
+      Object.keys(projects).forEach(key => {
+        projectsList.push(projects[key])
+      })
+    }
 
     commit(pageMutations.SET_PROJECTS, projectsList)
   },
@@ -116,13 +140,14 @@ export const actions = {
     // aflam autorizarea user-ului curent
     let auth = null
     let dept = null
+
     Object.keys(employees).forEach(key => {
       if (employees[key].id === user.employee_id) {
         auth = employees[key].authorisation_id
         dept = employees[key].department_id
-        // console.log('verificare', auth)
       }
     })
+    console.log('dept', dept)
     //aduc task-urile userului curent
 
     Object.keys(tasks).forEach(key => {
@@ -153,8 +178,6 @@ export const actions = {
         }
       }
     })
-
-    // console.log('tasksListactions', tasksList)
     commit(pageMutations.SET_TASKS, tasksList)
   },
   async [ACTION_TYPES.FETCH_DEPARTMENTS] ({ commit, state }) {
@@ -167,12 +190,21 @@ export const actions = {
   },
   async [ACTION_TYPES.FETCH_SUBTASKS] ({ commit, state }) {
     let subtasks = await new SubtasksRepository().getAll()
-    commit(pageMutations.SET_SUBTASKS, subtasks)
+    let currentEmployee = getters[pageGetters.GET_CURRENT_EMPLOYEE]
+    let listSubtasks = []
+    Object.keys(subtasks).forEach(key => {
+      if (subtasks[key].employee_id === currentEmployee.id) {
+        listSubtasks.push(subtasks[key])
+      }
+    })
+    commit(pageMutations.SET_SUBTASKS, listSubtasks)
   },
+
   async [ACTION_TYPES.FETCH_AUTHORISATIONS] ({ commit, state }) {
     let auth = await new AuthorisationsRepository().getAll()
     commit(pageMutations.SET_AUTHORISATIONS, auth)
   },
+
   async [ACTION_TYPES.CREATE_PROJECT] ({ commit, state, getters }) {
     const project_name = getters[pageGetters.GET_PROJECT_NAME]
     const project_deadline = getters[pageGetters.GET_PROJECT_DEADLINE]
@@ -211,7 +243,7 @@ export const actions = {
         selected_employee = allEmployees[key]
       }
     })
-    // console.log('selected_employee', selected_employee)
+    // console.log('allUsers', allUsers)
     commit(pageMutations.SET_EMPLOYEE_PAGE, selected_employee)
   },
   async [ACTION_TYPES.FETCH_FILTERED_EMPLOYEES] ({ commit, state, getters }) {
@@ -234,6 +266,46 @@ export const actions = {
     }
     // console.log('list',list)
     commit(pageMutations.SET_FILTERED_EMPLOYEES, list)
+  },
+  async [ACTION_TYPES.FETCH_NOTIFICATIONS] ({ commit, state, getters }) {
+    let tasksList = getters[pageGetters.GET_TASKS]
+    let count = 0
+    let tomorrow = new Date()
+    tomorrow.setDate(new Date().getDate() + 1)
+    const toTwoDigits = num => num < 10 ? '0' + num : num
+    let year = tomorrow.getFullYear()
+    let month = toTwoDigits(tomorrow.getMonth() + 1)
+    let day = toTwoDigits(tomorrow.getDate())
+    // console.log('tomorrow', `${year}-${month}-${day}`)
+    let notificationsList = []
+    let list = tasksList
+    Object.keys(tasksList).forEach(key => {
+      // console.log('item.deadline', list[key].deadline)
+      let data = {}
+      if (tasksList[key].deadline === `${year}-${month}-${day}`) {
+        count = count + 1
+        data.id = tasksList[key].id
+        data.task_type = tasksList[key].task_type
+        data.name = tasksList[key].task
+        data.start = `${tasksList[key].start_date} ${tasksList[key].start_hour}`
+        data.end_date = tasksList[key].deadline
+        data.end_hour = tasksList[key].end_hour
+        notificationsList.push(data)
+      }
+    })
+    console.log('notificationsList', notificationsList)
+    commit(pageMutations.SET_NOTIFICATIONS, notificationsList)
+  },
+  async [ACTION_TYPES.FETCH_COUNT_NOTIFICATIONS] ({ commit, state, getters }) {
+    let notifications = getters[pageGetters.GET_NOTIFICATIONS]
+    let count = 0
+    Object.keys(notifications).forEach(key =>{
+      count = count + 1;
+    })
+
+    console.log('count', count)
+
+    commit(pageMutations.SET_COUNT_NOTIFICATIONS, count)
   }
 
 }

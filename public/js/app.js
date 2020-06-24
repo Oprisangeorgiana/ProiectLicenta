@@ -2236,6 +2236,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER_NAME);
 
             case 14:
+              _context.next = 16;
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_CURRENT_EMPLOYEE);
+
+            case 16:
+              _context.next = 18;
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_FILTERED_EMPLOYEES);
+
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -2694,7 +2702,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   start_subtask_hour: _this.start_subtask_hour,
                   end_subtask_hour: _this.end_subtask_hour,
                   employee_id: _this.user.employee_id,
-                  task_id: _this.currentTask.id
+                  task_id: _this.currentTask.id,
+                  subtask_state: 'TO DO'
                 };
                 _context.next = 3;
                 return _this.$store.dispatch(_pages_Board_store_actions__WEBPACK_IMPORTED_MODULE_4__["default"].CREATE_SUBTASK, newSubtask);
@@ -2964,10 +2973,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       menuEndHour: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])(_defineProperty({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
     listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS,
-    employees: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEES
-  }, "employees", _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEES)), {
+    employees: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_FILTERED_EMPLOYEES,
+    departments: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_DEPARTMENTS,
+    auth: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER_AUTH,
+    currentEmployee: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_EMPLOYEE
+  }), {
     description: {
       get: function get() {
         return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DESCRIPTION];
@@ -3033,8 +3045,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   }),
-  mounted: function mounted() {},
   methods: {
+    text: function text(item) {
+      return item.last_name + item.first_name;
+    },
     register: function register() {
       var _this = this;
 
@@ -3056,26 +3070,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
-    },
-    mounted: function mounted() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_5__["default"].FETCH_EMPLOYEES);
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_5__["default"].FETCH_EMPLOYEES);
+
+            case 2:
+              _context2.next = 4;
+              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_5__["default"].FETCH_FILTERED_EMPLOYEES);
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
   }
 });
 
@@ -3924,7 +3942,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         id: this.currentTask.id,
         task: this.currentTask.task,
         task_type: 'task',
-        employee: this.user.employee_id,
         deadline: this.currentTask.deadline,
         start_date: this.currentTask.start_date,
         start_hour: this.currentTask.start_hour,
@@ -4629,9 +4646,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return new _repositories_SubtasksRepository__WEBPACK_IMPORTED_MODULE_15__["default"]().update(modifyState);
 
               case 4:
-                console.log('fmmmm', item);
-
-              case 5:
               case "end":
                 return _context8.stop();
             }
@@ -4674,10 +4688,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this2.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_12__["default"].FETCH_USER_AUTH);
 
             case 10:
-              _context9.next = 12;
-              return console.log('myTasks', _this2.myTasks);
-
-            case 12:
             case "end":
               return _context9.stop();
           }
@@ -5342,9 +5352,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_7__["default"]().update(modifyPhoneNumber);
 
               case 3:
-                console.log('modifyPhoneNumber', modifyPhoneNumber);
-
-              case 4:
               case "end":
                 return _context.stop();
             }
@@ -5371,9 +5378,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_6__["default"].FETCH_CURRENT_EMPLOYEE);
 
             case 2:
-              console.log('settings', _this.user);
-
-            case 3:
             case "end":
               return _context2.stop();
           }
@@ -30287,7 +30291,7 @@ var render = function() {
                             attrs: {
                               required: "",
                               items: _vm.employees,
-                              "item-text": "last_name",
+                              "item-text": "last_name + first_name",
                               label: "Employee*",
                               "return-object": ""
                             },
@@ -31990,7 +31994,7 @@ var render = function() {
                     "h1",
                     [
                       _vm._v("COMING\n          "),
-                      _vm.user ? _c("add-task") : _vm._e()
+                      _vm.userAuthorisation > 1 ? _c("add-task") : _vm._e()
                     ],
                     1
                   )
@@ -95552,7 +95556,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
             end_hour = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_END_HOUR];
             project_data = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASK_PROJECT];
             user = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_USER];
-            employee_assigned = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_EMPLOYEE_ASSIGNED];
+            employee_assigned = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEE_ASSIGNED];
             _context2.next = 12;
             return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://192.168.10.10/api/tasks', {
               task: description,
@@ -95831,15 +95835,15 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   tasks: null,
-  description: '',
-  deadline: '',
-  task_type: '',
-  start_date: '',
-  start_hour: '',
-  end_hour: '',
-  task_project: '',
-  created_by: '',
-  employee_assigned: ''
+  description: null,
+  deadline: null,
+  task_type: null,
+  start_date: null,
+  start_hour: null,
+  end_hour: null,
+  task_project: null,
+  created_by: null,
+  employee_assigned: null
 });
 
 /***/ }),
@@ -97371,7 +97375,8 @@ var ACTION_TYPES = {
   FETCH_SUBTASKS: 'global/FETCH_SUBTASKS',
   FETCH_CURRENT_EMPLOYEE: 'global/FETCH_CURRENT_EMPLOYEE',
   FETCH_EMPLOYEE_PAGE: 'global/FETCH_EMPLOYEE_PAGE',
-  FETCH_AUTHORISATIONS: 'global/FETCH_AUTHORISATIONS'
+  FETCH_AUTHORISATIONS: 'global/FETCH_AUTHORISATIONS',
+  FETCH_FILTERED_EMPLOYEES: 'board/FETCH_FILTERED_EMPLOYEES'
 };
 /* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
 var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJECTS, function (_ref) {
@@ -97563,7 +97568,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
             Object.keys(employees).forEach(function (key) {
               if (employees[key].id === user.employee_id) {
                 auth = employees[key].authorisation_id;
-                dept = employees[key].department_id; // console.log('verificare', auth)
+                dept = employees[key].department_id;
               }
             }); //aduc task-urile userului curent
 
@@ -97595,8 +97600,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
                   });
                 }
               }
-            }); // console.log('tasksListactions', tasksList)
-
+            });
             commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASKS, tasksList);
 
           case 15:
@@ -97785,6 +97789,47 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
       }
     }, _callee14);
   }))();
+}), _defineProperty(_actions, ACTION_TYPES.FETCH_FILTERED_EMPLOYEES, function (_ref16) {
+  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
+    var commit, state, getters, auth, employees, currentEmployee, list;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+      while (1) {
+        switch (_context15.prev = _context15.next) {
+          case 0:
+            commit = _ref16.commit, state = _ref16.state, getters = _ref16.getters;
+            auth = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER_AUTH];
+            _context15.next = 4;
+            return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_7__["default"]().getAll();
+
+          case 4:
+            employees = _context15.sent;
+            currentEmployee = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_EMPLOYEE];
+            list = [];
+
+            if (auth === 2) {
+              Object.keys(employees).forEach(function (key) {
+                if (employees[key].department_id === currentEmployee.department_id) {
+                  list.push(employees[key]);
+                }
+              });
+            }
+
+            if (auth === 3) {
+              Object.keys(employees).forEach(function (key) {
+                list.push(employees[key]);
+              });
+            } // console.log('list',list)
+
+
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_FILTERED_EMPLOYEES, list);
+
+          case 10:
+          case "end":
+            return _context15.stop();
+        }
+      }
+    }, _callee15);
+  }))();
 }), _actions);
 
 /***/ }),
@@ -97818,7 +97863,8 @@ var GETTER_TYPES = {
   GET_SUBTASKS: 'global/GET_SUBTASKS',
   GET_CURRENT_EMPLOYEE: 'global/GET_CURRENT_EMPLOYEE',
   GET_EMPLOYEE_PAGE: 'global/GET_EMPLOYEE_PAGE',
-  GET_AUTHORISATIONS: 'global/GET_AUTHORISATIONS'
+  GET_AUTHORISATIONS: 'global/GET_AUTHORISATIONS',
+  GET_FILTERED_EMPLOYEES: 'board/GET_FILTERED_EMPLOYEES'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
 var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECTS, function (state, getters) {
@@ -97851,6 +97897,8 @@ var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECT
   return state.employee_page;
 }), _defineProperty(_getters, GETTER_TYPES.GET_AUTHORISATIONS, function (state, getters) {
   return state.authorisations;
+}), _defineProperty(_getters, GETTER_TYPES.GET_FILTERED_EMPLOYEES, function (state, getters) {
+  return state.filtered_employees;
 }), _getters);
 
 /***/ }),
@@ -97917,7 +97965,8 @@ var MUTATION_TYPES = {
   SET_SUBTASKS: 'global/SET_SUBTASKS',
   SET_CURRENT_EMPLOYEE: 'global/SET_CURRENT_EMPLOYEE',
   SET_EMPLOYEE_PAGE: 'global/SET_EMPLOYEE_PAGE',
-  SET_AUTHORISATIONS: 'global/SET_AUTHORISATIONS'
+  SET_AUTHORISATIONS: 'global/SET_AUTHORISATIONS',
+  SET_FILTERED_EMPLOYEES: 'board/SET_FILTERED_EMPLOYEES'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATION_TYPES);
 var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET_PROJECTS, function (state, data) {
@@ -97950,6 +97999,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
   state.employee_page = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_AUTHORISATIONS, function (state, data) {
   state.authorisations = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_FILTERED_EMPLOYEES, function (state, data) {
+  state.filtered_employees = data;
 }), _mutations);
 
 /***/ }),
@@ -97978,7 +98029,8 @@ __webpack_require__.r(__webpack_exports__);
   subtasks: null,
   currentEmployee: null,
   employee_page: null,
-  authorisations: null
+  authorisations: null,
+  filtered_employees: null
 });
 
 /***/ }),

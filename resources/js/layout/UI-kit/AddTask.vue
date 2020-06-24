@@ -166,7 +166,7 @@
               <v-select
                 required
                 :items="employees"
-                item-text="last_name"
+                item-text="last_name + first_name"
                 label="Employee*"
                 v-model="employee_assigned"
                 return-object
@@ -220,7 +220,6 @@
         currentEmployee: globalGetters.GET_CURRENT_EMPLOYEE,
 
       }),
-
 
 
       description: {
@@ -297,19 +296,21 @@
       },
     },
 
-    mounted () {},
 
     methods: {
+
+      text: item => item.last_name +  item.first_name,
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false
       },
 
-      async mounted () {
-        await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
-        await this.$store.dispatch(globalActions.FETCH_FILTERED_EMPLOYEES)
-      },
-    }
+
+    },
+    async mounted () {
+      await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
+      await this.$store.dispatch(globalActions.FETCH_FILTERED_EMPLOYEES)
+    },
 
   }
 </script>

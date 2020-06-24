@@ -18,6 +18,14 @@ class Department extends Model
     {
         return $this->belongsTo(Location::class);
     }
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
 
 
 }

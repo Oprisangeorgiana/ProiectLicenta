@@ -15,6 +15,8 @@ const MUTATION_TYPES = {
   SET_EMPLOYEE_PAGE: 'global/SET_EMPLOYEE_PAGE',
   SET_AUTHORISATIONS: 'global/SET_AUTHORISATIONS',
   SET_FILTERED_EMPLOYEES: 'board/SET_FILTERED_EMPLOYEES',
+  SET_NOTIFICATIONS: 'board/SET_NOTIFICATIONS',
+  SET_COUNT_NOTIFICATIONS: 'board/SET_COUNT_NOTIFICATIONS',
 
 }
 export default MUTATION_TYPES
@@ -69,6 +71,12 @@ export const mutations = {
   },
   [MUTATION_TYPES.SET_FILTERED_EMPLOYEES]: (state, data) => {
     state.filtered_employees = data
+  },
+  [MUTATION_TYPES.SET_NOTIFICATIONS]: (state, data) => {
+    state.notifications = data
+  },
+  [MUTATION_TYPES.SET_COUNT_NOTIFICATIONS]: (state, data) => {
+    state.countNotifications = data
   },
 
 }

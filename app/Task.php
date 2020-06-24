@@ -28,24 +28,11 @@ class Task extends Model
     {
         return $this->hasMany(Project::class);
     }
-//    protected static function boot()
-//    {
-//        parent::boot();
+    public function user()
+    {
+        return $this->hasOne(Project::class);
+    }
 
-//        switch (user.authorisations.id) {
-//          case '1': {
-//              $builder->where('employee.id', '=', user.authorisations.id);
-//          }
-//          case '2': {
-//          verific daca task.employee.authorisation.id < user.authorisations.id si employee.id = user.authorisations.id
-//          }
-//          case '3': {
-//              nu mai verific nimic ca le aduc pe toate si selectez tot ce e < user.authorisations.id si employee.id = user.authorisations.id
-//          }
-//          default:
-//            break
-//        }
-//    }
 
 
 }
