@@ -4,7 +4,6 @@ import pageGetters from './getters'
 import TasksRepository from '../../repositories/TasksRepository'
 import axios from 'axios'
 
-
 const ACTION_TYPES = {
   FETCH_DETAILS: 'global/FETCH_DETAILS',
   FETCH_TOKEN: 'global/FETCH_TOKEN',
@@ -54,6 +53,6 @@ export const actions = {
   async [ACTION_TYPES.FETCH_PAGE_TASKS] ({ commit, state }) {
     let tasks = await new TasksRepository().getAll()
     commit(pageMutations.SET_TASKS, tasks)
-  },
+  }
 
 }

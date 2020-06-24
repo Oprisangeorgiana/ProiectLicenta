@@ -95,7 +95,6 @@
         </v-col>
         <v-col
           cols="1"
-          align="right"
           v-if="user"
         >
           <v-menu offset-y>
@@ -105,7 +104,7 @@
                 color="red"
                 left
               >
-                <v-icon large color="white" v-on="on" >mdi-bell</v-icon>
+                <v-icon large color="white" v-on="on">mdi-bell</v-icon>
                 <template v-slot:badge>
                   <span>{{countNotifications}}</span>
                 </template>
@@ -126,7 +125,7 @@
           </v-menu>
 
         </v-col>
-        <v-col cols="2" align="right">
+        <v-col cols="2">
           <v-menu offset-y v-if="user">
             <template v-slot:activator="{ on }">
 
@@ -163,17 +162,10 @@
     </v-app-bar>
     <v-content>
       <v-container
-        class="fill-height"
+        class="fill-height pa-10"
         fluid
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col class="text-center">
-            <router-view></router-view>
-          </v-col>
-        </v-row>
+        <router-view></router-view>
       </v-container>
     </v-content>
     <v-footer
@@ -194,11 +186,11 @@
 
   export default {
     props: {
-      source: String,
+      source: String
     },
     data: () => ({
       drawer: null,
-      count:0,
+      count: 0,
       items: [
         {
           title: 'Profile',
@@ -207,10 +199,10 @@
         {
           title: 'Log out',
           action: 'logout'
-        },
+        }
       ],
 
-      notificationsList: [],
+      notificationsList: []
     }),
 
     computed: {
@@ -224,13 +216,13 @@
       // },
 
       countNotifications () {
-        let count =0
-        let tomorrow = new Date();
-        tomorrow.setDate(new Date().getDate() + 1);
-        const toTwoDigits = num => num < 10 ? '0' + num : num;
-        let year = tomorrow.getFullYear();
-        let month = toTwoDigits(tomorrow.getMonth() + 1);
-        let day = toTwoDigits(tomorrow.getDate());
+        let count = 0
+        let tomorrow = new Date()
+        tomorrow.setDate(new Date().getDate() + 1)
+        const toTwoDigits = num => num < 10 ? '0' + num : num
+        let year = tomorrow.getFullYear()
+        let month = toTwoDigits(tomorrow.getMonth() + 1)
+        let day = toTwoDigits(tomorrow.getDate())
         // console.log('tomorrow', `${year}-${month}-${day}`)
         let notificationsList = []
         let list = this.tasksList
@@ -238,7 +230,7 @@
           let data = {}
           const item = this.tasksList[key]
           if (list[key].deadline === `${year}-${month}-${day}`) {
-            count = count  + 1
+            count = count + 1
 
             data.id = list[key].id
             data.task_type = list[key].task_type
@@ -248,7 +240,7 @@
             data.end_hour = list[key].end_hour
             notificationsList.push(data)
           }
-        });
+        })
         this.notificationsList = notificationsList
         // console.log('item.deadline', notificationsList)
 
@@ -258,8 +250,8 @@
       ...mapGetters({
         user: globalGetters.GET_USER,
         projectList: globalGetters.GET_PROJECTS,
-        tasksList: globalGetters.GET_TASKS,
-      }),
+        tasksList: globalGetters.GET_TASKS
+      })
 
     },
     async mounted () {
@@ -269,10 +261,7 @@
     },
 
     methods: {
-
-
       actionPressed (action) {
-        // console.log(action)
         switch (action) {
           case 'profile': {
             this.$router.push('/settings')
@@ -285,7 +274,7 @@
           default:
             break
         }
-      },
+      }
     }
   }
 </script>

@@ -1,5 +1,6 @@
 
 const GETTER_TYPES = {
+    GET_USER: 'settings/GET_USER',
     GET_IMG: 'settings/GET_IMG',
     GET_FIRST_NAME: 'settings/GET_FIRST_NAME',
     GET_LAST_NAME: 'settings/GET_LAST_NAME',
@@ -8,6 +9,12 @@ const GETTER_TYPES = {
 export default GETTER_TYPES
 
 export const getters = {
+
+    [GETTER_TYPES.GET_USER]: state => {
+        return state.user
+    },
+
+
     [GETTER_TYPES.GET_IMG]: state => {
         return state.img
     },
