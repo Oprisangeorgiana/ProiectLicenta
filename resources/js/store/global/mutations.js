@@ -8,7 +8,6 @@ const MUTATION_TYPES = {
   SET_DEPARTMENTS: 'global/SET_DEPARTMENTS',
   SET_PROJECT_NAME: 'global/SET_PROJECT_NAME',
   SET_PROJECT_DEADLINE: 'global/SET_PROJECT_DEADLINE',
-  SET_PROJECT_DEPARTMENT: 'global/SET_PROJECT_DEPARTMENT',
   SET_EMPLOYEES: 'global/SET_EMPLOYEES',
   SET_SUBTASKS: 'global/SET_SUBTASKS',
   SET_CURRENT_EMPLOYEE: 'global/SET_CURRENT_EMPLOYEE',
@@ -50,9 +49,6 @@ export const mutations = {
   },
   [MUTATION_TYPES.SET_PROJECT_DEADLINE]: (state, data) => {
     state.project_deadline = data
-  },
-  [MUTATION_TYPES.SET_PROJECT_DEPARTMENT]: (state, data) => {
-    state.project_department = data
   },
   [MUTATION_TYPES.SET_EMPLOYEES]: (state, data) => {
     state.employees = data

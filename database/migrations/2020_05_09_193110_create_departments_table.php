@@ -16,7 +16,7 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('department_name');
+            $table->string('department_name')->unique();
             $table->integer('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
         });

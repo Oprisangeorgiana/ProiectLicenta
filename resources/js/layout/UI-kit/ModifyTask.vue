@@ -39,12 +39,14 @@
                   <v-text-field
                     v-model="currentTask.start_date"
                     v-on="on"
+                    readonly
+                    label="Pick start date*"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="startDate" no-title scrollable>
+                <v-date-picker v-model="currentTask.start_date" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuStartDate = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menuDate.save(startDate)">OK</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuDate.save(currentTask.start_date)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -140,14 +142,14 @@
           <v-row>
             <v-col>
 
-              <v-select
-                required
-                :items="listProjects"
-                item-text="name"
-                return-object
-                v-model="currentTask.project"
-              >
-              </v-select>
+<!--              <v-select-->
+<!--                required-->
+<!--                :items="listProjects"-->
+<!--                item-text="name"-->
+<!--                return-object-->
+<!--                v-model="currentTask.project"-->
+<!--              >-->
+<!--              </v-select>-->
 
             </v-col>
           </v-row>
@@ -191,6 +193,7 @@
       ...mapGetters({
         listProjects: globalGetters.GET_PROJECTS,
         user: globalGetters.GET_USER,
+        currentEmployee: globalGetters.GET_CURRENT_EMPLOYEE,
       }),
 
     },
@@ -199,13 +202,13 @@
       modifyTask () {
         let updated = {
           id: this.currentTask.id,
+          task_type: `${this.currentEmployee.last_name} ${this.currentEmployee.first_name}`,
           task: this.currentTask.task,
-          task_type: 'task',
           deadline: this.currentTask.deadline,
           start_date: this.currentTask.start_date,
           start_hour: this.currentTask.start_hour,
           end_hour: this.currentTask.end_hour,
-          project: this.currentTask.project.id,
+
         }
 
         this.$store.dispatch(boardActions.UPDATE_TASK, updated)

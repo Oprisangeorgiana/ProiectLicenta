@@ -208,18 +208,11 @@ export const actions = {
   async [ACTION_TYPES.CREATE_PROJECT] ({ commit, state, getters }) {
     const project_name = getters[pageGetters.GET_PROJECT_NAME]
     const project_deadline = getters[pageGetters.GET_PROJECT_DEADLINE]
-    const project_department = getters[pageGetters.GET_PROJECT_DEPARTMENT]
-
-    console.log('project_name', project_name)
-    console.log('project_deadline', project_deadline)
-    console.log('project_department', project_department)
 
     const registerResponse = await axios.post('http://192.168.10.10/api/projects',
       {
         name: project_name,
         deadline: project_deadline,
-        department_id: project_department.id
-
       })
   },
   async [ACTION_TYPES.FETCH_CURRENT_EMPLOYEE] ({ commit, state, getters }) {

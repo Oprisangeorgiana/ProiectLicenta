@@ -35,12 +35,13 @@ export const actions = {
     const end_hour = getters[pageGetters.GET_END_HOUR]
     const project_data = getters[pageGetters.GET_TASK_PROJECT]
     const user = getters[globalGetters.GET_USER]
+    const currentEmployee = getters[globalGetters.GET_CURRENT_EMPLOYEE]
     const employee_assigned = getters[pageGetters.GET_EMPLOYEE_ASSIGNED]
 
     const registerResponse = await axios.post('http://192.168.10.10/api/tasks',
       {
         task: description,
-        task_type: task_type,
+        task_type: `${currentEmployee.last_name} ${currentEmployee.first_name}`,
         employee: employee_assigned.id,
         deadline: deadline,
         start_date: start_date,

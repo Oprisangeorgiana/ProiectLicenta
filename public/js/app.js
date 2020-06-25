@@ -1925,6 +1925,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _store_global_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/global/getters */ "./resources/js/store/global/getters.js");
 /* harmony import */ var _store_global_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/global/actions */ "./resources/js/store/global/actions.js");
+/* harmony import */ var _store_global_mutations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/global/mutations */ "./resources/js/store/global/mutations.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2127,6 +2128,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 
@@ -2144,64 +2148,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         title: 'Log out',
         action: 'logout'
-      }],
-      notificationsList: []
+      }]
     };
   },
-  computed: _objectSpread({
-    // getDate () {
-    //   const toTwoDigits = num => num < 10 ? '0' + num : num;
-    //   let today = new Date();
-    //   let year = today.getFullYear();
-    //   let month = toTwoDigits(today.getMonth() + 1);
-    //   let day = toTwoDigits(today.getDate());
-    //   return `${year}-${month}-${day}`;
-    // },
-    countNotifications: function countNotifications() {
-      var _this = this;
-
-      var count = 0;
-      var tomorrow = new Date();
-      tomorrow.setDate(new Date().getDate() + 1);
-
-      var toTwoDigits = function toTwoDigits(num) {
-        return num < 10 ? '0' + num : num;
-      };
-
-      var year = tomorrow.getFullYear();
-      var month = toTwoDigits(tomorrow.getMonth() + 1);
-      var day = toTwoDigits(tomorrow.getDate()); // console.log('tomorrow', `${year}-${month}-${day}`)
-
-      var notificationsList = [];
-      var list = this.tasksList;
-      Object.keys(this.tasksList).forEach(function (key) {
-        var data = {};
-        var item = _this.tasksList[key];
-
-        if (list[key].deadline === "".concat(year, "-").concat(month, "-").concat(day)) {
-          count = count + 1;
-          data.id = list[key].id;
-          data.task_type = list[key].task_type;
-          data.name = list[key].task;
-          data.start = "".concat(list[key].start_date, " ").concat(list[key].start_hour);
-          data.end_date = list[key].deadline;
-          data.end_hour = list[key].end_hour;
-          notificationsList.push(data);
-        }
-      });
-      this.notificationsList = notificationsList; // console.log('item.deadline', notificationsList)
-
-      return count;
-    }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_USER,
     user_name: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_USER_NAME,
     projectList: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_PROJECTS,
     tasksList: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASKS,
-    employeesList: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_EMPLOYEES
+    employeesList: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_EMPLOYEES,
+    notificationsList: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_NOTIFICATIONS,
+    countNotifications: _store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_COUNT_NOTIFICATIONS
   })),
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -2209,41 +2169,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER);
 
             case 2:
               _context.next = 4;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_PAGE_TASKS);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_PAGE_TASKS);
 
             case 4:
               _context.next = 6;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_EMPLOYEES);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_EMPLOYEES);
 
             case 6:
               _context.next = 8;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_DEPARTMENTS);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_DEPARTMENTS);
 
             case 8:
               _context.next = 10;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_SUBTASKS);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_SUBTASKS);
 
             case 10:
               _context.next = 12;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_PROJECTS);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_PROJECTS);
 
             case 12:
               _context.next = 14;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER_NAME);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_USER_NAME);
 
             case 14:
               _context.next = 16;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_CURRENT_EMPLOYEE);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_CURRENT_EMPLOYEE);
 
             case 16:
               _context.next = 18;
-              return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_FILTERED_EMPLOYEES);
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_FILTERED_EMPLOYEES);
 
             case 18:
+              _context.next = 20;
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_NOTIFICATIONS);
+
+            case 20:
+              _context.next = 22;
+              return _this.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_COUNT_NOTIFICATIONS);
+
+            case 22:
+              console.log('notif', _this.notificationsList);
+              console.log('count', _this.countNotifications);
+
+            case 24:
             case "end":
               return _context.stop();
           }
@@ -2252,6 +2224,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
+    setCountToZero: function setCountToZero() {
+      this.$store.commit(_store_global_mutations__WEBPACK_IMPORTED_MODULE_4__["default"].SET_COUNT_NOTIFICATIONS, 0);
+    },
     actionPressed: function actionPressed(action) {
       // console.log(action)
       switch (action) {
@@ -2383,7 +2358,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -2414,14 +2388,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       set: function set(value) {
         this.$store.commit(_store_global_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_PROJECT_DEADLINE, value);
       }
-    },
-    project_department: {
-      get: function get() {
-        return this.$store.getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PROJECT_DEPARTMENT];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_global_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_PROJECT_DEPARTMENT, value);
-      }
     }
   }),
   mounted: function mounted() {},
@@ -2449,17 +2415,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     mounted: function mounted() {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _this2.$store.dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_3__["default"].FETCH_DETAILS);
-
-              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -2501,6 +2461,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -2701,7 +2663,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   end_subtask_date: _this.end_subtask_date,
                   start_subtask_hour: _this.start_subtask_hour,
                   end_subtask_hour: _this.end_subtask_hour,
-                  employee_id: _this.user.employee_id,
                   task_id: _this.currentTask.id,
                   subtask_state: 'TO DO'
                 };
@@ -2988,14 +2949,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DESCRIPTION, value);
       }
     },
-    task_type: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_TYPE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_TYPE, value);
-      }
-    },
     deadline: {
       get: function get() {
         return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DEADLINE];
@@ -3046,8 +2999,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
-    text: function text(item) {
-      return item.last_name + item.first_name;
+    correctList: function correctList() {
+      var list = [];
+      var employee = this.employees;
+      Object.keys(employee).forEach(function (key) {
+        var item;
+        item = {
+          id: employee[key].id,
+          name: "".concat(employee[key].last_name, " ").concat(employee[key].first_name)
+        };
+        list.push(item);
+      });
+      return list;
     },
     register: function register() {
       var _this = this;
@@ -3415,14 +3378,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3456,14 +3411,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_1__["default"].FETCH_AUTHORISATIONS);
 
             case 4:
-              _context.next = 6;
-              return console.log('employeeasdfgh', _this.employee);
-
-            case 6:
-              _context.next = 8;
-              return console.log('selectedUserID', _this.selectedUserID);
-
-            case 8:
             case "end":
               return _context.stop();
           }
@@ -3910,6 +3857,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -3933,20 +3882,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
     listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS,
-    user: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER
+    user: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER,
+    currentEmployee: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_EMPLOYEE
   })),
   mounted: function mounted() {},
   methods: {
     modifyTask: function modifyTask() {
       var updated = {
         id: this.currentTask.id,
+        task_type: "".concat(this.currentEmployee.last_name, " ").concat(this.currentEmployee.first_name),
         task: this.currentTask.task,
-        task_type: 'task',
         deadline: this.currentTask.deadline,
         start_date: this.currentTask.start_date,
         start_hour: this.currentTask.start_hour,
-        end_hour: this.currentTask.end_hour,
-        project: this.currentTask.project.id
+        end_hour: this.currentTask.end_hour
       };
       this.$store.dispatch(_pages_Board_store_actions__WEBPACK_IMPORTED_MODULE_4__["default"].UPDATE_TASK, updated);
       return this.dialog = false;
@@ -4347,6 +4296,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4361,9 +4376,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
- // import nestedDraggable from "./infra/nested";
-// import {DraggableTree} from 'vue-draggable-nested-tree'
-// import nestedDraggable from '';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "board",
@@ -4798,6 +4810,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -4834,12 +4848,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     listTasks: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_TASKS,
     listSubtasks: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_SUBTASKS,
-    user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_USER
+    user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_USER,
+    userAuthorisation: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_USER_AUTH
   })),
   methods: {
-    // getEventColor (event) {
-    //   return event.color
-    // },
     seeTasks: function seeTasks() {
       var list = this.listTasks;
       var listSubtasks = this.listSubtasks;
@@ -4904,22 +4916,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5516,6 +5512,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -5569,7 +5566,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       var employees = this.employeesList;
-      var user = this.user;
       var auth = null;
       Object.keys(employees).forEach(function (key) {
         if (employees[key].id === _this2.user.employee_id) {
@@ -28667,6 +28663,9 @@ var render = function() {
                                                   attrs: {
                                                     large: "",
                                                     color: "white"
+                                                  },
+                                                  on: {
+                                                    click: _vm.setCountToZero
                                                   }
                                                 },
                                                 on
@@ -28683,7 +28682,7 @@ var render = function() {
                             ],
                             null,
                             false,
-                            2982978562
+                            2511716703
                           )
                         },
                         [
@@ -29065,35 +29064,6 @@ var render = function() {
                       _c("v-spacer")
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              label: "Department*",
-                              required: "",
-                              items: _vm.departmentsList,
-                              "item-text": "department_name",
-                              "return-object": ""
-                            },
-                            model: {
-                              value: _vm.project_department,
-                              callback: function($$v) {
-                                _vm.project_department = $$v
-                              },
-                              expression: "project_department"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
                   )
                 ],
                 1
@@ -29189,7 +29159,7 @@ var render = function() {
         "v-card",
         [
           _c("v-card-title", { staticClass: "teal" }, [
-            _c("span", { staticClass: "headline" }, [_vm._v("New task")])
+            _c("span", { staticClass: "headline" }, [_vm._v("New subtask")])
           ]),
           _vm._v(" "),
           _c(
@@ -29256,6 +29226,9 @@ var render = function() {
                                         "v-text-field",
                                         _vm._g(
                                           {
+                                            attrs: {
+                                              label: "Pick start date*"
+                                            },
                                             model: {
                                               value: _vm.start_subtask_date,
                                               callback: function($$v) {
@@ -29798,33 +29771,6 @@ var render = function() {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
-                            attrs: {
-                              items: ["task"],
-                              label: "Type*",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.task_type,
-                              callback: function($$v) {
-                                _vm.task_type = $$v
-                              },
-                              expression: "task_type"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        [
                           _c(
                             "v-menu",
                             {
@@ -30290,8 +30236,8 @@ var render = function() {
                           _c("v-select", {
                             attrs: {
                               required: "",
-                              items: _vm.employees,
-                              "item-text": "last_name + first_name",
+                              items: _vm.correctList(),
+                              "item-text": "name",
                               label: "Employee*",
                               "return-object": ""
                             },
@@ -30563,7 +30509,6 @@ var render = function() {
       _c("v-container", { staticClass: "white pt-6 pb-6 pr-6 pl-6" }, [
         _c(
           "div",
-          { attrs: { align: "center" } },
           [
             _c(
               "v-row",
@@ -30573,33 +30518,18 @@ var render = function() {
               },
               [
                 _c("v-card", { attrs: { color: "teal" } }, [
-                  _c(
-                    "h1",
-                    { staticClass: "ma-8", attrs: { align: "center" } },
-                    [
-                      _vm._v(
-                        "\n          " +
-                          _vm._s(
-                            _vm.employee.last_name +
-                              " " +
-                              _vm.employee.first_name
-                          ) +
-                          "\n        "
-                      )
-                    ]
-                  )
+                  _c("h1", { staticClass: "ma-8" }, [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          _vm.employee.last_name + " " + _vm.employee.first_name
+                        ) +
+                        "\n        "
+                    )
+                  ])
                 ])
               ],
               1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-row",
-              {
-                staticClass: "mb-8",
-                attrs: { align: "center", justify: "center" }
-              },
-              [_vm._v("\n      // imaginea, daca nu are pun un avatar\n    ")]
             ),
             _vm._v(" "),
             _c(
@@ -30611,12 +30541,26 @@ var render = function() {
               [
                 _c(
                   "v-card",
+                  { attrs: { color: "teal lighten-4", width: "700" } },
                   [
                     _c("v-card-title", [
                       _vm._v("\n          E-mail\n        ")
                     ]),
                     _vm._v(" "),
-                    _c("v-card-text")
+                    _c("v-card-text", [
+                      _c("h1", [
+                        _vm._v(
+                          " " +
+                            _vm._s(
+                              _vm.employee.last_name +
+                                "." +
+                                _vm.employee.first_name +
+                                "@intern.com"
+                            ) +
+                            " "
+                        )
+                      ])
+                    ])
                   ],
                   1
                 )
@@ -30635,11 +30579,9 @@ var render = function() {
                   "v-card",
                   { attrs: { color: "teal lighten-4", width: "700" } },
                   [
-                    _c(
-                      "v-card-title",
-                      { attrs: { align: "center", justify: "center" } },
-                      [_vm._v("\n          Phone number\n        ")]
-                    ),
+                    _c("v-card-title", [
+                      _vm._v("\n          Phone number\n        ")
+                    ]),
                     _vm._v(" "),
                     _c("v-card-text", [
                       _c("h1", [_vm._v(_vm._s(_vm.employee.phone_number))])
@@ -31452,6 +31394,10 @@ var render = function() {
                                         "v-text-field",
                                         _vm._g(
                                           {
+                                            attrs: {
+                                              readonly: "",
+                                              label: "Pick start date*"
+                                            },
                                             model: {
                                               value: _vm.currentTask.start_date,
                                               callback: function($$v) {
@@ -31487,11 +31433,15 @@ var render = function() {
                                 {
                                   attrs: { "no-title": "", scrollable: "" },
                                   model: {
-                                    value: _vm.startDate,
+                                    value: _vm.currentTask.start_date,
                                     callback: function($$v) {
-                                      _vm.startDate = $$v
+                                      _vm.$set(
+                                        _vm.currentTask,
+                                        "start_date",
+                                        $$v
+                                      )
                                     },
-                                    expression: "startDate"
+                                    expression: "currentTask.start_date"
                                   }
                                 },
                                 [
@@ -31517,7 +31467,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.$refs.menuDate.save(
-                                            _vm.startDate
+                                            _vm.currentTask.start_date
                                           )
                                         }
                                       }
@@ -31884,33 +31834,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              required: "",
-                              items: _vm.listProjects,
-                              "item-text": "name",
-                              "return-object": ""
-                            },
-                            model: {
-                              value: _vm.currentTask.project,
-                              callback: function($$v) {
-                                _vm.$set(_vm.currentTask, "project", $$v)
-                              },
-                              expression: "currentTask.project"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                  _c("v-row", [_c("v-col")], 1)
                 ],
                 1
               )
@@ -32004,6 +31928,7 @@ var render = function() {
               _vm.user
                 ? _c(
                     "v-card",
+                    { attrs: { color: "grey lighten-2" } },
                     [
                       _c(
                         "draggable",
@@ -32037,6 +31962,14 @@ var render = function() {
                                         _vm._v(
                                           "\n                " +
                                             _vm._s(listTask.task) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
                                             "\n              "
                                         )
                                       ]),
@@ -32255,6 +32188,7 @@ var render = function() {
               _vm.user
                 ? _c(
                     "v-card",
+                    { attrs: { color: "grey lighten-2" } },
                     [
                       _c(
                         "draggable",
@@ -32290,115 +32224,126 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    _vm._l(_vm.listSubtasks, function(item) {
-                                      return item.task_id === listTask.id
-                                        ? _c(
-                                            "v-card",
-                                            {
-                                              key: item.id,
-                                              staticClass: "ma-2",
-                                              attrs: { outlined: "" }
-                                            },
-                                            [
-                                              _c("v-card-title", [
-                                                _vm._v(
-                                                  "\n                  Task: " +
-                                                    _vm._s(item.description) +
-                                                    "\n                "
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("v-card-subtitle", [
-                                                _vm._v(
-                                                  "\n                  Deadline: " +
-                                                    _vm._s(
-                                                      item.end_subtask_date
-                                                    ) +
-                                                    "\n                "
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("v-card-subtitle", [
-                                                _c("h2", [
+                                    [
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.listSubtasks, function(item) {
+                                        return item.task_id === listTask.id
+                                          ? _c(
+                                              "v-card",
+                                              {
+                                                key: item.id,
+                                                staticClass: "ma-2",
+                                                attrs: { outlined: "" }
+                                              },
+                                              [
+                                                _c("v-card-title", [
                                                   _vm._v(
-                                                    _vm._s(item.subtask_state)
+                                                    "\n                  " +
+                                                      _vm._s(item.description) +
+                                                      "\n                "
                                                   )
-                                                ])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-card-actions",
-                                                [
-                                                  _c("modify-subtask", {
-                                                    attrs: {
-                                                      currentSubtask: item
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("delete-subtask", {
-                                                    attrs: {
-                                                      currentSubtask: item
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  item.subtask_state === "TO DO"
-                                                    ? _c(
-                                                        "v-chip",
-                                                        {
-                                                          attrs: {
-                                                            outlined: "",
-                                                            color: "teal",
-                                                            small: ""
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              return _vm.fromToDoTOFinished(
-                                                                item
-                                                              )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _vm._v(
+                                                    "\n                  Deadline: " +
+                                                      _vm._s(
+                                                        item.end_subtask_date
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _c("h2", [
+                                                    _vm._v(
+                                                      _vm._s(item.subtask_state)
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-card-actions",
+                                                  [
+                                                    _c("modify-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("delete-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    item.subtask_state ===
+                                                    "TO DO"
+                                                      ? _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromToDoTOFinished(
+                                                                  item
+                                                                )
+                                                              }
                                                             }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                    Finished\n                  "
-                                                          )
-                                                        ]
-                                                      )
-                                                    : _c(
-                                                        "v-chip",
-                                                        {
-                                                          attrs: {
-                                                            outlined: "",
-                                                            color: "teal",
-                                                            small: ""
                                                           },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              return _vm.fromFinishedToToDo(
-                                                                item
-                                                              )
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    Finished\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromFinishedToToDo(
+                                                                  item
+                                                                )
+                                                              }
                                                             }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                    To do\n                  "
-                                                          )
-                                                        ]
-                                                      )
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        : _vm._e()
-                                    }),
-                                    1
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    To do\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -32490,6 +32435,7 @@ var render = function() {
               _vm.user
                 ? _c(
                     "v-card",
+                    { attrs: { color: "grey lighten-2" } },
                     [
                       _c(
                         "draggable",
@@ -32514,15 +32460,139 @@ var render = function() {
                                     "v-card",
                                     {
                                       staticClass: "ma-2",
-                                      attrs: { outlined: "" }
+                                      attrs: {
+                                        outlined: "",
+                                        color: "teal lighten-4"
+                                      }
                                     },
                                     [
-                                      _vm._v(
-                                        "\n              " +
-                                          _vm._s(listTask.task) +
-                                          "\n            "
-                                      )
-                                    ]
+                                      _c("v-card-title", [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(listTask.task) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.listSubtasks, function(item) {
+                                        return item.task_id === listTask.id
+                                          ? _c(
+                                              "v-card",
+                                              {
+                                                key: item.id,
+                                                staticClass: "ma-2",
+                                                attrs: { outlined: "" }
+                                              },
+                                              [
+                                                _c("v-card-title", [
+                                                  _vm._v(
+                                                    "\n                 " +
+                                                      _vm._s(item.description) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _vm._v(
+                                                    "\n                  Deadline: " +
+                                                      _vm._s(
+                                                        item.end_subtask_date
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _c("h2", [
+                                                    _vm._v(
+                                                      _vm._s(item.subtask_state)
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-card-actions",
+                                                  [
+                                                    _c("modify-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("delete-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    item.subtask_state ===
+                                                    "TO DO"
+                                                      ? _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromToDoTOFinished(
+                                                                  item
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    Finished\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromFinishedToToDo(
+                                                                  item
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    To do\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
                                   )
                                 ],
                                 1
@@ -32589,57 +32659,67 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    _vm._l(_vm.listSubtasks, function(item) {
-                                      return item.task_id === listTask.id
-                                        ? _c(
-                                            "v-card",
-                                            {
-                                              key: item.id,
-                                              staticClass: "ma-2",
-                                              attrs: { outlined: "" }
-                                            },
-                                            [
-                                              _c("v-card-title", [
-                                                _vm._v(
-                                                  "\n                  Task: " +
-                                                    _vm._s(item.description) +
-                                                    "\n                "
+                                    [
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.listSubtasks, function(item) {
+                                        return item.task_id === listTask.id
+                                          ? _c(
+                                              "v-card",
+                                              {
+                                                key: item.id,
+                                                staticClass: "ma-2",
+                                                attrs: { outlined: "" }
+                                              },
+                                              [
+                                                _c("v-card-title", [
+                                                  _vm._v(
+                                                    "\n                   " +
+                                                      _vm._s(item.description) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _vm._v(
+                                                    "\n                  Deadline: " +
+                                                      _vm._s(
+                                                        item.end_subtask_date
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-card-actions",
+                                                  [
+                                                    _c("modify-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("delete-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
                                                 )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("v-card-subtitle", [
-                                                _vm._v(
-                                                  "\n                  Deadline: " +
-                                                    _vm._s(
-                                                      item.end_subtask_date
-                                                    ) +
-                                                    "\n                "
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-card-actions",
-                                                [
-                                                  _c("modify-subtask", {
-                                                    attrs: {
-                                                      currentSubtask: item
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("delete-subtask", {
-                                                    attrs: {
-                                                      currentSubtask: item
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        : _vm._e()
-                                    }),
-                                    1
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
                                   ),
                                   _vm._v(" "),
                                   _vm.userAuthorisation > 1
@@ -32759,7 +32839,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c("add-task"),
+          _vm.userAuthorisation > 1 ? _c("add-task") : _vm._e(),
           _vm._v(" "),
           _c(
             "v-btn",
@@ -32840,43 +32920,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-row",
-        [
-          _c(
-            "v-layout",
-            { attrs: { "justify-center": "", "align-content-start": "" } },
-            [
-              _c("h2", [_vm._v(" Hi! How can we help you?")]),
-              _vm._v(" "),
-              _c("h2", [
-                _vm._v(
-                  "\n        Our mission\n        While we absolutely love productivity software, we believe productivity, in general, is broken. There's just too many tools to keep track of, too many things in entirely separate ecosystems.\n        There has to be a better way to work - that's why we created ClickUp, first an internal tool, now as a way to fulfill our vision of making the world more productive.\n\n        Eventually, our goal is to have all work live in ClickUp - thereby making people more productive and giving back at least 20% of time to dedicate to other things. One app to replace them\n        all. We're just getting started, and are so grateful for all of the 100,000+ teams that are in this together with our team.\n      "
-                )
-              ])
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _vm._v(
-          "\n    If you are having trouble accesing your account please send an e-mail at: example@gmail.com\n  "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _vm._v("\n    You can contact us at: contact@example.com\n  ")
-      ])
-    ],
-    1
-  )
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h1", [_vm._v("Hello")]),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src: __webpack_require__(/*! ../../../js/pages/Help/Screenshot_1.png */ "./resources/js/pages/Help/Screenshot_1.png"),
+          alt: "help"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -33026,73 +33088,11 @@ var render = function() {
     [
       _c(
         "v-row",
-        { staticClass: "mb-8", attrs: { justify: "center" } },
+        { staticClass: "mb-8", attrs: { justify: "center", align: "center" } },
         [
           _c("v-card", { attrs: { color: "teal" } }, [
             _c("h1", [_vm._v(_vm._s(this.user.name))])
           ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "mb-8" },
-        [
-          _c(
-            "v-expansion-panels",
-            { attrs: { popout: "" } },
-            [
-              _c(
-                "v-expansion-panel",
-                [
-                  _c(
-                    "v-expansion-panel-header",
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { "justify-center": "" } },
-                        [
-                          _c(
-                            "v-avatar",
-                            { attrs: { color: "teal", size: "100px" } },
-                            [
-                              _c("v-icon", { attrs: { large: "" } }, [
-                                _vm._v("mdi-account-circle")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-expansion-panel-content",
-                    [
-                      _c("v-file-input", {
-                        attrs: {
-                          accept: "image/png, image/jpeg, image/bmp",
-                          placeholder: "Change your photo",
-                          "prepend-icon": "mdi-camera"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "teal" } }, [
-                        _vm._v("\n            SUBMIT\n          ")
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
         ],
         1
       ),
@@ -33136,7 +33136,7 @@ var render = function() {
                   attrs: { color: "teal" },
                   on: { click: _vm.modifyPhoneNumber }
                 },
-                [_vm._v("\n        SUBMIT\n      ")]
+                [_vm._v("\n          SUBMIT\n        ")]
               )
             ],
             1
@@ -33211,7 +33211,7 @@ var render = function() {
             { staticClass: "2" },
             [
               _c("v-btn", { attrs: { color: "teal" } }, [
-                _vm._v("\n        SUBMIT\n      ")
+                _vm._v("\n          SUBMIT\n        ")
               ])
             ],
             1
@@ -33304,10 +33304,7 @@ var render = function() {
                         expression: "selectedProject"
                       }
                     },
-                    _vm._l(_vm.filteredProjects, function(
-                      currentProject,
-                      index
-                    ) {
+                    _vm._l(_vm.filteredProjects, function(currentProject) {
                       return _c(
                         "v-list-item",
                         {
@@ -33432,7 +33429,11 @@ var render = function() {
                           _c(
                             "v-list-item-action",
                             [
-                              _c("add-task", { attrs: { currentTask: task } }),
+                              _vm.userAuthorisation > 1
+                                ? _c("add-task", {
+                                    attrs: { currentTask: task }
+                                  })
+                                : _vm._e(),
                               _vm._v(" "),
                               _vm.userAuthorisation > 1
                                 ? _c("modify-task", {
@@ -95542,7 +95543,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
   }))();
 }), _defineProperty(_actions, ACTION_TYPES.CREATE_TASK, function (_ref2) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-    var commit, state, getters, description, deadline, task_type, start_date, start_hour, end_hour, project_data, user, employee_assigned, registerResponse;
+    var commit, state, getters, description, deadline, task_type, start_date, start_hour, end_hour, project_data, user, currentEmployee, employee_assigned, registerResponse;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -95556,11 +95557,12 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
             end_hour = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_END_HOUR];
             project_data = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASK_PROJECT];
             user = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_USER];
+            currentEmployee = getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_6__["default"].GET_CURRENT_EMPLOYEE];
             employee_assigned = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_EMPLOYEE_ASSIGNED];
-            _context2.next = 12;
+            _context2.next = 13;
             return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://192.168.10.10/api/tasks', {
               task: description,
-              task_type: task_type,
+              task_type: "".concat(currentEmployee.last_name, " ").concat(currentEmployee.first_name),
               employee: employee_assigned.id,
               deadline: deadline,
               start_date: start_date,
@@ -95570,10 +95572,10 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
               state: 'COMING'
             });
 
-          case 12:
+          case 13:
             registerResponse = _context2.sent;
 
-          case 13:
+          case 14:
           case "end":
             return _context2.stop();
         }
@@ -96112,6 +96114,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Help_vue_vue_type_template_id_d68ba294_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/pages/Help/Screenshot_1.png":
+/*!**************************************************!*\
+  !*** ./resources/js/pages/Help/Screenshot_1.png ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/Screenshot_1.png?d714b419fb2d1b7113867094c6e28119";
 
 /***/ }),
 
@@ -97376,12 +97389,14 @@ var ACTION_TYPES = {
   FETCH_CURRENT_EMPLOYEE: 'global/FETCH_CURRENT_EMPLOYEE',
   FETCH_EMPLOYEE_PAGE: 'global/FETCH_EMPLOYEE_PAGE',
   FETCH_AUTHORISATIONS: 'global/FETCH_AUTHORISATIONS',
-  FETCH_FILTERED_EMPLOYEES: 'board/FETCH_FILTERED_EMPLOYEES'
+  FETCH_FILTERED_EMPLOYEES: 'board/FETCH_FILTERED_EMPLOYEES',
+  FETCH_NOTIFICATIONS: 'board/FETCH_NOTIFICATIONS',
+  FETCH_COUNT_NOTIFICATIONS: 'board/FETCH_COUNT_NOTIFICATIONS'
 };
 /* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
 var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJECTS, function (_ref) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var commit, state, getters, projects, user, employees, dept, projectsList;
+    var commit, state, getters, projects, tasksList, user, currentEmployee, employees, authorisation, dept, idProjectsList, projectsList;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -97392,28 +97407,51 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
 
           case 3:
             projects = _context.sent;
+            tasksList = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASKS];
             user = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER];
-            _context.next = 7;
+            currentEmployee = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_EMPLOYEE];
+            _context.next = 9;
             return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_7__["default"]().getAll();
 
-          case 7:
+          case 9:
             employees = _context.sent;
+            authorisation = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_USER_AUTH];
             dept = null;
+            idProjectsList = [];
             projectsList = []; //din ce departamnent face parte user-ul curent
 
-            Object.keys(employees).forEach(function (key) {
-              if (employees[key].id === user.employee_id) {
-                dept = employees[key].department;
-              }
-            });
-            Object.keys(projects).forEach(function (key) {
-              if (projects[key].department_id === dept.id) {
+            if (authorisation === 1) {
+              Object.keys(tasksList).forEach(function (key1) {
+                idProjectsList.push(tasksList[key1].project);
+              });
+              idProjectsList = _.uniq(idProjectsList);
+              idProjectsList.forEach(function (id) {
+                // for(let id in idProjectsList){
+                Object.keys(projects).forEach(function (key2) {
+                  if (id === projects[key2].id) {
+                    projectsList.push(projects[key2]);
+                  }
+                });
+              });
+            } // console.log('projectsList', projectsList)
+            // console.log('idProjectsList', idProjectsList)
+
+
+            if (authorisation === 2) {
+              Object.keys(projects).forEach(function (key) {
                 projectsList.push(projects[key]);
-              }
-            });
+              });
+            }
+
+            if (authorisation === 3) {
+              Object.keys(projects).forEach(function (key) {
+                projectsList.push(projects[key]);
+              });
+            }
+
             commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_PROJECTS, projectsList);
 
-          case 13:
+          case 18:
           case "end":
             return _context.stop();
         }
@@ -97570,7 +97608,8 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
                 auth = employees[key].authorisation_id;
                 dept = employees[key].department_id;
               }
-            }); //aduc task-urile userului curent
+            });
+            console.log('dept', dept); //aduc task-urile userului curent
 
             Object.keys(tasks).forEach(function (key) {
               if (tasks[key].employee === user.employee_id) {
@@ -97603,7 +97642,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
             });
             commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASKS, tasksList);
 
-          case 15:
+          case 16:
           case "end":
             return _context7.stop();
         }
@@ -97656,7 +97695,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
   }))();
 }), _defineProperty(_actions, ACTION_TYPES.FETCH_SUBTASKS, function (_ref11) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
-    var commit, state, subtasks;
+    var commit, state, subtasks, currentEmployee, listSubtasks;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
       while (1) {
         switch (_context10.prev = _context10.next) {
@@ -97667,9 +97706,16 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
 
           case 3:
             subtasks = _context10.sent;
-            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_SUBTASKS, subtasks);
+            currentEmployee = _getters__WEBPACK_IMPORTED_MODULE_3__["getters"][_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_EMPLOYEE];
+            listSubtasks = [];
+            Object.keys(subtasks).forEach(function (key) {
+              if (subtasks[key].employee_id === currentEmployee.id) {
+                listSubtasks.push(subtasks[key]);
+              }
+            });
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_SUBTASKS, listSubtasks);
 
-          case 5:
+          case 8:
           case "end":
             return _context10.stop();
         }
@@ -97700,7 +97746,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
   }))();
 }), _defineProperty(_actions, ACTION_TYPES.CREATE_PROJECT, function (_ref13) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
-    var commit, state, getters, project_name, project_deadline, project_department, registerResponse;
+    var commit, state, getters, project_name, project_deadline, registerResponse;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
       while (1) {
         switch (_context12.prev = _context12.next) {
@@ -97708,21 +97754,16 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
             commit = _ref13.commit, state = _ref13.state, getters = _ref13.getters;
             project_name = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECT_NAME];
             project_deadline = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECT_DEADLINE];
-            project_department = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECT_DEPARTMENT];
-            console.log('project_name', project_name);
-            console.log('project_deadline', project_deadline);
-            console.log('project_department', project_department);
-            _context12.next = 9;
+            _context12.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('http://192.168.10.10/api/projects', {
               name: project_name,
-              deadline: project_deadline,
-              department_id: project_department.id
+              deadline: project_deadline
             });
 
-          case 9:
+          case 5:
             registerResponse = _context12.sent;
 
-          case 10:
+          case 6:
           case "end":
             return _context12.stop();
         }
@@ -97778,7 +97819,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
                 // console.log('allEmployees', allEmployees[key])
                 selected_employee = allEmployees[key];
               }
-            }); // console.log('selected_employee', selected_employee)
+            }); // console.log('allUsers', allUsers)
 
             commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_EMPLOYEE_PAGE, selected_employee);
 
@@ -97830,6 +97871,77 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
       }
     }, _callee15);
   }))();
+}), _defineProperty(_actions, ACTION_TYPES.FETCH_NOTIFICATIONS, function (_ref17) {
+  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
+    var commit, state, getters, tasksList, count, tomorrow, toTwoDigits, year, month, day, notificationsList, list;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
+      while (1) {
+        switch (_context16.prev = _context16.next) {
+          case 0:
+            commit = _ref17.commit, state = _ref17.state, getters = _ref17.getters;
+            tasksList = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASKS];
+            count = 0;
+            tomorrow = new Date();
+            tomorrow.setDate(new Date().getDate() + 1);
+
+            toTwoDigits = function toTwoDigits(num) {
+              return num < 10 ? '0' + num : num;
+            };
+
+            year = tomorrow.getFullYear();
+            month = toTwoDigits(tomorrow.getMonth() + 1);
+            day = toTwoDigits(tomorrow.getDate()); // console.log('tomorrow', `${year}-${month}-${day}`)
+
+            notificationsList = [];
+            list = tasksList;
+            Object.keys(tasksList).forEach(function (key) {
+              // console.log('item.deadline', list[key].deadline)
+              var data = {};
+
+              if (tasksList[key].deadline === "".concat(year, "-").concat(month, "-").concat(day)) {
+                count = count + 1;
+                data.id = tasksList[key].id;
+                data.task_type = tasksList[key].task_type;
+                data.name = tasksList[key].task;
+                data.start = "".concat(tasksList[key].start_date, " ").concat(tasksList[key].start_hour);
+                data.end_date = tasksList[key].deadline;
+                data.end_hour = tasksList[key].end_hour;
+                notificationsList.push(data);
+              }
+            });
+            console.log('notificationsList', notificationsList);
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_NOTIFICATIONS, notificationsList);
+
+          case 14:
+          case "end":
+            return _context16.stop();
+        }
+      }
+    }, _callee16);
+  }))();
+}), _defineProperty(_actions, ACTION_TYPES.FETCH_COUNT_NOTIFICATIONS, function (_ref18) {
+  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
+    var commit, state, getters, notifications, count;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
+      while (1) {
+        switch (_context17.prev = _context17.next) {
+          case 0:
+            commit = _ref18.commit, state = _ref18.state, getters = _ref18.getters;
+            notifications = getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_NOTIFICATIONS];
+            count = 0;
+            Object.keys(notifications).forEach(function (key) {
+              count = count + 1;
+            });
+            console.log('count', count);
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_COUNT_NOTIFICATIONS, count);
+
+          case 6:
+          case "end":
+            return _context17.stop();
+        }
+      }
+    }, _callee17);
+  }))();
 }), _actions);
 
 /***/ }),
@@ -97858,13 +97970,14 @@ var GETTER_TYPES = {
   GET_DEPARTMENTS: 'global/GET_DEPARTMENTS',
   GET_PROJECT_NAME: 'global/GET_PROJECT_NAME',
   GET_PROJECT_DEADLINE: 'global/GET_PROJECT_DEADLINE',
-  GET_PROJECT_DEPARTMENT: 'global/GET_PROJECT_DEPARTMENT',
   GET_EMPLOYEES: 'global/GET_EMPLOYEES',
   GET_SUBTASKS: 'global/GET_SUBTASKS',
   GET_CURRENT_EMPLOYEE: 'global/GET_CURRENT_EMPLOYEE',
   GET_EMPLOYEE_PAGE: 'global/GET_EMPLOYEE_PAGE',
   GET_AUTHORISATIONS: 'global/GET_AUTHORISATIONS',
-  GET_FILTERED_EMPLOYEES: 'board/GET_FILTERED_EMPLOYEES'
+  GET_FILTERED_EMPLOYEES: 'board/GET_FILTERED_EMPLOYEES',
+  GET_NOTIFICATIONS: 'board/GET_NOTIFICATIONS',
+  GET_COUNT_NOTIFICATIONS: 'board/GET_COUNT_NOTIFICATIONS'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
 var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECTS, function (state, getters) {
@@ -97885,8 +97998,6 @@ var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECT
   return state.project_name;
 }), _defineProperty(_getters, GETTER_TYPES.GET_PROJECT_DEADLINE, function (state, getters) {
   return state.project_deadline;
-}), _defineProperty(_getters, GETTER_TYPES.GET_PROJECT_DEPARTMENT, function (state, getters) {
-  return state.project_department;
 }), _defineProperty(_getters, GETTER_TYPES.GET_EMPLOYEES, function (state, getters) {
   return state.employees;
 }), _defineProperty(_getters, GETTER_TYPES.GET_SUBTASKS, function (state, getters) {
@@ -97899,6 +98010,10 @@ var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_PROJECT
   return state.authorisations;
 }), _defineProperty(_getters, GETTER_TYPES.GET_FILTERED_EMPLOYEES, function (state, getters) {
   return state.filtered_employees;
+}), _defineProperty(_getters, GETTER_TYPES.GET_NOTIFICATIONS, function (state, getters) {
+  return state.notifications;
+}), _defineProperty(_getters, GETTER_TYPES.GET_COUNT_NOTIFICATIONS, function (state, getters) {
+  return state.countNotifications;
 }), _getters);
 
 /***/ }),
@@ -97960,13 +98075,14 @@ var MUTATION_TYPES = {
   SET_DEPARTMENTS: 'global/SET_DEPARTMENTS',
   SET_PROJECT_NAME: 'global/SET_PROJECT_NAME',
   SET_PROJECT_DEADLINE: 'global/SET_PROJECT_DEADLINE',
-  SET_PROJECT_DEPARTMENT: 'global/SET_PROJECT_DEPARTMENT',
   SET_EMPLOYEES: 'global/SET_EMPLOYEES',
   SET_SUBTASKS: 'global/SET_SUBTASKS',
   SET_CURRENT_EMPLOYEE: 'global/SET_CURRENT_EMPLOYEE',
   SET_EMPLOYEE_PAGE: 'global/SET_EMPLOYEE_PAGE',
   SET_AUTHORISATIONS: 'global/SET_AUTHORISATIONS',
-  SET_FILTERED_EMPLOYEES: 'board/SET_FILTERED_EMPLOYEES'
+  SET_FILTERED_EMPLOYEES: 'board/SET_FILTERED_EMPLOYEES',
+  SET_NOTIFICATIONS: 'board/SET_NOTIFICATIONS',
+  SET_COUNT_NOTIFICATIONS: 'board/SET_COUNT_NOTIFICATIONS'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATION_TYPES);
 var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET_PROJECTS, function (state, data) {
@@ -97987,8 +98103,6 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
   state.project_name = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_PROJECT_DEADLINE, function (state, data) {
   state.project_deadline = data;
-}), _defineProperty(_mutations, MUTATION_TYPES.SET_PROJECT_DEPARTMENT, function (state, data) {
-  state.project_department = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_EMPLOYEES, function (state, data) {
   state.employees = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_SUBTASKS, function (state, data) {
@@ -98001,6 +98115,10 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATION_TYPES.SET
   state.authorisations = data;
 }), _defineProperty(_mutations, MUTATION_TYPES.SET_FILTERED_EMPLOYEES, function (state, data) {
   state.filtered_employees = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_NOTIFICATIONS, function (state, data) {
+  state.notifications = data;
+}), _defineProperty(_mutations, MUTATION_TYPES.SET_COUNT_NOTIFICATIONS, function (state, data) {
+  state.countNotifications = data;
 }), _mutations);
 
 /***/ }),
@@ -98024,13 +98142,14 @@ __webpack_require__.r(__webpack_exports__);
   departments: null,
   project_name: null,
   project_deadline: null,
-  project_department: null,
   employees: null,
   subtasks: null,
   currentEmployee: null,
   employee_page: null,
   authorisations: null,
-  filtered_employees: null
+  filtered_employees: null,
+  notifications: null,
+  countNotifications: null
 });
 
 /***/ }),

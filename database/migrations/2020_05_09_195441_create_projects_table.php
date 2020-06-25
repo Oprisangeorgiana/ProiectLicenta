@@ -16,10 +16,8 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->date('deadline')->nullable();
-            $table->integer('department_id');
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }
 

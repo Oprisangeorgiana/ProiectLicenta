@@ -11,7 +11,7 @@
     </template>
     <v-card>
       <v-card-title class="teal">
-        <span class="headline">New task</span>
+        <span class="headline">New subtask</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -32,11 +32,13 @@
                 :return-value.sync="menuStartDate"
                 transition="scale-transition"
                 offset-y
+
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="start_subtask_date"
                     v-on="on"
+                    label="Pick start date*"
                   ></v-text-field>
                 </template>
                 <v-date-picker v-model="start_subtask_date" no-title scrollable>
@@ -192,69 +194,6 @@
         user: globalGetters.GET_USER
       }),
 
-      // description: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_DESCRIPTION]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_DESCRIPTION, value)
-      //   }
-      // },
-      // task_type: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_TASK_TYPE]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_TASK_TYPE, value)
-      //   }
-      // },
-      // deadline: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_DEADLINE]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_DEADLINE, value)
-      //   }
-      // },
-      // start_date: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_START_DATE]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_START_DATE, value)
-      //   }
-      // },
-      // start_hour: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_START_HOUR]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_START_HOUR, value)
-      //   }
-      // },
-      // end_hour: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_END_HOUR]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_END_HOUR, value)
-      //   }
-      // },
-      // project_task: {
-      //   get () {
-      //     return this.$store.getters[boardGetters.GET_TASK_PROJECT]
-      //   },
-      //
-      //   set (value) {
-      //     this.$store.commit(boardMutations.SET_TASK_PROJECT, value)
-      //   }
-      // },
     },
 
     mounted () {},
@@ -268,7 +207,6 @@
           end_subtask_date: this.end_subtask_date,
           start_subtask_hour: this.start_subtask_hour,
           end_subtask_hour: this.end_subtask_hour,
-          employee_id: this.user.employee_id,
           task_id: this.currentTask.id,
           subtask_state: 'TO DO'
         }

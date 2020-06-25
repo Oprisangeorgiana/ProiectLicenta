@@ -51,20 +51,19 @@
             <v-spacer></v-spacer>
           </v-row>
 
-
-          <v-row>
-            <v-col>
-              <v-select
-                v-model="project_department"
-                label="Department*"
-                required
-                :items="departmentsList"
-                item-text="department_name"
-                return-object
-              >
-              </v-select>
-            </v-col>
-          </v-row>
+<!--          <v-row>-->
+<!--            <v-col>-->
+<!--              <v-select-->
+<!--                v-model="project_department"-->
+<!--                label="Department*"-->
+<!--                required-->
+<!--                :items="departmentsList"-->
+<!--                item-text="department_name"-->
+<!--                return-object-->
+<!--              >-->
+<!--              </v-select>-->
+<!--            </v-col>-->
+<!--          </v-row>-->
 
         </v-container>
         <small>*indicates required field</small>
@@ -122,15 +121,6 @@
           this.$store.commit(globalMutations.SET_PROJECT_DEADLINE, value)
         }
       },
-      project_department: {
-        get () {
-          return this.$store.getters[globalGetters.GET_PROJECT_DEPARTMENT]
-        },
-
-        set (value) {
-          this.$store.commit(globalMutations.SET_PROJECT_DEPARTMENT, value)
-        }
-      },
 
     },
 
@@ -144,7 +134,6 @@
       },
 
       async mounted () {
-        await this.$store.dispatch(globalActions.FETCH_DETAILS)
       },
     }
 

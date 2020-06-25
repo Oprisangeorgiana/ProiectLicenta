@@ -8,7 +8,6 @@ export default {
   departments: null,
   project_name:null,
   project_deadline:null,
-  project_department:null,
   employees:null,
   subtasks:null,
   currentEmployee:null,

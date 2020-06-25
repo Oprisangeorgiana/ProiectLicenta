@@ -21,8 +21,6 @@ class CreateSubtasksTable extends Migration
             $table->date('start_subtask_date');
             $table->time('start_subtask_hour');
             $table->time('end_subtask_hour');
-            $table->integer('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->integer('task_id');
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
 

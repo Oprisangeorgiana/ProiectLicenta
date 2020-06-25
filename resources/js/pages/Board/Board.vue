@@ -5,16 +5,15 @@
     <v-row>
       <v-col cols="3">
         <v-card tile flat color="teal lighten-1">
-          <!--                <span class="badge badge-secondary">-->
-          <!--                {{ TaskCount }}-->
-          <!--                  1-->
-          <!--            </span>-->
           <h1>COMING
             <add-task v-if="userAuthorisation > 1">
             </add-task>
           </h1>
         </v-card>
-        <v-card v-if="user">
+        <v-card
+          color="grey lighten-2"
+          v-if="user"
+        >
           <draggable
             ghost-class="ghost"
             group="tasks"
@@ -32,6 +31,9 @@
                 <v-card-title>
                   {{listTask.task}}
                 </v-card-title>
+                <v-card-subtitle>
+                  Last modified by: {{listTask.task_type}}
+                </v-card-subtitle>
                 <div>
                   <v-card
 
@@ -92,6 +94,7 @@
                   >
                     mdi-check-bold
                   </v-icon>
+
                   <v-icon
                     v-if="userAuthorisation > 1"
                     @click="taskCanceled(listTask)"
@@ -99,17 +102,17 @@
                     mdi-cancel
                   </v-icon>
 
-
                   <add-subtask
                     :currentTask="listTask"
                   >
-
                   </add-subtask>
+
                   <modify-task
                     v-if="userAuthorisation > 1"
                     :currentTask="listTask"
                   >
                   </modify-task>
+
                   <delete-task
                     v-if="userAuthorisation > 1"
                     :currentTask="listTask"
@@ -130,7 +133,10 @@
           <h1>TO DO
           </h1>
         </v-card>
-        <v-card v-if="user">
+        <v-card
+          color="grey lighten-2"
+          v-if="user"
+        >
           <draggable
             ghost-class="ghost"
             group="tasks"
@@ -148,6 +154,9 @@
                 {{listTask.task}}
               </v-card-title>
               <div>
+                <v-card-subtitle>
+                  Last modified by: {{listTask.task_type}}
+                </v-card-subtitle>
                 <v-card
 
                   v-for="item in listSubtasks"
@@ -157,7 +166,7 @@
                   class="ma-2">
 
                   <v-card-title>
-                    Task: {{ item.description }}
+                    {{ item.description }}
                   </v-card-title>
                   <v-card-subtitle>
                     Deadline: {{item.end_subtask_date}}
@@ -165,11 +174,7 @@
                   <v-card-subtitle>
                     <h2>{{item.subtask_state}}</h2>
                   </v-card-subtitle>
-                  <!--                  <v-card-subtitle-->
-                  <!--                  v-else-->
-                  <!--                  >-->
-                  <!--                    FINISHED-->
-                  <!--                  </v-card-subtitle>-->
+
                   <v-card-actions>
 
                     <modify-subtask
@@ -244,7 +249,10 @@
           <h1>FINISHED
           </h1>
         </v-card>
-        <v-card v-if="user">
+        <v-card
+          color="grey lighten-2"
+          v-if="user"
+        >
           <draggable
             ghost-class="ghost"
             group="tasks"
@@ -258,8 +266,64 @@
               <v-card
                 outlined
                 class="ma-2"
+                color="teal lighten-4"
               >
-                {{ listTask.task }}
+                <v-card-title>
+                  {{ listTask.task }}
+                </v-card-title>
+                <v-card-subtitle>
+                  Last modified by: {{listTask.task_type}}
+                </v-card-subtitle>
+
+                <v-card
+
+                  v-for="item in listSubtasks"
+                  :key="item.id"
+                  v-if="item.task_id === listTask.id"
+                  outlined
+                  class="ma-2">
+
+                  <v-card-title>
+                   {{ item.description }}
+                  </v-card-title>
+                  <v-card-subtitle>
+                    Deadline: {{item.end_subtask_date}}
+                  </v-card-subtitle>
+                  <v-card-subtitle>
+                    <h2>{{item.subtask_state}}</h2>
+                  </v-card-subtitle>
+
+                  <v-card-actions>
+
+                    <modify-subtask
+                      :currentSubtask="item"
+                    ></modify-subtask>
+
+                    <delete-subtask
+                      :currentSubtask="item"
+                    >
+                    </delete-subtask>
+                    <v-chip
+                      outlined
+                      color="teal"
+                      small
+                      v-if="item.subtask_state ==='TO DO'"
+                      @click="fromToDoTOFinished(item)"
+                    >
+                      Finished
+                    </v-chip>
+                    <v-chip
+                      v-else
+                      outlined
+                      color="teal"
+                      small
+                      @click="fromFinishedToToDo(item)"
+                    >
+                      To do
+                    </v-chip>
+
+                  </v-card-actions>
+                </v-card>
               </v-card>
             </div>
           </draggable>
@@ -294,8 +358,10 @@
                 {{listTask.task}}
               </v-card-title>
               <div>
+                <v-card-subtitle>
+                  Last modified by: {{listTask.task_type}}
+                </v-card-subtitle>
                 <v-card
-
                   v-for="item in listSubtasks"
                   :key="item.id"
                   v-if="item.task_id === listTask.id"
@@ -303,7 +369,7 @@
                   class="ma-2">
 
                   <v-card-title>
-                    Task: {{ item.description }}
+                     {{ item.description }}
                   </v-card-title>
                   <v-card-subtitle>
                     Deadline: {{item.end_subtask_date}}
@@ -353,9 +419,6 @@
   import axios from 'axios'
   import TasksRepository from '../../repositories/TasksRepository'
   import SubtasksRepository from '../../repositories/SubtasksRepository'
-  // import nestedDraggable from "./infra/nested";
-  // import {DraggableTree} from 'vue-draggable-nested-tree'
-  // import nestedDraggable from '';
 
   export default {
     name: "board",

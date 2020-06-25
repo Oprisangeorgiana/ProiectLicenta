@@ -1,12 +1,11 @@
 <template>
   <div>
-
-    <v-img
-      max-width="150"
-      max-height="150"
-      src="Screenshot_1.png"
-    ></v-img>
-<!--        <img src="Screenshot_1.png" alt="help" width="500" height="500">-->
+<h1>Hello</h1>
+<!--    <v-img-->
+<!--      aspect-ratio="1.1"-->
+<!--      src="../../../js/pages/Help/Screenshot_1.png"-->
+<!--    ></v-img>-->
+        <img src="../../../js/pages/Help/Screenshot_1.png" alt="help">
 
   </div>
 </template>

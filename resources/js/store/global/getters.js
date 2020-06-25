@@ -8,7 +8,6 @@ const GETTER_TYPES = {
   GET_DEPARTMENTS: 'global/GET_DEPARTMENTS',
   GET_PROJECT_NAME: 'global/GET_PROJECT_NAME',
   GET_PROJECT_DEADLINE: 'global/GET_PROJECT_DEADLINE',
-  GET_PROJECT_DEPARTMENT: 'global/GET_PROJECT_DEPARTMENT',
   GET_EMPLOYEES: 'global/GET_EMPLOYEES',
   GET_SUBTASKS: 'global/GET_SUBTASKS',
   GET_CURRENT_EMPLOYEE: 'global/GET_CURRENT_EMPLOYEE',
@@ -51,9 +50,6 @@ export const getters = {
   },
   [GETTER_TYPES.GET_PROJECT_DEADLINE]: (state, getters) => {
     return state.project_deadline
-  },
-  [GETTER_TYPES.GET_PROJECT_DEPARTMENT]: (state, getters) => {
-    return state.project_department
   },
   [GETTER_TYPES.GET_EMPLOYEES]: (state, getters) => {
     return state.employees

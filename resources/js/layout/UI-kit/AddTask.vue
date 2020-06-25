@@ -20,16 +20,16 @@
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col>
-              <v-select
-                :items="['task']"
-                label="Type*"
-                required
-                v-model="task_type"
-              ></v-select>
-            </v-col>
-          </v-row>
+<!--          <v-row>-->
+<!--            <v-col>-->
+<!--              <v-select-->
+<!--                :items="['task']"-->
+<!--                label="Type*"-->
+<!--                required-->
+<!--                v-model="task_type"-->
+<!--              ></v-select>-->
+<!--            </v-col>-->
+<!--          </v-row>-->
 
           <v-row>
             <v-col>
@@ -165,8 +165,8 @@
             <v-col>
               <v-select
                 required
-                :items="employees"
-                item-text="last_name + first_name"
+                :items="correctList()"
+                item-text="name"
                 label="Employee*"
                 v-model="employee_assigned"
                 return-object
@@ -208,6 +208,7 @@
 
         menuStartHour: false,
         menuEndHour: false,
+
       };
     },
     computed: {
@@ -221,7 +222,6 @@
 
       }),
 
-
       description: {
         get () {
           return this.$store.getters[boardGetters.GET_DESCRIPTION]
@@ -229,15 +229,6 @@
 
         set (value) {
           this.$store.commit(boardMutations.SET_DESCRIPTION, value)
-        }
-      },
-      task_type: {
-        get () {
-          return this.$store.getters[boardGetters.GET_TASK_TYPE]
-        },
-
-        set (value) {
-          this.$store.commit(boardMutations.SET_TASK_TYPE, value)
         }
       },
       deadline: {
@@ -294,12 +285,25 @@
           this.$store.commit(boardMutations.SET_EMPLOYEE_ASSIGNED, value)
         }
       },
+
     },
 
 
     methods: {
+      correctList(){
+        let list =[]
+        let employee = this.employees
+        Object.keys(employee).forEach(key =>{
+          let item
+          item = {
+            id: employee[key].id,
+            name: `${employee[key].last_name} ${employee[key].first_name}`
+          }
+          list.push(item)
+        })
+        return list
+      },
 
-      text: item => item.last_name +  item.first_name,
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false

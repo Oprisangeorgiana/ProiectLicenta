@@ -34,10 +34,6 @@ class Employee extends Model
     {
         return $this->hasMany(Task::class);
     }
-    public function subtask()
-    {
-        return $this->hasMany(Subtask::class);
-    }
     public function user()
     {
         return $this->hasOne(User::class);
