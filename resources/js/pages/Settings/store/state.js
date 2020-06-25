@@ -1,8 +1,8 @@
 export default {
   user: null,
+  employee: null,
 
-  img: '',
-  first_name: '',
-  last_name: '',
-  password: ''
+  password: null,
+  name: null,
+  email: null
 }

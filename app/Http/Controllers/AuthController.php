@@ -49,6 +49,25 @@ class AuthController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'intern_email' => 'required|string|email|max:255',
+            'password' => 'sometimes|string|min:6',
+        ]);
+
+        $user = auth()->guard('api')->user();
+
+        $input = $request->only(['name', 'intern_email']);
+        if ($request->password) {
+            $input['password'] = Hash::make($request->password);
+        }
+        $user->update($input);
+        return $user;
+    }
+
     public function logout()
     {
         auth()->user()->tokens->each(function ($token, $key) {

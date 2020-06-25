@@ -1,73 +1,54 @@
 <template>
-  <v-card width="100%" height="100%" >
-    <v-card-title class="justify-end">
-      <v-btn color="primary" >Save</v-btn>
+  <v-card v-if="loaded" width="100%" max-width="800" height="100%" class="pa-4 mx-auto">
+    <v-card-title collor="secondary">
+      <h2>Edit Profile</h2>
     </v-card-title>
-    <v-row align="center" class="">
-      <v-col justify="space-around">
-        <v-img max-height="400px" max-width="400px" src="https://picsum.photos/510/300?random" aspect-ratio="1"></v-img>
-        <v-file-input multiple label="File input"></v-file-input>
-      </v-col>
+    <v-spacer></v-spacer>
+    <v-card-text>
       <v-form
         ref="form"
         v-model="valid"
-        :lazy-validation="lazy"
       >
+
         <v-text-field
           v-model="name"
-          :counter="10"
-          :rules="nameRules"
           label="Name"
+          :rules="nameRules"
           required
         ></v-text-field>
 
         <v-text-field
           v-model="email"
-          :rules="emailRules"
           label="E-mail"
+          :rules="emailRules"
           required
         ></v-text-field>
 
-        <v-select
-          v-model="select"
-          :items="items"
-          :rules="[v => !!v || 'Item is required']"
-          label="Item"
+        <v-text-field
+          v-model="password"
+          ref="password"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          :rules="passwordRules"
+          data-vv-name="pass"
+          @click:append="showPassword = !showPassword"
+          label="Password"
           required
-        ></v-select>
+        ></v-text-field>
 
-        <v-checkbox
-          v-model="checkbox"
-          :rules="[v => !!v || 'You must agree to continue!']"
-          label="Do you agree?"
+        <v-text-field
+          v-model="rePassword"
+          :append-icon="showRePassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showRePassword ? 'text' : 'password'"
+          :rules="[passwordConfirmationRule]"
+          @click:append="showRePassword = !showRePassword"
+          label="Retype password"
           required
-        ></v-checkbox>
+        ></v-text-field>
 
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="validate"
-        >
-          Validate
-        </v-btn>
-
-        <v-btn
-          color="error"
-          class="mr-4"
-          @click="reset"
-        >
-          Reset Form
-        </v-btn>
-
-        <v-btn
-          color="warning"
-          @click="resetValidation"
-        >
-          Reset Validation
-        </v-btn>
+        <v-btn color="accent" @click="onSaveClick">Save</v-btn>
       </v-form>
-    </v-row>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -80,24 +61,13 @@
   export default {
     name: 'Settings',
     computed: {
-
-      firstName: {
-
+      name: {
         get () {
-          return this.$store.getters[pageGetters.GET_FIRST_NAME]
+          return this.$store.getters[pageGetters.GET_NAME]
         },
 
         set (value) {
-          this.$store.commit(pageMutations.SET_FIRST_NAME, value)
-        }
-      },
-      lastName: {
-        get () {
-          return this.$store.getters[pageGetters.GET_LAST_NAME]
-        },
-
-        set (value) {
-          this.$store.commit(pageMutations.SET_LAST_NAME, value)
+          this.$store.commit(pageMutations.SET_NAME, value)
         }
       },
       password: {
@@ -108,27 +78,60 @@
         set (value) {
           this.$store.commit(pageMutations.SET_PASSWORD, value)
         }
+      },
+      email: {
+        get () {
+          return this.$store.getters[pageGetters.GET_EMAIL]
+        },
+
+        set (value) {
+          this.$store.commit(pageMutations.SET_EMAIL, value)
+        }
+      },
+      passwordConfirmationRule () {
+        if (!this.password)
+          return true
+        return () => (this.password === this.rePassword) || 'Password must match'
       }
     },
+    data: () => ({
+      loaded: false,
+      valid: true,
+      showPassword: false,
+      showRePassword: false,
+      rePassword: null,
+      nameRules: [
+        v => !!v || 'Name is required'
+      ],
+      passwordRules: [
+        v => (!v || v.length >= 6) || 'Password must be more than 6 characters'
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ]
+    }),
     methods: {
-      init () {
-        this.$store.dispatch(pageActions.FETCH_DATA)
+      async init () {
+        await this.$store.dispatch(pageActions.FETCH_DATA)
+        this.loaded = true
       },
-      submitFirstName () {
-        this.$store.dispatch(pageActions.UPDATE_FIRST_NAME)
+      async validate () {
+        await this.$refs.form.validate()
       },
-      submitLastName () {
-        this.$store.dispatch(pageActions.UPDATE_LAST_NAME)
-      },
-      submitPassword () {
-        this.$store.dispatch(pageActions.UPDATE_PASSWORD)
+
+      async onSaveClick () {
+        if (await this.$refs.form.validate()) {
+          await this.$store.dispatch(pageActions.UPDATE_USER)
+          await this.$store.dispatch(pageActions.FETCH_DATA)
+          await this.$router.push('/')
+        }
       }
     },
     mounted () {
       this.init()
     }
   }
-
 
 </script>
 
