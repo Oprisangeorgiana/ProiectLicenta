@@ -96,7 +96,7 @@
       ],
       value: '',
       events: [],
-      color: ['teal']
+      color: ['blue']
     }),
 
     computed: {
