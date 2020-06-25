@@ -190,13 +190,17 @@ export const actions = {
   },
   async [ACTION_TYPES.FETCH_SUBTASKS] ({ commit, state }) {
     let subtasks = await new SubtasksRepository().getAll()
+    let tasks = getters[pageGetters.GET_TASKS]
     let currentEmployee = getters[pageGetters.GET_CURRENT_EMPLOYEE]
     let listSubtasks = []
-    Object.keys(subtasks).forEach(key => {
-      if (subtasks[key].employee_id === currentEmployee.id) {
-        listSubtasks.push(subtasks[key])
-      }
+
+    Object.keys(tasks).forEach(key1 =>{
+      Object.keys(subtasks).forEach(key2=>{
+        if(subtasks[key2].task_id === tasks[key1].id)
+          listSubtasks.push(subtasks[key])
+      })
     })
+
     commit(pageMutations.SET_SUBTASKS, listSubtasks)
   },
 

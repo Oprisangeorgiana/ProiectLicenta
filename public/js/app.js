@@ -2127,6 +2127,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -3240,10 +3244,179 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    } // async mounted () {
-    //   await this.$store.dispatch(globalActions.FETCH_DETAILS)
-    // },
+    }
+  }
+});
 
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/EmployeeProfile.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/layout/UI-kit/EmployeeProfile.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_store_global_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../js/store/global/actions */ "./resources/js/store/global/actions.js");
+/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "employee-profile",
+  props: {},
+  data: function data() {
+    return {
+      selectedUserID: this.$route.params.id
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])({
+    employee: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_EMPLOYEE_PAGE,
+    departments: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DEPARTMENTS,
+    authorisations: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_AUTHORISATIONS
+  })),
+  methods: {},
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_1__["default"].FETCH_EMPLOYEE_PAGE, _this.selectedUserID);
+
+            case 2:
+              _context.next = 4;
+              return _this.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_1__["default"].FETCH_AUTHORISATIONS);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -3931,6 +4104,267 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
@@ -3992,31 +4426,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   }),
   methods: {
-    add: function add() {
-      this.list.push(this.listTasks.task);
-    },
-    replace: function replace() {
-      this.list = [this.listTasks.task];
-    },
-    clone: function clone(el) {
-      return {
-        name: this.el.task + " cloned"
-      };
-    },
-    log: function log(evt) {
-      window.console.log(evt);
-    }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_2__["default"].FETCH_PAGE_DETAILS);
+    taskFinished: function () {
+      var _taskFinished = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(item) {
+        var ID, modifyStateTask;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                ID = item.id;
+                console.log('onAddComing', item.id);
+                modifyStateTask = {
+                  id: ID,
+                  state: 'FINISHED'
+                };
+                _context.next = 5;
+                return new _repositories_TasksRepository__WEBPACK_IMPORTED_MODULE_14__["default"]().update(modifyStateTask);
 
               case 5:
               case "end":
@@ -4317,6 +4741,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -4782,9 +5207,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/actions */ "./resources/js/pages/Settings/store/actions.js");
-/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/getters */ "./resources/js/pages/Settings/store/getters.js");
-/* harmony import */ var _store_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/mutations */ "./resources/js/pages/Settings/store/mutations.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/actions */ "./resources/js/pages/Settings/store/actions.js");
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/getters */ "./resources/js/pages/Settings/store/getters.js");
+/* harmony import */ var _store_mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/mutations */ "./resources/js/pages/Settings/store/mutations.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../js/store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _js_store_global_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../js/store/global/actions */ "./resources/js/store/global/actions.js");
+/* harmony import */ var _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../repositories/EmployeesRepository */ "./resources/js/repositories/EmployeesRepository.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4879,46 +5322,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Settings",
-  computed: {
-    firstName: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_FIRST_NAME];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_FIRST_NAME, value);
-      }
-    },
-    lastName: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_LAST_NAME];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_LAST_NAME, value);
-      }
-    },
-    password: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PASSWORD];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_PASSWORD, value);
-      }
-    }
+  data: function data() {
+    return {
+      newPassword: null,
+      confirmNewPassword: null
+    };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])({
     user: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_USER,
     employee: _js_store_global_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_CURRENT_EMPLOYEE
   })),
   methods: {
-    submitFirstName: function submitFirstName() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_FIRST_NAME);
-    },
-    submitLastName: function submitLastName() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_LAST_NAME);
-    },
-    submitPassword: function submitPassword() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_PASSWORD);
-    }
+    modifyPhoneNumber: function () {
+      var _modifyPhoneNumber = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(item) {
+        var modifyPhoneNumber;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                modifyPhoneNumber = {
+                  id: this.employee.id,
+                  phone_number: this.employee.phone_number
+                };
+                _context.next = 3;
+                return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_7__["default"]().update(modifyPhoneNumber);
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function modifyPhoneNumber(_x) {
+        return _modifyPhoneNumber.apply(this, arguments);
+      }
+
+      return modifyPhoneNumber;
+    }()
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_6__["default"].FETCH_CURRENT_EMPLOYEE);
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
   }
 });
 
@@ -5014,6 +5475,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
 
 
 
@@ -5022,6 +5526,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Workspaces",
+  components: {
+    AddProject: _js_layout_UI_kit_AddProject__WEBPACK_IMPORTED_MODULE_6__["default"],
+    AddTask: _js_layout_UI_kit_AddTask__WEBPACK_IMPORTED_MODULE_7__["default"],
+    ModifyTask: _js_layout_UI_kit_ModifyTask__WEBPACK_IMPORTED_MODULE_8__["default"],
+    DeleteTask: _js_layout_UI_kit_DeleteTask__WEBPACK_IMPORTED_MODULE_9__["default"],
+    EmployeeProfile: _js_layout_UI_kit_EmployeeProfile__WEBPACK_IMPORTED_MODULE_10__["default"]
+  },
   data: function data() {
     return {
       search: '',
@@ -28073,7 +28584,11 @@ var render = function() {
                           _c(
                             "router-link",
                             { attrs: { to: { name: "calendar" } } },
-                            [_vm._v("\n              Calendar\n            ")]
+                            [
+                              _vm._v(
+                                "\n                Calendar\n              "
+                              )
+                            ]
                           )
                         ],
                         1
@@ -28085,7 +28600,7 @@ var render = function() {
                           _c(
                             "router-link",
                             { attrs: { to: { name: "board" } } },
-                            [_vm._v("\n              Board\n            ")]
+                            [_vm._v("\n                Board\n              ")]
                           )
                         ],
                         1
@@ -28148,6 +28663,9 @@ var render = function() {
                                                   attrs: {
                                                     large: "",
                                                     color: "white"
+                                                  },
+                                                  on: {
+                                                    click: _vm.setCountToZero
                                                   }
                                                 },
                                                 on
@@ -28164,7 +28682,7 @@ var render = function() {
                             ],
                             null,
                             false,
-                            2982978562
+                            2511716703
                           )
                         },
                         [
@@ -28179,13 +28697,13 @@ var render = function() {
                                   [
                                     _c("v-list-item-content", [
                                       _vm._v(
-                                        "\n                " +
+                                        "\n                  " +
                                           _vm._s(item.name) +
                                           " is going to end on " +
                                           _vm._s(item.end_date) +
                                           " at " +
                                           _vm._s(item.end_hour) +
-                                          "\n              "
+                                          "\n                "
                                       )
                                     ])
                                   ],
@@ -28231,9 +28749,9 @@ var render = function() {
                                       ),
                                       [
                                         _vm._v(
-                                          "\n              " +
-                                            _vm._s(_vm.user.name) +
-                                            "\n            "
+                                          "\n                " +
+                                            _vm._s(_vm.user_name) +
+                                            "\n"
                                         )
                                       ]
                                     )
@@ -28243,7 +28761,7 @@ var render = function() {
                             ],
                             null,
                             false,
-                            2628159253
+                            2702016644
                           )
                         },
                         [
@@ -28282,7 +28800,7 @@ var render = function() {
                           },
                           _vm.on
                         ),
-                        [_vm._v("\n          Log in\n        ")]
+                        [_vm._v("\n            Log in\n          ")]
                       )
                 ],
                 1
@@ -29941,6 +30459,804 @@ var render = function() {
                     }
                   }
                 },
+                [_vm._v("NO")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "teal", text: "" },
+                  on: { click: _vm.deleteTask }
+                },
+                [_vm._v("YES")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/EmployeeProfile.vue?vue&type=template&id=390ec100&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/layout/UI-kit/EmployeeProfile.vue?vue&type=template&id=390ec100&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { staticClass: "teal" },
+    [
+      _c("v-container", { staticClass: "white pt-6 pb-6 pr-6 pl-6" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "v-row",
+              {
+                staticClass: "mb-8",
+                attrs: { align: "center", justify: "center" }
+              },
+              [
+                _c("v-card", { attrs: { color: "teal" } }, [
+                  _c("h1", { staticClass: "ma-8" }, [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          _vm.employee.last_name + " " + _vm.employee.first_name
+                        ) +
+                        "\n        "
+                    )
+                  ])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              {
+                staticClass: "mb-6",
+                attrs: { align: "center", justify: "center" }
+              },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { color: "teal lighten-4", width: "700" } },
+                  [
+                    _c("v-card-title", [
+                      _vm._v("\n          E-mail\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-card-text", [
+                      _c("h1", [
+                        _vm._v(
+                          " " +
+                            _vm._s(
+                              _vm.employee.last_name +
+                                "." +
+                                _vm.employee.first_name +
+                                "@intern.com"
+                            ) +
+                            " "
+                        )
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              {
+                staticClass: "mb-8",
+                attrs: { align: "center", justify: "center" }
+              },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { color: "teal lighten-4", width: "700" } },
+                  [
+                    _c("v-card-title", [
+                      _vm._v("\n          Phone number\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-card-text", [
+                      _c("h1", [_vm._v(_vm._s(_vm.employee.phone_number))])
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              {
+                staticClass: "mb-8",
+                attrs: { align: "center", justify: "center" }
+              },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { color: "teal lighten-4", width: "700" } },
+                  [
+                    _c("v-card-title", [
+                      _vm._v("\n          Department\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.departments, function(department) {
+                      return department.id === _vm.employee.department_id
+                        ? _c("v-card-text", { key: department.id }, [
+                            _c("h1", [
+                              _vm._v(_vm._s(department.department_name))
+                            ])
+                          ])
+                        : _vm._e()
+                    })
+                  ],
+                  2
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              {
+                staticClass: "mb-8",
+                attrs: { align: "center", justify: "center" }
+              },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { color: "teal lighten-4", width: "700" } },
+                  [
+                    _c("v-card-title", [
+                      _vm._v("\n          Authorisation\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.authorisations, function(auth) {
+                      return auth.id === _vm.employee.authorisation_id
+                        ? _c("v-card-text", { key: auth.id }, [
+                            _c("h1", [_vm._v(_vm._s(auth.role))])
+                          ])
+                        : _vm._e()
+                    })
+                  ],
+                  2
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/ModifySubtask.vue?vue&type=template&id=4ccb4a60&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/layout/UI-kit/ModifySubtask.vue?vue&type=template&id=4ccb4a60&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { persistent: "", keydown: "KeyboardEvent", "max-width": "700" },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function(ref) {
+            var on = ref.on
+            return [_c("v-icon", _vm._g({}, on), [_vm._v(" mdi-pen")])]
+          }
+        }
+      ]),
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-card",
+        [
+          _c("v-card-title", { staticClass: "teal" }, [
+            _c("span", { staticClass: "headline" }, [_vm._v("Modify subtask")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { clearable: "" },
+                            model: {
+                              value: _vm.currentSubtask.description,
+                              callback: function($$v) {
+                                _vm.$set(_vm.currentSubtask, "description", $$v)
+                              },
+                              expression: "currentSubtask.description"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              ref: "menuDate",
+                              attrs: {
+                                "close-on-content-click": false,
+                                "return-value": _vm.menuStartDate,
+                                transition: "scale-transition",
+                                "offset-y": ""
+                              },
+                              on: {
+                                "update:returnValue": function($event) {
+                                  _vm.menuStartDate = $event
+                                },
+                                "update:return-value": function($event) {
+                                  _vm.menuStartDate = $event
+                                }
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          {
+                                            model: {
+                                              value:
+                                                _vm.currentSubtask
+                                                  .start_subtask_date,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.currentSubtask,
+                                                  "start_subtask_date",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "currentSubtask.start_subtask_date"
+                                            }
+                                          },
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.menuStartDate,
+                                callback: function($$v) {
+                                  _vm.menuStartDate = $$v
+                                },
+                                expression: "menuStartDate"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _c(
+                                "v-date-picker",
+                                {
+                                  attrs: { "no-title": "", scrollable: "" },
+                                  model: {
+                                    value:
+                                      _vm.currentSubtask.start_subtask_date,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.currentSubtask,
+                                        "start_subtask_date",
+                                        $$v
+                                      )
+                                    },
+                                    expression:
+                                      "currentSubtask.start_subtask_date"
+                                  }
+                                },
+                                [
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { text: "", color: "primary" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.menuStartDate = false
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Cancel")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { text: "", color: "primary" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.$refs.menuDate.save(
+                                            _vm.currentSubtask
+                                              .start_subtask_date
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("OK")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              ref: "menuEndDate",
+                              attrs: {
+                                "close-on-content-click": false,
+                                "return-value": _vm.menuDeadline,
+                                transition: "scale-transition",
+                                "offset-y": ""
+                              },
+                              on: {
+                                "update:returnValue": function($event) {
+                                  _vm.menuDeadline = $event
+                                },
+                                "update:return-value": function($event) {
+                                  _vm.menuDeadline = $event
+                                }
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          {
+                                            attrs: {
+                                              label: "Pick end date*",
+                                              readonly: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.currentSubtask
+                                                  .end_subtask_date,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.currentSubtask,
+                                                  "end_subtask_date",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "currentSubtask.end_subtask_date"
+                                            }
+                                          },
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.menuDeadline,
+                                callback: function($$v) {
+                                  _vm.menuDeadline = $$v
+                                },
+                                expression: "menuDeadline"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _c(
+                                "v-date-picker",
+                                {
+                                  attrs: { "no-title": "", scrollable: "" },
+                                  model: {
+                                    value: _vm.currentSubtask.end_subtask_date,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.currentSubtask,
+                                        "end_subtask_date",
+                                        $$v
+                                      )
+                                    },
+                                    expression:
+                                      "currentSubtask.end_subtask_date"
+                                  }
+                                },
+                                [
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { text: "", color: "primary" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.menuDeadline = false
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Cancel")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { text: "", color: "primary" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.$refs.menuEndDate.save(
+                                            _vm.currentSubtask.end_subtask_date
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("OK")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              ref: "menu1",
+                              attrs: {
+                                "close-on-content-click": false,
+                                "return-value":
+                                  _vm.currentSubtask.start_subtask_hour,
+                                transition: "scale-transition",
+                                "offset-y": ""
+                              },
+                              on: {
+                                "update:returnValue": function($event) {
+                                  return _vm.$set(
+                                    _vm.currentSubtask,
+                                    "start_subtask_hour",
+                                    $event
+                                  )
+                                },
+                                "update:return-value": function($event) {
+                                  return _vm.$set(
+                                    _vm.currentSubtask,
+                                    "start_subtask_hour",
+                                    $event
+                                  )
+                                }
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          {
+                                            attrs: {
+                                              label: "Pick start hour*",
+                                              readonly: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.currentSubtask
+                                                  .start_subtask_hour,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.currentSubtask,
+                                                  "start_subtask_hour",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "currentSubtask.start_subtask_hour"
+                                            }
+                                          },
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.menuStartHour,
+                                callback: function($$v) {
+                                  _vm.menuStartHour = $$v
+                                },
+                                expression: "menuStartHour"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _vm.menuStartHour
+                                ? _c("v-time-picker", {
+                                    attrs: { "use-seconds": "" },
+                                    on: {
+                                      "click:minute": function($event) {
+                                        return _vm.$refs.menu1.save(
+                                          _vm.currentSubtask.start_subtask_hour
+                                        )
+                                      }
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.currentSubtask.start_subtask_hour,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.currentSubtask,
+                                          "start_subtask_hour",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "currentSubtask.start_subtask_hour"
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              ref: "menu",
+                              attrs: {
+                                "close-on-content-click": false,
+                                "return-value":
+                                  _vm.currentSubtask.end_subtask_hour,
+                                transition: "scale-transition",
+                                "offset-y": ""
+                              },
+                              on: {
+                                "update:returnValue": function($event) {
+                                  return _vm.$set(
+                                    _vm.currentSubtask,
+                                    "end_subtask_hour",
+                                    $event
+                                  )
+                                },
+                                "update:return-value": function($event) {
+                                  return _vm.$set(
+                                    _vm.currentSubtask,
+                                    "end_subtask_hour",
+                                    $event
+                                  )
+                                }
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          {
+                                            attrs: {
+                                              label: "Pick end hour*",
+                                              readonly: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.currentSubtask
+                                                  .end_subtask_hour,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.currentSubtask,
+                                                  "end_subtask_hour",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "currentSubtask.end_subtask_hour"
+                                            }
+                                          },
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.menuEndHour,
+                                callback: function($$v) {
+                                  _vm.menuEndHour = $$v
+                                },
+                                expression: "menuEndHour"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _vm.menuEndHour
+                                ? _c("v-time-picker", {
+                                    attrs: { "use-seconds": "" },
+                                    on: {
+                                      "click:minute": function($event) {
+                                        return _vm.$refs.menu.save(
+                                          _vm.currentSubtask.end_subtask_hour
+                                        )
+                                      }
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.currentSubtask.end_subtask_hour,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.currentSubtask,
+                                          "end_subtask_hour",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "currentSubtask.end_subtask_hour"
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "teal", text: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.dialog = false
+                    }
+                  }
+                },
                 [_vm._v("Close")]
               ),
               _vm._v(" "),
@@ -30596,40 +31912,265 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-3" } },
+                { attrs: { tile: "", flat: "", color: "teal lighten-1" } },
                 [
                   _c(
                     "h1",
                     [
-                      _vm._v("COMING\n                        "),
-                      _vm.user ? _c("add-task") : _vm._e()
+                      _vm._v("COMING\n          "),
+                      _vm.userAuthorisation > 1 ? _c("add-task") : _vm._e()
                     ],
                     1
                   )
                 ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [
-              _c(
-                "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-4" } },
-                [
-                  _c(
-                    "h1",
+              ),
+              _vm._v(" "),
+              _vm.user
+                ? _c(
+                    "v-card",
+                    { attrs: { color: "grey lighten-2" } },
                     [
-                      _vm._v("TO DO\n                        "),
-                      _vm.user ? _c("add-task") : _vm._e()
+                      _c(
+                        "draggable",
+                        {
+                          attrs: { "ghost-class": "ghost", group: "tasks" },
+                          on: {
+                            add: function($event) {
+                              return _vm.onAddComing($event)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "transition-group",
+                            { attrs: { type: "transition" } },
+                            _vm._l(_vm.listTasks, function(listTask) {
+                              return listTask.state === "COMING"
+                                ? _c(
+                                    "v-card",
+                                    {
+                                      key: listTask.id,
+                                      staticClass: "ma-2",
+                                      attrs: {
+                                        color: "teal lighten-4",
+                                        "data-id": listTask.id,
+                                        outlined: ""
+                                      }
+                                    },
+                                    [
+                                      _c("v-card-title", [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(listTask.task) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        _vm._l(_vm.listSubtasks, function(
+                                          item
+                                        ) {
+                                          return item.task_id === listTask.id
+                                            ? _c(
+                                                "v-card",
+                                                {
+                                                  key: item.id,
+                                                  staticClass: "ma-2",
+                                                  attrs: { outlined: "" }
+                                                },
+                                                [
+                                                  _c("v-card-title", [
+                                                    _vm._v(
+                                                      "\n                    " +
+                                                        _vm._s(
+                                                          item.description
+                                                        ) +
+                                                        "\n                  "
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("v-card-subtitle", [
+                                                    _vm._v(
+                                                      "\n                    Deadline: " +
+                                                        _vm._s(
+                                                          item.end_subtask_date
+                                                        ) +
+                                                        "\n                  "
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("v-card-subtitle", [
+                                                    _c("h2", [
+                                                      _vm._v(
+                                                        "\n                      " +
+                                                          _vm._s(
+                                                            item.subtask_state
+                                                          ) +
+                                                          "\n                    "
+                                                      )
+                                                    ])
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-card-actions",
+                                                    [
+                                                      _c("modify-subtask", {
+                                                        attrs: {
+                                                          currentSubtask: item
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c("delete-subtask", {
+                                                        attrs: {
+                                                          currentSubtask: item
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      item.subtask_state ===
+                                                      "TO DO"
+                                                        ? _c(
+                                                            "v-chip",
+                                                            {
+                                                              attrs: {
+                                                                outlined: "",
+                                                                color: "teal",
+                                                                small: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.fromToDoTOFinished(
+                                                                    item
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                      Finished\n                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _c(
+                                                            "v-chip",
+                                                            {
+                                                              attrs: {
+                                                                outlined: "",
+                                                                color: "teal",
+                                                                small: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.fromFinishedToToDo(
+                                                                    item
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                      To do\n                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            : _vm._e()
+                                        }),
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        [
+                                          _vm.userAuthorisation > 1
+                                            ? _c(
+                                                "v-icon",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.taskFinished(
+                                                        listTask
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                  mdi-check-bold\n                "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.userAuthorisation > 1
+                                            ? _c(
+                                                "v-icon",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.taskCanceled(
+                                                        listTask
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                  mdi-cancel\n                "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _c("add-subtask", {
+                                            attrs: { currentTask: listTask }
+                                          }),
+                                          _vm._v(" "),
+                                          _vm.userAuthorisation > 1
+                                            ? _c("modify-task", {
+                                                attrs: { currentTask: listTask }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.userAuthorisation > 1
+                                            ? _c("delete-task", {
+                                                attrs: { currentTask: listTask }
+                                              })
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
-                ]
-              )
+                : _vm._e()
             ],
             1
           ),
@@ -30640,237 +32181,575 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-3" } },
-                [_c("h1", [_vm._v("FINISHED\n                    ")])]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [
-              _c(
-                "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-4" } },
-                [_c("h1", [_vm._v("CANCELED\n                    ")])]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm.user
-        ? _c(
-            "v-row",
-            [
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "subtask"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  staticClass: "mr-10",
-                                  attrs: { outlined: "" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(listTask.task) +
-                                      "\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ],
-                1
+                { attrs: { tile: "", flat: "", color: "teal lighten-2" } },
+                [_c("h1", [_vm._v("TO DO\n        ")])]
               ),
               _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "task"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
+              _vm.user
+                ? _c(
+                    "v-card",
+                    { attrs: { color: "grey lighten-2" } },
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          attrs: { "ghost-class": "ghost", group: "tasks" },
+                          on: {
+                            add: function($event) {
+                              return _vm.onAddToDo($event)
+                            }
+                          }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "TO DO"
+                            ? _c(
                                 "v-card",
                                 {
-                                  staticClass: "mr-10",
-                                  attrs: { outlined: "" }
+                                  key: listTask.id,
+                                  staticClass: "ma-2",
+                                  attrs: {
+                                    color: "teal lighten-4",
+                                    "data-id": listTask.id,
+                                    outlined: ""
+                                  }
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(listTask.task) +
-                                      "\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "task"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  staticClass: "mr-10",
-                                  attrs: { outlined: "" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(listTask.task) +
-                                      "\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "draggable",
-                    {
-                      staticClass: "list-group",
-                      attrs: { group: "people" },
-                      on: { change: _vm.log }
-                    },
-                    _vm._l(_vm.listTasks, function(listTask) {
-                      return listTask.task_type === "task"
-                        ? _c(
-                            "div",
-                            {
-                              key: listTask.task,
-                              staticClass: "list-group-item"
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                [
-                                  _c("v-card-text", [
+                                  _c("v-card-title", [
                                     _vm._v(
-                                      "\n                                Task: " +
+                                      "\n              " +
                                         _vm._s(listTask.task) +
-                                        "\n                            "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-card-subtitle", [
-                                    _vm._v(
-                                      "\n                                Deadline: " +
-                                        _vm._s(listTask.deadline) +
-                                        "\n                            "
+                                        "\n            "
                                     )
                                   ]),
                                   _vm._v(" "),
                                   _c(
+                                    "div",
+                                    [
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.listSubtasks, function(item) {
+                                        return item.task_id === listTask.id
+                                          ? _c(
+                                              "v-card",
+                                              {
+                                                key: item.id,
+                                                staticClass: "ma-2",
+                                                attrs: { outlined: "" }
+                                              },
+                                              [
+                                                _c("v-card-title", [
+                                                  _vm._v(
+                                                    "\n                  " +
+                                                      _vm._s(item.description) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _vm._v(
+                                                    "\n                  Deadline: " +
+                                                      _vm._s(
+                                                        item.end_subtask_date
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _c("h2", [
+                                                    _vm._v(
+                                                      _vm._s(item.subtask_state)
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-card-actions",
+                                                  [
+                                                    _c("modify-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("delete-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    item.subtask_state ===
+                                                    "TO DO"
+                                                      ? _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromToDoTOFinished(
+                                                                  item
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    Finished\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromFinishedToToDo(
+                                                                  item
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    To do\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
                                     "v-card-actions",
                                     [
-                                      _c("modify-task", {
+                                      _vm.userAuthorisation > 1
+                                        ? _c(
+                                            "v-icon",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.taskFinished(
+                                                    listTask
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                mdi-check-bold\n              "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.userAuthorisation > 1
+                                        ? _c(
+                                            "v-icon",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.taskCanceled(
+                                                    listTask
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                mdi-cancel\n              "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c("add-subtask", {
                                         attrs: { currentTask: listTask }
                                       }),
                                       _vm._v(" "),
-                                      _c("delete-task", {
-                                        attrs: { currentTask: listTask }
-                                      })
+                                      _vm.userAuthorisation > 1
+                                        ? _c("modify-task", {
+                                            attrs: { currentTask: listTask }
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.userAuthorisation > 1
+                                        ? _c("delete-task", {
+                                            attrs: { currentTask: listTask }
+                                          })
+                                        : _vm._e()
                                     ],
                                     1
                                   )
                                 ],
                                 1
                               )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    }),
-                    0
+                            : _vm._e()
+                        }),
+                        1
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "3" } },
+            [
+              _c(
+                "v-card",
+                { attrs: { tile: "", flat: "", color: "teal lighten-1" } },
+                [_c("h1", [_vm._v("FINISHED\n        ")])]
+              ),
+              _vm._v(" "),
+              _vm.user
+                ? _c(
+                    "v-card",
+                    { attrs: { color: "grey lighten-2" } },
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          attrs: { "ghost-class": "ghost", group: "tasks" },
+                          on: {
+                            add: function($event) {
+                              return _vm.onAddFinished($event)
+                            }
+                          }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "FINISHED"
+                            ? _c(
+                                "div",
+                                {
+                                  key: listTask.id,
+                                  attrs: { "data-id": listTask.id }
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "ma-2",
+                                      attrs: {
+                                        outlined: "",
+                                        color: "teal lighten-4"
+                                      }
+                                    },
+                                    [
+                                      _c("v-card-title", [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(listTask.task) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.listSubtasks, function(item) {
+                                        return item.task_id === listTask.id
+                                          ? _c(
+                                              "v-card",
+                                              {
+                                                key: item.id,
+                                                staticClass: "ma-2",
+                                                attrs: { outlined: "" }
+                                              },
+                                              [
+                                                _c("v-card-title", [
+                                                  _vm._v(
+                                                    "\n                 " +
+                                                      _vm._s(item.description) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _vm._v(
+                                                    "\n                  Deadline: " +
+                                                      _vm._s(
+                                                        item.end_subtask_date
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _c("h2", [
+                                                    _vm._v(
+                                                      _vm._s(item.subtask_state)
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-card-actions",
+                                                  [
+                                                    _c("modify-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("delete-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    item.subtask_state ===
+                                                    "TO DO"
+                                                      ? _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromToDoTOFinished(
+                                                                  item
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    Finished\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "v-chip",
+                                                          {
+                                                            attrs: {
+                                                              outlined: "",
+                                                              color: "teal",
+                                                              small: ""
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.fromFinishedToToDo(
+                                                                  item
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                    To do\n                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        }),
+                        0
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "3" } },
+            [
+              _c(
+                "v-card",
+                { attrs: { tile: "", flat: "", color: "teal lighten-2" } },
+                [_c("h1", [_vm._v("CANCELED\n        ")])]
+              ),
+              _vm._v(" "),
+              _vm.user
+                ? _c(
+                    "v-card",
+                    { attrs: { color: "grey lighten-2" } },
+                    [
+                      _c(
+                        "draggable",
+                        {
+                          staticClass: "list-group-item",
+                          attrs: { "ghost-class": "ghost" },
+                          on: {
+                            add: function($event) {
+                              return _vm.onAddCanceled($event)
+                            }
+                          }
+                        },
+                        _vm._l(_vm.listTasks, function(listTask) {
+                          return listTask.state === "CANCELED"
+                            ? _c(
+                                "v-card",
+                                {
+                                  key: listTask.id,
+                                  staticClass: "ma-2",
+                                  attrs: {
+                                    color: "teal lighten-4",
+                                    "data-id": listTask.id,
+                                    outlined: ""
+                                  }
+                                },
+                                [
+                                  _c("v-card-title", [
+                                    _vm._v(
+                                      "\n              " +
+                                        _vm._s(listTask.task) +
+                                        "\n            "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("v-card-subtitle", [
+                                        _vm._v(
+                                          "\n                Last modified by: " +
+                                            _vm._s(listTask.task_type) +
+                                            "\n              "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.listSubtasks, function(item) {
+                                        return item.task_id === listTask.id
+                                          ? _c(
+                                              "v-card",
+                                              {
+                                                key: item.id,
+                                                staticClass: "ma-2",
+                                                attrs: { outlined: "" }
+                                              },
+                                              [
+                                                _c("v-card-title", [
+                                                  _vm._v(
+                                                    "\n                   " +
+                                                      _vm._s(item.description) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("v-card-subtitle", [
+                                                  _vm._v(
+                                                    "\n                  Deadline: " +
+                                                      _vm._s(
+                                                        item.end_subtask_date
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-card-actions",
+                                                  [
+                                                    _c("modify-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("delete-subtask", {
+                                                      attrs: {
+                                                        currentSubtask: item
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.userAuthorisation > 1
+                                    ? _c(
+                                        "v-card-actions",
+                                        [
+                                          _c("delete-task", {
+                                            attrs: { currentTask: listTask }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        }),
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           )
-        : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
@@ -30960,7 +32839,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c("add-task"),
+          _vm.userAuthorisation > 1 ? _c("add-task") : _vm._e(),
           _vm._v(" "),
           _c(
             "v-btn",
@@ -31209,58 +33088,11 @@ var render = function() {
     [
       _c(
         "v-row",
-        { staticClass: "mb-8" },
+        { staticClass: "mb-8", attrs: { justify: "center", align: "center" } },
         [
-          _c(
-            "v-expansion-panels",
-            { attrs: { popout: "" } },
-            [
-              _c(
-                "v-expansion-panel",
-                [
-                  _c(
-                    "v-expansion-panel-header",
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { "justify-center": "" } },
-                        [
-                          _c(
-                            "v-avatar",
-                            { attrs: { color: "teal", size: "100px" } },
-                            [
-                              _c("v-icon", { attrs: { large: "" } }, [
-                                _vm._v("mdi-account-circle")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-expansion-panel-content",
-                    [
-                      _c("v-file-input", {
-                        attrs: {
-                          accept: "image/png, image/jpeg, image/bmp",
-                          placeholder: "Change your photo",
-                          "prepend-icon": "mdi-camera"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _c("v-card", { attrs: { color: "teal" } }, [
+            _c("h1", [_vm._v(_vm._s(this.user.name))])
+          ])
         ],
         1
       ),
@@ -31272,79 +33104,39 @@ var render = function() {
           _c(
             "v-col",
             { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("First Name")])],
+            [_c("v-label", [_vm._v("Phone number")])],
             1
           ),
           _vm._v(" "),
           _c(
             "v-col",
             { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "First Name" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
             [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitFirstName },
-                  model: {
-                    value: _vm.firstName,
-                    callback: function($$v) {
-                      _vm.firstName = $$v
-                    },
-                    expression: "firstName"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
+              _c("v-text-field", {
+                attrs: { placeholder: "Phone number" },
+                model: {
+                  value: _vm.employee.phone_number,
+                  callback: function($$v) {
+                    _vm.$set(_vm.employee, "phone_number", $$v)
+                  },
+                  expression: "employee.phone_number"
+                }
+              })
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "mb-6" },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("Last Name")])],
-            1
           ),
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "Last Name" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
+            { attrs: { cols: "2" } },
             [
               _c(
                 "v-btn",
                 {
                   attrs: { color: "teal" },
-                  on: { click: _vm.submitLastName },
-                  model: {
-                    value: _vm.lastName,
-                    callback: function($$v) {
-                      _vm.lastName = $$v
-                    },
-                    expression: "lastName"
-                  }
+                  on: { click: _vm.modifyPhoneNumber }
                 },
-                [_vm._v("\n                SUBMIT\n            ")]
+                [_vm._v("\n          SUBMIT\n        ")]
               )
             ],
             1
@@ -31367,7 +33159,50 @@ var render = function() {
           _c(
             "v-col",
             { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "password" } })],
+            [
+              _c("v-text-field", {
+                attrs: { placeholder: "password" },
+                model: {
+                  value: _vm.newPassword,
+                  callback: function($$v) {
+                    _vm.newPassword = $$v
+                  },
+                  expression: "newPassword"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { staticClass: "mb-6" },
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "3" } },
+            [_c("v-label", [_vm._v("Confirm New Password")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "7" } },
+            [
+              _c("v-text-field", {
+                attrs: { placeholder: "password", required: "" },
+                model: {
+                  value: _vm.confirmNewPassword,
+                  callback: function($$v) {
+                    _vm.confirmNewPassword = $$v
+                  },
+                  expression: "confirmNewPassword"
+                }
+              })
+            ],
             1
           ),
           _vm._v(" "),
@@ -31375,21 +33210,9 @@ var render = function() {
             "v-col",
             { staticClass: "2" },
             [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitPassword },
-                  model: {
-                    value: _vm.password,
-                    callback: function($$v) {
-                      _vm.password = $$v
-                    },
-                    expression: "password"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
+              _c("v-btn", { attrs: { color: "teal" } }, [
+                _vm._v("\n          SUBMIT\n        ")
+              ])
             ],
             1
           )
@@ -31484,7 +33307,10 @@ var render = function() {
                     _vm._l(_vm.filteredProjects, function(currentProject) {
                       return _c(
                         "v-list-item",
-                        { key: currentProject.id },
+                        {
+                          key: currentProject.id,
+                          attrs: { value: currentProject.id }
+                        },
                         [
                           _c(
                             "v-list-item-content",
@@ -31535,9 +33361,8 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list",
-                { attrs: { "three-line": true } },
                 _vm._l(_vm.tasksList, function(task) {
-                  return task.project === _vm.selectedProject + 1
+                  return task.project === _vm.selectedProject
                     ? _c(
                         "v-list-item",
                         { key: task.id },
@@ -31550,12 +33375,77 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("v-list-item-subtitle", {
-                                domProps: { innerHTML: _vm._s(task.deadline) }
+                                domProps: { innerHTML: _vm._s(task.state) }
                               }),
                               _vm._v(" "),
                               _c("v-list-item-subtitle", {
-                                domProps: { innerHTML: _vm._s(task.project) }
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    "Deadline: " + task.deadline + " "
+                                  )
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm._l(_vm.projectsList, function(prj) {
+                                return prj.id === task.project
+                                  ? _c("v-list-item-subtitle", {
+                                      key: prj.id,
+                                      domProps: {
+                                        innerHTML: _vm._s(
+                                          "Project: " + prj.name + " "
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              }),
+                              _vm._v(" "),
+                              _vm._l(_vm.employeesList, function(
+                                currentEmployee
+                              ) {
+                                return currentEmployee.id === task.employee
+                                  ? _c("v-btn", {
+                                      key: currentEmployee.id,
+                                      domProps: {
+                                        innerHTML: _vm._s(
+                                          currentEmployee.last_name +
+                                            " " +
+                                            currentEmployee.first_name
+                                        )
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.goToEmployee(
+                                            currentEmployee
+                                          )
+                                        }
+                                      }
+                                    })
+                                  : _vm._e()
                               })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-action",
+                            [
+                              _vm.userAuthorisation > 1
+                                ? _c("add-task", {
+                                    attrs: { currentTask: task }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.userAuthorisation > 1
+                                ? _c("modify-task", {
+                                    attrs: { currentTask: task }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.userAuthorisation > 1
+                                ? _c("delete-task", {
+                                    attrs: { currentTask: task }
+                                  })
+                                : _vm._e()
                             ],
                             1
                           )
@@ -92951,7 +94841,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   "609dd4e3",
   null
-
+  
 )
 
 /* hot reload */
@@ -92971,7 +94861,7 @@ component.options.__file = "resources/js/layout/UI-kit/AddProject.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddProject.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/AddProject.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -93022,7 +94912,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   "6a9fb0e2",
   null
-
+  
 )
 
 /* hot reload */
@@ -93042,7 +94932,7 @@ component.options.__file = "resources/js/layout/UI-kit/AddSubtask.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddSubtask.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/AddSubtask.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -93058,7 +94948,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddSubtask.vue?vue&type=style&index=0&id=6a9fb0e2&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/AddSubtask.vue?vue&type=style&index=0&id=6a9fb0e2&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a);
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSubtask_vue_vue_type_style_index_0_id_6a9fb0e2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -93176,7 +95066,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   "26c70582",
   null
-
+  
 )
 
 /* hot reload */
@@ -93196,7 +95086,7 @@ component.options.__file = "resources/js/layout/UI-kit/DeleteSubtask.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteSubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteSubtask.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/DeleteSubtask.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteSubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteSubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -93314,7 +95204,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   "390ec100",
   null
-
+  
 )
 
 /* hot reload */
@@ -93334,7 +95224,7 @@ component.options.__file = "resources/js/layout/UI-kit/EmployeeProfile.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EmployeeProfile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/EmployeeProfile.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -93383,7 +95273,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   "4ccb4a60",
   null
-
+  
 )
 
 /* hot reload */
@@ -93403,7 +95293,7 @@ component.options.__file = "resources/js/layout/UI-kit/ModifySubtask.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModifySubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModifySubtask.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/layout/UI-kit/ModifySubtask.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModifySubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModifySubtask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -93559,7 +95449,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Board.vue?vue&type=style&index=0&id=1a1480e4&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Board/Board.vue?vue&type=style&index=0&id=1a1480e4&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a);
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_style_index_0_id_1a1480e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -94612,15 +96502,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var GETTER_TYPES = {
   GET_IMG: 'settings/GET_IMG',
-  GET_FIRST_NAME: 'settings/GET_FIRST_NAME',
+  GET_PHONE_NUMBER: 'settings/GET_PHONE_NUMBER',
   GET_LAST_NAME: 'settings/GET_LAST_NAME',
   GET_PASSWORD: 'settings/GET_PASSWORD'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
 var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_IMG, function (state) {
   return state.img;
-}), _defineProperty(_getters, GETTER_TYPES.GET_FIRST_NAME, function (state) {
-  return state.first_name;
+}), _defineProperty(_getters, GETTER_TYPES.GET_PHONE_NUMBER, function (state) {
+  return state.phone_number;
 }), _defineProperty(_getters, GETTER_TYPES.GET_LAST_NAME, function (state) {
   return state.last_name;
 }), _defineProperty(_getters, GETTER_TYPES.GET_PASSWORD, function (state) {
@@ -94678,15 +96568,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var MUTATIONS_TYPES = {
   SET_IMG: 'settings/SET_IMG',
-  SET_FIRST_NAME: 'settings/SET_FIRST_NAME',
+  SET_PHONE_NUMBER: 'settings/SET_PHONE_NUMBER',
   SET_LAST_NAME: 'settings/SET_LAST_NAME',
   SET_PASSWORD: 'settings/SET_PASSWORD'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATIONS_TYPES);
 var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SET_IMG, function (state, data) {
   state.img = data;
-}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_FIRST_NAME, function (state, data) {
-  state.first_name = data;
+}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_PHONE_NUMBER, function (state, data) {
+  state.phone_number = data;
 }), _defineProperty(_mutations, MUTATIONS_TYPES.SET_LAST_NAME, function (state, data) {
   state.last_name = data;
 }), _defineProperty(_mutations, MUTATIONS_TYPES.SET_PASSWORD, function (state, data) {
@@ -94706,7 +96596,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SE
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   img: '',
-  first_name: '',
+  phone_number: '',
   last_name: '',
   password: ''
 });
@@ -95805,7 +97695,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
   }))();
 }), _defineProperty(_actions, ACTION_TYPES.FETCH_SUBTASKS, function (_ref11) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
-    var commit, state, subtasks, currentEmployee, listSubtasks;
+    var commit, state, subtasks, tasks, currentEmployee, listSubtasks;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
       while (1) {
         switch (_context10.prev = _context10.next) {
@@ -95816,16 +97706,17 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PROJE
 
           case 3:
             subtasks = _context10.sent;
+            tasks = _getters__WEBPACK_IMPORTED_MODULE_3__["getters"][_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TASKS];
             currentEmployee = _getters__WEBPACK_IMPORTED_MODULE_3__["getters"][_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_CURRENT_EMPLOYEE];
             listSubtasks = [];
-            Object.keys(subtasks).forEach(function (key) {
-              if (subtasks[key].employee_id === currentEmployee.id) {
-                listSubtasks.push(subtasks[key]);
-              }
+            Object.keys(tasks).forEach(function (key1) {
+              Object.keys(subtasks).forEach(function (key2) {
+                if (subtasks[key2].task_id === tasks[key1].id) listSubtasks.push(subtasks[key]);
+              });
             });
             commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_SUBTASKS, listSubtasks);
 
-          case 8:
+          case 9:
           case "end":
             return _context10.stop();
         }
