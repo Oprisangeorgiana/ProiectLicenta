@@ -5610,6 +5610,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this3.$store.dispatch(_js_store_global_actions__WEBPACK_IMPORTED_MODULE_2__["default"].FETCH_EMPLOYEES);
 
             case 8:
+              console.log('user', _this3.user);
+
+            case 9:
             case "end":
               return _context.stop();
           }

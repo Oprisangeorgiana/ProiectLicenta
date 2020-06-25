@@ -181,7 +181,7 @@
       await this.$store.dispatch(globalActions.FETCH_PROJECTS)
       await this.$store.dispatch(globalActions.FETCH_USER_AUTH)
       await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)
-
+console.log('user',this.user)
     },
 
   }
