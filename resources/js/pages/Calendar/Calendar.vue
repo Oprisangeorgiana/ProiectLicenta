@@ -3,7 +3,7 @@
     <v-sheet
       tile
       height="54"
-      color="teal lighten-4"
+      color="secondary"
       class="d-flex"
     >
       <v-btn
@@ -55,14 +55,14 @@
         :type="type"
         :events="events"
         :event-color="color[0]"
-         ></v-calendar>
+      ></v-calendar>
 
       <v-calendar
-      v-else
-      ref="calendar"
-      v-model="value"
-      :weekdays="weekday"
-      :type="type"
+        v-else
+        ref="calendar"
+        v-model="value"
+        :weekdays="weekday"
+        :type="type"
       >
       </v-calendar>
     </v-sheet>
@@ -72,7 +72,7 @@
 <script>
 
   import AddTask from '../../../../resources/js/layout/UI-kit/AddTask'
-  import { mapGetters } from "vuex";
+  import { mapGetters } from 'vuex'
   import calendarGetters from '../../pages/Calendar/store/getters'
   import calendarActions from '../../pages/Calendar/store/actions'
   import globalGetters from '../../../js/store/global/getters'
@@ -92,11 +92,11 @@
         { text: 'Sun - Sat', value: [0, 1, 2, 3, 4, 5, 6] },
         { text: 'Mon - Sun', value: [1, 2, 3, 4, 5, 6, 0] },
         { text: 'Mon - Fri', value: [1, 2, 3, 4, 5] },
-        { text: 'Mon, Wed, Fri', value: [1, 3, 5] },
+        { text: 'Mon, Wed, Fri', value: [1, 3, 5] }
       ],
       value: '',
-      events:[],
-      color: [ 'teal'],
+      events: [],
+      color: ['teal']
     }),
 
     computed: {
@@ -137,14 +137,13 @@
           });
           this.events = events
 
-
        }
     },
     async mounted () {
       await this.$store.dispatch(globalActions.FETCH_PAGE_TASKS)
       await this.$store.dispatch(globalActions.FETCH_SUBTASKS)
-      this.seeTasks();
+      this.seeTasks()
 
-    },
+    }
   }
 </script>

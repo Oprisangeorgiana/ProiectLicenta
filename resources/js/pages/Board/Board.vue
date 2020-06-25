@@ -1,10 +1,8 @@
 <template>
-
-
   <v-container>
     <v-row>
       <v-col cols="3">
-        <v-card tile flat color="teal lighten-1">
+        <v-card tile flat color="grey lighten-1">
           <h1>COMING
             <add-task v-if="userAuthorisation > 1">
             </add-task>
@@ -567,7 +565,7 @@
       // await console.log('myTasks', this.myTasks)
     },
 
-  };
+    };
 </script>
 <style scoped>
   .ghost {

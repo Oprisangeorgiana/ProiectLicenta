@@ -77,7 +77,7 @@ export const actions = {
   },
 
   async [ACTION_TYPES.FETCH_TOKEN] ({ state, commit, dispatch, getters }, { username, password }) {
-    axios.post('/api/login', {
+    await axios.post('/api/login', {
       username: username,
       password: password
     }).then(
@@ -92,7 +92,7 @@ export const actions = {
 
   async [ACTION_TYPES.FETCH_USER] ({ state, commit, dispatch, getters }) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + getters[pageGetters.GET_TOKEN]
-    axios.get('/api/user', {}).then(
+    await  axios.get('/api/user', {}).then(
       response => {
         commit(pageMutations.SET_USER, response.data)
       }
@@ -306,3 +306,4 @@ export const actions = {
   }
 
 }
+

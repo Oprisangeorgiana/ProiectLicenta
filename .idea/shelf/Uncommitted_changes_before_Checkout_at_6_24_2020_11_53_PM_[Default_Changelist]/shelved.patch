@@ -1,0 +1,21 @@
+Index: config/services.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nreturn [\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Third Party Services\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | This file is for storing the credentials for third party services such\r\n    | as Mailgun, Postmark, AWS and more. This file provides the de facto\r\n    | location for this type of information, allowing packages to have\r\n    | a conventional file to locate the various service credentials.\r\n    |\r\n    */\r\n\r\n    'mailgun' => [\r\n        'domain' => env('MAILGUN_DOMAIN'),\r\n        'secret' => env('MAILGUN_SECRET'),\r\n        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),\r\n    ],\r\n\r\n    'postmark' => [\r\n        'token' => env('POSTMARK_TOKEN'),\r\n    ],\r\n\r\n    'ses' => [\r\n        'key' => env('AWS_ACCESS_KEY_ID'),\r\n        'secret' => env('AWS_SECRET_ACCESS_KEY'),\r\n        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),\r\n    ],\r\n\r\n    'passport'=>[\r\n        'login_endpoint'=>'http://192.168.10.10/oauth/token',\r\n        'client_id'=>'6',\r\n        'client_secret'=>'eF1sbIO8ku1NBPZ2H5GTSl5vFnzbtAKpMx1C82wl'\r\n    ]\r\n\r\n];\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- config/services.php	(revision c4b5e234acf858af43abe1e8f77b72cf74fa3e5d)
++++ config/services.php	(date 1593031477711)
+@@ -32,8 +32,8 @@
+ 
+     'passport'=>[
+         'login_endpoint'=>'http://192.168.10.10/oauth/token',
+-        'client_id'=>'6',
+-        'client_secret'=>'eF1sbIO8ku1NBPZ2H5GTSl5vFnzbtAKpMx1C82wl'
++        'client_id'=>'2',
++        'client_secret'=>' CopTa0ZwwiIaY7Js4oDhmuyrwJ09FIUWlJPAPUWX'
+     ]
+ 
+ ];
+diff --git public/mix-manifest.json public/mix-manifest.json

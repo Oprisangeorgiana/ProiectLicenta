@@ -1,41 +1,52 @@
 <template>
-  <div>
-    <v-row class="mb-8" justify="center" align="center">
-      <v-card color="teal">
-        <h1>{{this.user.name}}</h1>
-      </v-card>
-    </v-row>
+  <v-card v-if="loaded" width="100%" max-width="800" height="100%" class="pa-4 mx-auto">
+    <v-card-title collor="secondary">
+      <h2>Edit Profile</h2>
+    </v-card-title>
+    <v-spacer></v-spacer>
+    <v-card-text>
+      <v-form
+        ref="form"
+        v-model="valid"
+      >
 
-<!--    <v-row class="mb-8">-->
-<!--      <v-expansion-panels popout>-->
-<!--        <v-expansion-panel>-->
-<!--          <v-expansion-panel-header>-->
-<!--            <v-layout justify-center>-->
-<!--              <v-avatar-->
-<!--                color="teal"-->
-<!--                size="100px"-->
-<!--              >-->
-<!--                <v-icon large>mdi-account-circle</v-icon>-->
-<!--              </v-avatar>-->
-<!--            </v-layout>-->
-<!--          </v-expansion-panel-header>-->
-<!--          <v-expansion-panel-content>-->
-<!--            <v-file-input-->
-<!--              accept="image/png, image/jpeg, image/bmp"-->
-<!--              placeholder="Change your photo"-->
-<!--              prepend-icon="mdi-camera"-->
-<!--            >-->
-<!--            </v-file-input>-->
-<!--            <v-btn color="teal">-->
-<!--              SUBMIT-->
-<!--            </v-btn>-->
-<!--          </v-expansion-panel-content>-->
-<!--        </v-expansion-panel>-->
-<!--      </v-expansion-panels>-->
-<!--    </v-row>-->
+        <v-text-field
+          v-model="name"
+          label="Name"
+          :rules="nameRules"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          :rules="emailRules"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="password"
+          ref="password"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          :rules="passwordRules"
+          data-vv-name="pass"
+          @click:append="showPassword = !showPassword"
+          label="Password"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="rePassword"
+          :append-icon="showRePassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showRePassword ? 'text' : 'password'"
+          :rules="[passwordConfirmationRule]"
+          @click:append="showRePassword = !showRePassword"
+          label="Retype password"
+          required
+        ></v-text-field>
 
 
-    <v-row class="mb-6">
 
         <v-col cols="3">
           <v-label>Phone number</v-label>
@@ -51,61 +62,45 @@
         </v-btn>
 
       </v-col>
-    </v-row>
 
+        <v-btn color="accent" @click="onSaveClick">Save</v-btn>
+      </v-form>
+    </v-card-text>
+  </v-card>
 
-    <v-row class="mb-6">
-      <v-col cols="3">
-        <v-label>New Password</v-label>
-      </v-col>
-      <v-col cols="7">
-        <v-text-field placeholder="password" v-model="newPassword"></v-text-field>
-      </v-col>
-
-    </v-row>
-    <v-row class="mb-6">
-      <v-col cols="3">
-        <v-label>Confirm New Password</v-label>
-      </v-col>
-      <v-col cols="7">
-        <v-text-field placeholder="password" v-model="confirmNewPassword" required></v-text-field>
-      </v-col>
-      <v-col class="2">
-        <v-btn
-
-
-          color="teal">
-          SUBMIT
-        </v-btn>
-      </v-col>
-    </v-row>
-
-  </div>
 </template>
 
 <script>
 
-  import settingsActions from './store/actions'
-  import settingsGetters from './store/getters'
-  import settingsMutations from './store/mutations'
   import { mapGetters } from 'vuex'
   import globalGetters from '../../../js/store/global/getters'
   import globalActions from '../../../js/store/global/actions'
   import EmployeesRepository from '../../repositories/EmployeesRepository'
+  import pageActions from './store/actions'
+  import pageGetters from './store/getters'
+  import pageMutations from './store/mutations'
 
   export default {
 
     name: "Settings",
 
-    data () {
-      return {
-
-        newPassword: null,
-        confirmNewPassword: null,
-
-      };
-
-    },
+    data: () => ({
+      loaded: false,
+      valid: true,
+      showPassword: false,
+      showRePassword: false,
+      rePassword: null,
+      nameRules: [
+        v => !!v || 'Name is required'
+      ],
+      passwordRules: [
+        v => (!v || v.length >= 6) || 'Password must be more than 6 characters'
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ]
+    }),
     computed: {
 
       ...mapGetters({
@@ -114,6 +109,39 @@
 
       }),
 
+
+      name: {
+        get () {
+          return this.$store.getters[pageGetters.GET_NAME]
+        },
+
+        set (value) {
+          this.$store.commit(pageMutations.SET_NAME, value)
+        }
+      },
+      password: {
+        get () {
+          return this.$store.getters[pageGetters.GET_PASSWORD]
+        },
+
+        set (value) {
+          this.$store.commit(pageMutations.SET_PASSWORD, value)
+        }
+      },
+      email: {
+        get () {
+          return this.$store.getters[pageGetters.GET_EMAIL]
+        },
+
+        set (value) {
+          this.$store.commit(pageMutations.SET_EMAIL, value)
+        }
+      },
+      passwordConfirmationRule () {
+        if (!this.password)
+          return true
+        return () => (this.password === this.rePassword) || 'Password must match'
+      }
 
     },
 
@@ -125,10 +153,27 @@
         }
         await new EmployeesRepository().update(modifyPhoneNumber)
       },
+
+      async init () {
+        await this.$store.dispatch(pageActions.FETCH_DATA)
+        this.loaded = true
+      },
+      async validate () {
+        await this.$refs.form.validate()
+      },
+
+      async onSaveClick () {
+        if (await this.$refs.form.validate()) {
+          await this.$store.dispatch(pageActions.UPDATE_USER)
+          await this.$store.dispatch(pageActions.FETCH_DATA)
+          await this.$router.push('/')
+        }
+      }
     },
 
     async mounted () {
       await this.$store.dispatch(globalActions.FETCH_CURRENT_EMPLOYEE)
+      this.init()
     },
   }
 

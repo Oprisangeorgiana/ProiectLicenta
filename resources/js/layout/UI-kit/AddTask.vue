@@ -5,7 +5,9 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-icon x-large v-on="on">mdi-plus-circle-outline</v-icon>
+      <v-btn fab x-small color="accent">
+        <v-icon dark v-on="on">mdi-plus-circle-outline</v-icon>
+      </v-btn>
     </template>
     <v-card>
       <v-card-title class="teal">
@@ -208,7 +210,6 @@
 
         menuStartHour: false,
         menuEndHour: false,
-
       };
     },
     computed: {
@@ -288,6 +289,7 @@
 
     },
 
+    mounted () {},
 
     methods: {
       correctList(){
@@ -307,8 +309,6 @@
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false
-      },
-
 
     },
     async mounted () {
