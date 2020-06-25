@@ -2079,53 +2079,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2226,7 +2179,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     actionPressed: function actionPressed(action) {
-      // console.log(action)
       switch (action) {
         case 'profile':
           {
@@ -2604,12 +2556,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2651,66 +2597,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     currentTask: Object
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
-    listProjects: _store_global_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_PROJECTS
-  }), {
-    description: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DESCRIPTION];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DESCRIPTION, value);
-      }
-    },
-    task_type: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_TYPE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_TYPE, value);
-      }
-    },
-    deadline: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_DEADLINE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_DEADLINE, value);
-      }
-    },
-    start_date: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_START_DATE];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_START_DATE, value);
-      }
-    },
-    start_hour: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_START_HOUR];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_START_HOUR, value);
-      }
-    },
-    end_hour: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_END_HOUR];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_END_HOUR, value);
-      }
-    },
-    project_task: {
-      get: function get() {
-        return this.$store.getters[_pages_Board_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_TASK_PROJECT];
-      },
-      set: function set(value) {
-        this.$store.commit(_pages_Board_store_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TASK_PROJECT, value);
-      }
-    }
-  }),
+  computed: {},
   mounted: function mounted() {},
   methods: {
     deleteTask: function deleteTask() {
@@ -2734,10 +2621,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
-    } // async mounted () {
-    //   await this.$store.dispatch(globalActions.FETCH_DETAILS)
-    // },
-
+    }
   }
 });
 
@@ -3181,13 +3065,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3199,8 +3076,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 // import nestedDraggable from '';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "board",
-  display: "Two Lists",
+  name: 'board',
+  display: 'Two Lists',
   order: 1,
   components: {
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_1___default.a,
@@ -3224,7 +3101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     clone: function clone(el) {
       return {
-        name: this.el.task + " cloned"
+        name: this.el.task + ' cloned'
       };
     },
     log: function log(evt) {
@@ -3352,8 +3229,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -3408,7 +3283,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         events.push(data);
       });
       this.events = events;
-      console.log('user', this.user);
     }
   },
   mounted: function mounted() {
@@ -3735,39 +3609,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/actions */ "./resources/js/pages/Settings/store/actions.js");
-/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/getters */ "./resources/js/pages/Settings/store/getters.js");
-/* harmony import */ var _store_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/mutations */ "./resources/js/pages/Settings/store/mutations.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/actions */ "./resources/js/pages/Settings/store/actions.js");
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/getters */ "./resources/js/pages/Settings/store/getters.js");
+/* harmony import */ var _store_mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/mutations */ "./resources/js/pages/Settings/store/mutations.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3826,43 +3678,142 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Settings",
+  name: 'Settings',
   computed: {
-    firstName: {
+    name: {
       get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_FIRST_NAME];
+        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_NAME];
       },
       set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_FIRST_NAME, value);
-      }
-    },
-    lastName: {
-      get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_LAST_NAME];
-      },
-      set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_LAST_NAME, value);
+        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_3__["default"].SET_NAME, value);
       }
     },
     password: {
       get: function get() {
-        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_1__["default"].GET_PASSWORD];
+        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_PASSWORD];
       },
       set: function set(value) {
-        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_2__["default"].SET_PASSWORD, value);
+        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_3__["default"].SET_PASSWORD, value);
       }
+    },
+    email: {
+      get: function get() {
+        return this.$store.getters[_store_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_EMAIL];
+      },
+      set: function set(value) {
+        this.$store.commit(_store_mutations__WEBPACK_IMPORTED_MODULE_3__["default"].SET_EMAIL, value);
+      }
+    },
+    passwordConfirmationRule: function passwordConfirmationRule() {
+      var _this = this;
+
+      if (!this.password) return true;
+      return function () {
+        return _this.password === _this.rePassword || 'Password must match';
+      };
     }
   },
+  data: function data() {
+    return {
+      loaded: false,
+      valid: true,
+      showPassword: false,
+      showRePassword: false,
+      rePassword: null,
+      nameRules: [function (v) {
+        return !!v || 'Name is required';
+      }],
+      passwordRules: [function (v) {
+        return !v || v.length >= 6 || 'Password must be more than 6 characters';
+      }],
+      emailRules: [function (v) {
+        return !!v || 'E-mail is required';
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || 'E-mail must be valid';
+      }]
+    };
+  },
   methods: {
-    submitFirstName: function submitFirstName() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_FIRST_NAME);
+    init: function init() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this2.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_1__["default"].FETCH_DATA);
+
+              case 2:
+                _this2.loaded = true;
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
-    submitLastName: function submitLastName() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_LAST_NAME);
+    validate: function validate() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this3.$refs.form.validate();
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
-    submitPassword: function submitPassword() {
-      this.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_0__["default"].UPDATE_PASSWORD);
+    onSaveClick: function onSaveClick() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this4.$refs.form.validate();
+
+              case 2:
+                if (!_context3.sent) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                _context3.next = 5;
+                return _this4.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_1__["default"].UPDATE_USER);
+
+              case 5:
+                _context3.next = 7;
+                return _this4.$store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_1__["default"].FETCH_DATA);
+
+              case 7:
+                _context3.next = 9;
+                return _this4.$router.push('/');
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
+  },
+  mounted: function mounted() {
+    this.init();
   }
 });
 
@@ -3953,6 +3904,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3960,7 +3930,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Workspaces",
+  name: 'Workspaces',
   data: function data() {
     return {
       search: '',
@@ -26688,11 +26658,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
+    { attrs: { dark: "" } },
     [
       _c(
         "v-navigation-drawer",
         {
-          attrs: { app: "", color: "teal" },
+          attrs: { app: "" },
           model: {
             value: _vm.drawer,
             callback: function($$v) {
@@ -26703,135 +26674,198 @@ var render = function() {
         },
         [
           _c(
-            "v-list",
-            { attrs: { dense: "" } },
+            "v-list-item",
             [
               _c(
-                "v-list-item",
-                { attrs: { link: "" } },
+                "v-list-item-content",
+                [
+                  _c("v-list-item-title", { staticClass: "title" }, [
+                    _vm._v("\n          Fake Clickup\n        ")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-list",
+            [
+              _c(
+                "router-link",
+                {
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { to: { name: "home" } }
+                },
                 [
                   _c(
-                    "v-list-item-action",
+                    "v-list-item",
+                    { attrs: { link: "" } },
                     [
                       _c(
-                        "router-link",
-                        { attrs: { to: { name: "home" } } },
-                        [
-                          _c(
-                            "v-icon",
-                            { attrs: { large: "", color: "white" } },
-                            [_vm._v("mdi-home")]
-                          )
-                        ],
+                        "v-list-item-action",
+                        [_c("v-icon", [_vm._v("mdi-home")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
+                        [_c("v-list-item-title", [_vm._v("Home")])],
                         1
                       )
                     ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Home")])],
                     1
                   )
                 ],
                 1
               ),
               _vm._v(" "),
-              _vm.user
-                ? _c(
-                    "v-list-item",
-                    { attrs: { link: "" } },
-                    [
-                      _c(
-                        "v-list-item-action",
+              _c(
+                "router-link",
+                {
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { to: { name: "workspaces" } }
+                },
+                [
+                  _vm.user
+                    ? _c(
+                        "v-list-item",
+                        { attrs: { link: "" } },
                         [
                           _c(
-                            "router-link",
-                            { attrs: { to: { name: "settings" } } },
-                            [
-                              _c(
-                                "v-icon",
-                                { attrs: { large: "", color: "white" } },
-                                [_vm._v("mdi-account-cog")]
-                              )
-                            ],
+                            "v-list-item-action",
+                            [_c("v-icon", [_vm._v("mdi-earth")])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Workspaces")])],
                             1
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Settings")])],
-                        1
                       )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.user
-                ? _c(
-                    "v-list-item",
-                    { attrs: { link: "" } },
-                    [
-                      _c(
-                        "v-list-item-action",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "workspaces" } } },
-                            [
-                              _c(
-                                "v-icon",
-                                { attrs: { large: "", color: "white" } },
-                                [_vm._v("mdi-earth")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Workspaces")])],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
+                    : _vm._e()
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
-                "v-list-item",
-                { attrs: { link: "" } },
+                "router-link",
+                {
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { to: { name: "board" } }
+                },
                 [
                   _c(
-                    "v-list-item-action",
+                    "v-list-item",
+                    { attrs: { link: "" } },
                     [
                       _c(
-                        "router-link",
-                        { attrs: { to: { name: "help" } } },
-                        [
-                          _c(
-                            "v-icon",
-                            { attrs: { large: "", color: "white" } },
-                            [_vm._v("mdi-help")]
-                          )
-                        ],
+                        "v-list-item-action",
+                        [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
+                        [_c("v-list-item-title", [_vm._v("Board")])],
                         1
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { to: { name: "calendar" } }
+                },
+                [
                   _c(
-                    "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Help")])],
+                    "v-list-item",
+                    { attrs: { link: "" } },
+                    [
+                      _c(
+                        "v-list-item-action",
+                        [_c("v-icon", [_vm._v("mdi-calendar")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
+                        [_c("v-list-item-title", [_vm._v("Calendar")])],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { to: { name: "settings" } }
+                },
+                [
+                  _vm.user
+                    ? _c(
+                        "v-list-item",
+                        { attrs: { link: "" } },
+                        [
+                          _c(
+                            "v-list-item-action",
+                            [_c("v-icon", [_vm._v("mdi-account-cog")])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Settings")])],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { to: { name: "help" } }
+                },
+                [
+                  _c(
+                    "v-list-item",
+                    { attrs: { link: "" } },
+                    [
+                      _c(
+                        "v-list-item-action",
+                        [_c("v-icon", [_vm._v("mdi-help")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
+                        [_c("v-list-item-title", [_vm._v("Help")])],
+                        1
+                      )
+                    ],
                     1
                   )
                 ],
@@ -26846,259 +26880,78 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-app-bar",
-        { attrs: { app: "", color: "teal" } },
+        { attrs: { app: "" } },
         [
-          _c(
-            "v-row",
-            { attrs: { align: "center" } },
-            [
-              _c(
-                "v-col",
-                { attrs: { cols: "4" } },
-                [
-                  _c("v-app-bar-nav-icon", {
-                    on: {
-                      click: function($event) {
-                        $event.stopPropagation()
-                        _vm.drawer = !_vm.drawer
-                      }
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "5" } },
-                [
-                  _c(
-                    "v-btn-toggle",
-                    { attrs: { "background-color": "teal lighten" } },
+          _c("v-app-bar-nav-icon", {
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                _vm.drawer = !_vm.drawer
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _vm.user
+            ? _c(
+                "v-menu",
+                {
+                  attrs: { "offset-y": "" },
+                  scopedSlots: _vm._u(
                     [
-                      _c(
-                        "v-btn",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "calendar" } } },
-                            [_vm._v("\n              Calendar\n            ")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "board" } } },
-                            [_vm._v("\n              Board\n            ")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _vm.user
-                ? _c(
-                    "v-col",
-                    { attrs: { cols: "1", align: "right" } },
-                    [
-                      _c(
-                        "v-menu",
-                        {
-                          attrs: { "offset-y": "" },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function(ref) {
-                                  var on = ref.on
-                                  return [
-                                    _vm.countNotifications !== 0
-                                      ? _c(
-                                          "v-badge",
-                                          {
-                                            attrs: { color: "red", left: "" },
-                                            scopedSlots: _vm._u(
-                                              [
-                                                {
-                                                  key: "badge",
-                                                  fn: function() {
-                                                    return [
-                                                      _c("span", [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm.countNotifications
-                                                          )
-                                                        )
-                                                      ])
-                                                    ]
-                                                  },
-                                                  proxy: true
-                                                }
-                                              ],
-                                              null,
-                                              true
-                                            )
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              _vm._g(
-                                                {
-                                                  attrs: {
-                                                    large: "",
-                                                    color: "white"
-                                                  }
-                                                },
-                                                on
-                                              ),
-                                              [_vm._v("mdi-bell")]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e()
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            false,
-                            2982978562
-                          )
-                        },
-                        [
-                          _vm._v(" "),
-                          _c(
-                            "v-list",
-                            [
-                              _vm._l(_vm.notificationsList, function(item) {
-                                return _c(
-                                  "v-list-item",
-                                  { key: item.id },
-                                  [
-                                    _c("v-list-item-content", [
-                                      _vm._v(
-                                        "\n                " +
-                                          _vm._s(item.name) +
-                                          " is going to end on " +
-                                          _vm._s(item.end_date) +
-                                          " at " +
-                                          _vm._s(item.end_hour) +
-                                          "\n              "
-                                      )
-                                    ])
-                                  ],
-                                  1
+                      {
+                        key: "activator",
+                        fn: function(ref) {
+                          var on = ref.on
+                          return [
+                            _c(
+                              "v-btn",
+                              _vm._g({ attrs: { color: "primary" } }, on),
+                              [
+                                _vm._v(
+                                  "\n          " +
+                                    _vm._s(_vm.user.name) +
+                                    "\n        "
                                 )
-                              }),
-                              _vm._v(" "),
-                              _c("v-spacer")
-                            ],
-                            2
-                          )
-                        ],
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ],
+                    null,
+                    false,
+                    3739818527
+                  )
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.items, function(item, index) {
+                      return _c(
+                        "v-list-item",
+                        {
+                          key: index,
+                          on: {
+                            click: function($event) {
+                              return _vm.actionPressed(item.action)
+                            }
+                          }
+                        },
+                        [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])],
                         1
                       )
-                    ],
+                    }),
                     1
                   )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "2", align: "right" } },
-                [
-                  _vm.user
-                    ? _c(
-                        "v-menu",
-                        {
-                          attrs: { "offset-y": "" },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function(ref) {
-                                  var on = ref.on
-                                  return [
-                                    _c(
-                                      "v-btn",
-                                      _vm._g(
-                                        {
-                                          attrs: { color: "primary", dark: "" }
-                                        },
-                                        on
-                                      ),
-                                      [
-                                        _vm._v(
-                                          "\n              " +
-                                            _vm._s(_vm.user.name) +
-                                            "\n            "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            false,
-                            2628159253
-                          )
-                        },
-                        [
-                          _vm._v(" "),
-                          _c(
-                            "v-list",
-                            _vm._l(_vm.items, function(item, index) {
-                              return _c(
-                                "v-list-item",
-                                {
-                                  key: index,
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.actionPressed(item.action)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-list-item-title", [
-                                    _vm._v(_vm._s(item.title))
-                                  ])
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _c(
-                        "v-btn",
-                        _vm._g(
-                          {
-                            attrs: { color: "primary", dark: "", to: "/login" }
-                          },
-                          _vm.on
-                        ),
-                        [_vm._v("\n          Log in\n        ")]
-                      )
                 ],
                 1
               )
-            ],
-            1
-          )
+            : _c("v-btn", _vm._g({ attrs: { to: "/login" } }, _vm.on), [
+                _vm._v("\n      Log in\n    ")
+              ])
         ],
         1
       ),
@@ -27108,22 +26961,8 @@ var render = function() {
         [
           _c(
             "v-container",
-            { staticClass: "fill-height", attrs: { fluid: "" } },
-            [
-              _c(
-                "v-row",
-                { attrs: { align: "center", justify: "center" } },
-                [
-                  _c(
-                    "v-col",
-                    { staticClass: "text-center" },
-                    [_c("router-view")],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
+            { staticClass: "fill-height pa-10", attrs: { fluid: "" } },
+            [_c("v-row", [_c("v-col", [_c("router-view")], 1)], 1)],
             1
           )
         ],
@@ -27132,10 +26971,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-footer",
-        { attrs: { color: "teal", app: "" } },
+        { attrs: { app: "" } },
         [
           _c("v-layout", { attrs: { "justify-center": "" } }, [
-            _c("span", { staticClass: "white--text" }, [_vm._v("© 2019-2020")])
+            _c("span", { staticClass: "white--text" }, [
+              _vm._v("Universitatea Politehnica Bucuresti © 2019-2020")
+            ])
           ])
         ],
         1
@@ -27178,7 +27019,7 @@ var render = function() {
             return [
               _c(
                 "v-btn",
-                { attrs: { fab: "", dark: "", "x-small": "", color: "grey" } },
+                { attrs: { fab: "", "x-small": "", color: "accent" } },
                 [
                   _c("v-icon", _vm._g({ attrs: { dark: "" } }, on), [
                     _vm._v("mdi-plus")
@@ -27848,7 +27689,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Close")]
+                [_vm._v("NO")]
               ),
               _vm._v(" "),
               _c(
@@ -27857,7 +27698,7 @@ var render = function() {
                   attrs: { color: "teal", text: "" },
                   on: { click: _vm.deleteTask }
                 },
-                [_vm._v("Save")]
+                [_vm._v("YES")]
               )
             ],
             1
@@ -28551,14 +28392,19 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-3" } },
+                {
+                  staticClass: "px-2 d-flex justify-space-between",
+                  attrs: { tile: "", flat: "", color: "secondary" }
+                },
                 [
+                  _c("h2", { staticClass: "font-weight-light" }, [
+                    _vm._v("COMING")
+                  ]),
+                  _vm._v(" "),
                   _c(
-                    "h1",
-                    [
-                      _vm._v("COMING\n                        "),
-                      _vm.user ? _c("add-task") : _vm._e()
-                    ],
+                    "div",
+                    { staticClass: "my-auto" },
+                    [_vm.user ? _c("add-task") : _vm._e()],
                     1
                   )
                 ]
@@ -28573,14 +28419,19 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-4" } },
+                {
+                  staticClass: "px-2 d-flex justify-space-between",
+                  attrs: { tile: "", flat: "", color: "secondary" }
+                },
                 [
+                  _c("h2", { staticClass: "font-weight-light" }, [
+                    _vm._v("TO DO")
+                  ]),
+                  _vm._v(" "),
                   _c(
-                    "h1",
-                    [
-                      _vm._v("TO DO\n                        "),
-                      _vm.user ? _c("add-task") : _vm._e()
-                    ],
+                    "div",
+                    { staticClass: "my-auto" },
+                    [_vm.user ? _c("add-task") : _vm._e()],
                     1
                   )
                 ]
@@ -28595,8 +28446,15 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-3" } },
-                [_c("h1", [_vm._v("FINISHED\n                    ")])]
+                {
+                  staticClass: "px-2",
+                  attrs: { tile: "", flat: "", color: "secondary" }
+                },
+                [
+                  _c("h2", { staticClass: "font-weight-light" }, [
+                    _vm._v("FINISHED")
+                  ])
+                ]
               )
             ],
             1
@@ -28608,8 +28466,15 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "teal lighten-4" } },
-                [_c("h1", [_vm._v("CANCELED\n                    ")])]
+                {
+                  staticClass: "px-2",
+                  attrs: { tile: "", flat: "", color: "secondary" }
+                },
+                [
+                  _c("h2", { staticClass: "font-weight-light" }, [
+                    _vm._v("CANCELED")
+                  ])
+                ]
               )
             ],
             1
@@ -28650,9 +28515,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\n            " +
                                       _vm._s(listTask.task) +
-                                      "\n                        "
+                                      "\n          "
                                   )
                                 ]
                               )
@@ -28695,9 +28560,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\n            " +
                                       _vm._s(listTask.task) +
-                                      "\n                        "
+                                      "\n          "
                                   )
                                 ]
                               )
@@ -28740,9 +28605,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\n            " +
                                       _vm._s(listTask.task) +
-                                      "\n                        "
+                                      "\n          "
                                   )
                                 ]
                               )
@@ -28782,17 +28647,17 @@ var render = function() {
                                 [
                                   _c("v-card-text", [
                                     _vm._v(
-                                      "\n                                Task: " +
+                                      "\n              Task: " +
                                         _vm._s(listTask.task) +
-                                        "\n                            "
+                                        "\n            "
                                     )
                                   ]),
                                   _vm._v(" "),
                                   _c("v-card-subtitle", [
                                     _vm._v(
-                                      "\n                                Deadline: " +
+                                      "\n              Deadline: " +
                                         _vm._s(listTask.deadline) +
-                                        "\n                            "
+                                        "\n            "
                                     )
                                   ]),
                                   _vm._v(" "),
@@ -28859,7 +28724,7 @@ var render = function() {
         "v-sheet",
         {
           staticClass: "d-flex",
-          attrs: { tile: "", height: "54", color: "teal lighten-4" }
+          attrs: { tile: "", height: "54", color: "secondary" }
         },
         [
           _c(
@@ -28915,7 +28780,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c("add-task"),
+          _c("div", { staticClass: "mt-2" }, [_c("add-task")], 1),
           _vm._v(" "),
           _c(
             "v-btn",
@@ -29159,56 +29024,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-row",
-        { staticClass: "mb-8" },
+  return _vm.loaded
+    ? _c(
+        "v-card",
+        {
+          staticClass: "pa-4 mx-auto",
+          attrs: { width: "100%", "max-width": "800", height: "100%" }
+        },
         [
+          _c("v-card-title", { attrs: { collor: "secondary" } }, [
+            _c("h2", [_vm._v("Edit Profile")])
+          ]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
           _c(
-            "v-expansion-panels",
-            { attrs: { popout: "" } },
+            "v-card-text",
             [
               _c(
-                "v-expansion-panel",
+                "v-form",
+                {
+                  ref: "form",
+                  model: {
+                    value: _vm.valid,
+                    callback: function($$v) {
+                      _vm.valid = $$v
+                    },
+                    expression: "valid"
+                  }
+                },
                 [
-                  _c(
-                    "v-expansion-panel-header",
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { "justify-center": "" } },
-                        [
-                          _c(
-                            "v-avatar",
-                            { attrs: { color: "teal", size: "100px" } },
-                            [
-                              _c("v-icon", { attrs: { large: "" } }, [
-                                _vm._v("mdi-account-circle")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "Name",
+                      rules: _vm.nameRules,
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.name,
+                      callback: function($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "E-mail",
+                      rules: _vm.emailRules,
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.email,
+                      callback: function($$v) {
+                        _vm.email = $$v
+                      },
+                      expression: "email"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    ref: "password",
+                    attrs: {
+                      "append-icon": _vm.showPassword
+                        ? "mdi-eye"
+                        : "mdi-eye-off",
+                      type: _vm.showPassword ? "text" : "password",
+                      rules: _vm.passwordRules,
+                      "data-vv-name": "pass",
+                      label: "Password",
+                      required: ""
+                    },
+                    on: {
+                      "click:append": function($event) {
+                        _vm.showPassword = !_vm.showPassword
+                      }
+                    },
+                    model: {
+                      value: _vm.password,
+                      callback: function($$v) {
+                        _vm.password = $$v
+                      },
+                      expression: "password"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": _vm.showRePassword
+                        ? "mdi-eye"
+                        : "mdi-eye-off",
+                      type: _vm.showRePassword ? "text" : "password",
+                      rules: [_vm.passwordConfirmationRule],
+                      label: "Retype password",
+                      required: ""
+                    },
+                    on: {
+                      "click:append": function($event) {
+                        _vm.showRePassword = !_vm.showRePassword
+                      }
+                    },
+                    model: {
+                      value: _vm.rePassword,
+                      callback: function($$v) {
+                        _vm.rePassword = $$v
+                      },
+                      expression: "rePassword"
+                    }
+                  }),
                   _vm._v(" "),
                   _c(
-                    "v-expansion-panel-content",
-                    [
-                      _c("v-file-input", {
-                        attrs: {
-                          accept: "image/png, image/jpeg, image/bmp",
-                          placeholder: "Change your photo",
-                          "prepend-icon": "mdi-camera"
-                        }
-                      })
-                    ],
-                    1
+                    "v-btn",
+                    {
+                      attrs: { color: "accent" },
+                      on: { click: _vm.onSaveClick }
+                    },
+                    [_vm._v("Save")]
                   )
                 ],
                 1
@@ -29218,142 +29150,8 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "mb-6" },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("First Name")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "First Name" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitFirstName },
-                  model: {
-                    value: _vm.firstName,
-                    callback: function($$v) {
-                      _vm.firstName = $$v
-                    },
-                    expression: "firstName"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "mb-6" },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("Last Name")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "Last Name" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitLastName },
-                  model: {
-                    value: _vm.lastName,
-                    callback: function($$v) {
-                      _vm.lastName = $$v
-                    },
-                    expression: "lastName"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "mb-6" },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "3" } },
-            [_c("v-label", [_vm._v("New Password")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "7" } },
-            [_c("v-text-field", { attrs: { placeholder: "password" } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "2" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "teal" },
-                  on: { click: _vm.submitPassword },
-                  model: {
-                    value: _vm.password,
-                    callback: function($$v) {
-                      _vm.password = $$v
-                    },
-                    expression: "password"
-                  }
-                },
-                [_vm._v("\n                SUBMIT\n            ")]
-              )
-            ],
-            1
-          )
-        ],
-        1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -29381,81 +29179,113 @@ var render = function() {
     "v-container",
     [
       _c(
-        "v-layout",
-        { attrs: { "align-content-center": "", "justify-start": "" } },
+        "v-row",
         [
           _c(
-            "v-card",
-            { staticClass: "mr-8", attrs: { width: "400" } },
+            "v-col",
+            { staticClass: "col-sm-6 col-lg-4" },
             [
               _c(
-                "v-toolbar",
-                { attrs: { color: "teal" } },
+                "v-card",
                 [
                   _c(
-                    "v-toolbar-title",
-                    { staticClass: "align-content-center" },
-                    [_vm._v("PROJECTS")]
-                  ),
-                  _vm._v(" "),
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    { attrs: { icon: "" } },
-                    [_c("v-icon", [_vm._v("mdi-magnify")])],
+                    "v-toolbar",
+                    { attrs: { color: "secondary" } },
+                    [
+                      _c(
+                        "v-toolbar-title",
+                        { staticClass: "align-content-center" },
+                        [_vm._v("PROJECTS")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c("v-icon", { staticClass: "px-3" }, [
+                        _vm._v("mdi-magnify")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        staticClass: "pt-3",
+                        attrs: {
+                          clearable: "",
+                          placeholder: "Type keyword..."
+                        },
+                        on: { "click:clear": _vm.clear },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
                     1
                   ),
                   _vm._v(" "),
-                  _c("v-text-field", {
-                    attrs: { clearable: "", placeholder: "Type keyword..." },
-                    on: { "click:clear": _vm.clear },
-                    model: {
-                      value: _vm.search,
-                      callback: function($$v) {
-                        _vm.search = $$v
-                      },
-                      expression: "search"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list",
-                [
                   _c(
-                    "v-list-item-group",
-                    {
-                      model: {
-                        value: _vm.selectedProject,
-                        callback: function($$v) {
-                          _vm.selectedProject = $$v
+                    "v-list",
+                    { attrs: { "three-line": true } },
+                    [
+                      _c(
+                        "v-list-item-group",
+                        {
+                          model: {
+                            value: _vm.selectedProject,
+                            callback: function($$v) {
+                              _vm.selectedProject = $$v
+                            },
+                            expression: "selectedProject"
+                          }
                         },
-                        expression: "selectedProject"
-                      }
-                    },
-                    _vm._l(_vm.filteredProjects, function(currentProject) {
-                      return _c(
-                        "v-list-item",
-                        { key: currentProject.id },
                         [
-                          _c(
-                            "v-list-item-content",
-                            [
-                              _c("v-list-item-title", {
-                                domProps: {
-                                  innerHTML: _vm._s(currentProject.name)
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          _vm._l(_vm.filteredProjects, function(
+                            currentProject
+                          ) {
+                            return _c(
+                              "v-list-item",
+                              { key: currentProject.id },
+                              [
+                                _c(
+                                  "v-list-item-content",
+                                  [
+                                    _c("v-list-item-title", {
+                                      domProps: {
+                                        innerHTML: _vm._s(currentProject.name)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          _vm._v(" "),
+                          !_vm.selectedProject
+                            ? _c(
+                                "v-list-item",
+                                { attrs: { disabled: "" } },
+                                [
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-title", [
+                                        _vm._v(
+                                          "\n                  There are no projects\n                "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
                         ],
-                        1
+                        2
                       )
-                    }),
+                    ],
                     1
                   )
                 ],
@@ -29466,55 +29296,88 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-card",
-            { attrs: { width: "700" } },
+            "v-col",
+            { staticClass: "col-sm-6 col-lg-8" },
             [
               _c(
-                "v-toolbar",
-                { attrs: { color: "teal" } },
+                "v-card",
                 [
                   _c(
-                    "v-toolbar-title",
-                    { staticClass: "align-content-center" },
-                    [_vm._v("TASKS")]
+                    "v-toolbar",
+                    { attrs: { color: "secondary" } },
+                    [
+                      _c(
+                        "v-toolbar-title",
+                        { staticClass: "align-content-center" },
+                        [_vm._v("TASKS")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
                   ),
                   _vm._v(" "),
-                  _c("v-spacer")
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list",
-                { attrs: { "three-line": true } },
-                _vm._l(_vm.tasksList, function(task) {
-                  return task.project === _vm.selectedProject + 1
-                    ? _c(
-                        "v-list-item",
-                        { key: task.id },
-                        [
-                          _c(
-                            "v-list-item-content",
+                  _c(
+                    "v-list",
+                    { attrs: { "three-line": true } },
+                    [
+                      _vm._l(_vm.tasksList, function(task) {
+                        return task.project === _vm.selectedProject + 1
+                          ? _c(
+                              "v-list-item",
+                              { key: task.id },
+                              [
+                                _c(
+                                  "v-list-item-content",
+                                  [
+                                    _c("v-list-item-title", {
+                                      domProps: { innerHTML: _vm._s(task.task) }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-list-item-subtitle", {
+                                      domProps: {
+                                        innerHTML: _vm._s(task.deadline)
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-list-item-subtitle", {
+                                      domProps: {
+                                        innerHTML: _vm._s(task.project)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      !(Array.isArray(_vm.tasksList) && _vm.tasksList.length)
+                        ? _c(
+                            "v-list-item",
+                            { attrs: { disabled: "" } },
                             [
-                              _c("v-list-item-title", {
-                                domProps: { innerHTML: _vm._s(task.task) }
-                              }),
-                              _vm._v(" "),
-                              _c("v-list-item-subtitle", {
-                                domProps: { innerHTML: _vm._s(task.deadline) }
-                              }),
-                              _vm._v(" "),
-                              _c("v-list-item-subtitle", {
-                                domProps: { innerHTML: _vm._s(task.project) }
-                              })
+                              _c(
+                                "v-list-item-content",
+                                [
+                                  _c("v-list-item-title", [
+                                    _vm._v(
+                                      "\n                There are no tasks\n              "
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                }),
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ],
                 1
               )
             ],
@@ -91288,9 +91151,8 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_PAGE_
 
           case 3:
             updateResponse = _context4.sent;
-            console.log('update', deletedTask);
 
-          case 5:
+          case 4:
           case "end":
             return _context4.stop();
         }
@@ -91966,7 +91828,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/pages/Settings/store/mutations.js");
-/* harmony import */ var _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../repositories/EmployeesRepository */ "./resources/js/repositories/EmployeesRepository.js");
+/* harmony import */ var _store_global_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../store/global/getters */ "./resources/js/store/global/getters.js");
+/* harmony import */ var _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../repositories/EmployeesRepository */ "./resources/js/repositories/EmployeesRepository.js");
+/* harmony import */ var _store_global_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/global/actions */ "./resources/js/store/global/actions.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getters */ "./resources/js/pages/Settings/store/getters.js");
+/* harmony import */ var _repositories_UsersRepository__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../repositories/UsersRepository */ "./resources/js/repositories/UsersRepository.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
 
 
 var _actions;
@@ -91979,100 +91847,75 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
+
+
+
+
 var ACTION_TYPES = {
+  FETCH_DATA: 'settings/FETCH_DATA',
+  UPDATE_USER: 'settings/UPDATE_USER',
   UPDATE_IMG: 'settings/UPDATE_IMG',
   UPDATE_FIRST_NAME: 'settings/UPDATE_FIRST_NAME',
   UPDATE_LAST_NAME: 'settings/UPDATE_LAST_NAME',
   UPDATE_PASSWORD: 'settings/UPDATE_PASSWORD'
 };
 /* harmony default export */ __webpack_exports__["default"] = (ACTION_TYPES);
-var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.UPDATE_IMG, function (_ref, item) {
+var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_DATA, function (_ref, item) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var commit, state, data;
+    var dispatch, commit, state, getters, user, employee;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            commit = _ref.commit, state = _ref.state;
+            dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state, getters = _ref.getters;
             _context.next = 3;
-            return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_2__["default"]().update(item);
+            return dispatch(_store_global_actions__WEBPACK_IMPORTED_MODULE_4__["default"].FETCH_USER);
 
           case 3:
-            data = _context.sent;
-            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_IMG, data);
+            user = _.cloneDeep(getters[_store_global_getters__WEBPACK_IMPORTED_MODULE_2__["default"].GET_USER]);
+            _context.next = 6;
+            return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_3__["default"]().getOne(user.employee_id);
 
-          case 5:
+          case 6:
+            employee = _context.sent;
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_USER, user);
+            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_EMPLOYEE, employee);
+
+          case 9:
           case "end":
             return _context.stop();
         }
       }
     }, _callee);
   }))();
-}), _defineProperty(_actions, ACTION_TYPES.UPDATE_FIRST_NAME, function (_ref2, item) {
+}), _defineProperty(_actions, ACTION_TYPES.UPDATE_USER, function (_ref2, item) {
   return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-    var commit, state, data;
+    var commit, state, getters, user, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            commit = _ref2.commit, state = _ref2.state;
-            _context2.next = 3;
-            return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_2__["default"]().update(item);
+            commit = _ref2.commit, state = _ref2.state, getters = _ref2.getters;
+            user = getters[_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_USER];
+            console.log('user', user);
 
-          case 3:
-            data = _context2.sent;
-            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_FIRST_NAME, data);
+            if (getters[_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_PASSWORD]) {
+              user['password'] = getters[_getters__WEBPACK_IMPORTED_MODULE_5__["default"].GET_PASSWORD];
+            }
 
-          case 5:
+            _context2.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_7___default.a.patch("/api/update", user);
+
+          case 6:
+            response = _context2.sent;
+
+          case 7:
           case "end":
             return _context2.stop();
         }
       }
     }, _callee2);
-  }))();
-}), _defineProperty(_actions, ACTION_TYPES.UPDATE_LAST_NAME, function (_ref3, item) {
-  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-    var commit, state, data;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            commit = _ref3.commit, state = _ref3.state;
-            _context3.next = 3;
-            return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_2__["default"]().update(item);
-
-          case 3:
-            data = _context3.sent;
-            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_LAST_NAME, data);
-
-          case 5:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3);
-  }))();
-}), _defineProperty(_actions, ACTION_TYPES.UPDATE_PASSWORD, function (_ref4, item) {
-  return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-    var commit, state, data;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            commit = _ref4.commit, state = _ref4.state;
-            _context4.next = 3;
-            return new _repositories_EmployeesRepository__WEBPACK_IMPORTED_MODULE_2__["default"]().update(item);
-
-          case 3:
-            data = _context4.sent;
-            commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_PASSWORD, data);
-
-          case 5:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4);
   }))();
 }), _actions);
 
@@ -92093,20 +91936,26 @@ var _getters;
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var GETTER_TYPES = {
+  GET_USER: 'settings/GET_USER',
+  GET_EMPLOYEE: 'settings/GET_EMPLOYEE',
   GET_IMG: 'settings/GET_IMG',
-  GET_FIRST_NAME: 'settings/GET_FIRST_NAME',
-  GET_LAST_NAME: 'settings/GET_LAST_NAME',
-  GET_PASSWORD: 'settings/GET_PASSWORD'
+  GET_NAME: 'settings/GET_NAME',
+  GET_PASSWORD: 'settings/GET_PASSWORD',
+  GET_EMAIL: 'settings/GET_EMAIL'
 };
 /* harmony default export */ __webpack_exports__["default"] = (GETTER_TYPES);
-var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_IMG, function (state) {
+var getters = (_getters = {}, _defineProperty(_getters, GETTER_TYPES.GET_USER, function (state) {
+  return state.user;
+}), _defineProperty(_getters, GETTER_TYPES.GET_EMPLOYEE, function (state) {
+  return state.employee;
+}), _defineProperty(_getters, GETTER_TYPES.GET_IMG, function (state) {
   return state.img;
-}), _defineProperty(_getters, GETTER_TYPES.GET_FIRST_NAME, function (state) {
-  return state.first_name;
-}), _defineProperty(_getters, GETTER_TYPES.GET_LAST_NAME, function (state) {
-  return state.last_name;
+}), _defineProperty(_getters, GETTER_TYPES.GET_NAME, function (state) {
+  return state.user.name;
 }), _defineProperty(_getters, GETTER_TYPES.GET_PASSWORD, function (state) {
   return state.password;
+}), _defineProperty(_getters, GETTER_TYPES.GET_EMAIL, function (state) {
+  return state.user.intern_email;
 }), _getters);
 
 /***/ }),
@@ -92159,20 +92008,26 @@ var _mutations;
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var MUTATIONS_TYPES = {
+  SET_USER: 'settings/SET_USER',
+  SET_EMPLOYEE: 'settings/SET_EMPLOYEE',
   SET_IMG: 'settings/SET_IMG',
-  SET_FIRST_NAME: 'settings/SET_FIRST_NAME',
-  SET_LAST_NAME: 'settings/SET_LAST_NAME',
-  SET_PASSWORD: 'settings/SET_PASSWORD'
+  SET_NAME: 'settings/SET_NAME',
+  SET_PASSWORD: 'settings/SET_PASSWORD',
+  SET_EMAIL: 'settings/SET_EMAIL'
 };
 /* harmony default export */ __webpack_exports__["default"] = (MUTATIONS_TYPES);
-var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SET_IMG, function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SET_USER, function (state, data) {
+  state.user = data;
+}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_EMPLOYEE, function (state, data) {
+  state.employee = data;
+}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_IMG, function (state, data) {
   state.img = data;
-}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_FIRST_NAME, function (state, data) {
-  state.first_name = data;
-}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_LAST_NAME, function (state, data) {
-  state.last_name = data;
+}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_NAME, function (state, data) {
+  state.user.name = data;
 }), _defineProperty(_mutations, MUTATIONS_TYPES.SET_PASSWORD, function (state, data) {
   state.password = data;
+}), _defineProperty(_mutations, MUTATIONS_TYPES.SET_EMAIL, function (state, data) {
+  state.user.intern_email = data;
 }), _mutations);
 
 /***/ }),
@@ -92187,10 +92042,11 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, MUTATIONS_TYPES.SE
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  img: '',
-  first_name: '',
-  last_name: '',
-  password: ''
+  user: null,
+  employee: null,
+  password: null,
+  name: null,
+  email: null
 });
 
 /***/ }),
@@ -92470,7 +92326,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a);
-var opts = {};
+var opts = {
+  theme: {
+    dark: true
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = (new vuetify__WEBPACK_IMPORTED_MODULE_1___default.a(opts));
 
 /***/ }),
@@ -92823,6 +92683,54 @@ var TasksRepository = /*#__PURE__*/function (_BaseRepository) {
 
 /***/ }),
 
+/***/ "./resources/js/repositories/UsersRepository.js":
+/*!******************************************************!*\
+  !*** ./resources/js/repositories/UsersRepository.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BaseRepository__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseRepository */ "./resources/js/repositories/BaseRepository.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var UsersRepository = /*#__PURE__*/function (_BaseRepository) {
+  _inherits(UsersRepository, _BaseRepository);
+
+  var _super = _createSuper(UsersRepository);
+
+  function UsersRepository() {
+    _classCallCheck(this, UsersRepository);
+
+    return _super.call(this, 'user');
+  }
+
+  return UsersRepository;
+}(_BaseRepository__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (UsersRepository);
+
+/***/ }),
+
 /***/ "./resources/js/store/global/actions.js":
 /*!**********************************************!*\
   !*** ./resources/js/store/global/actions.js ***!
@@ -92896,7 +92804,8 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_DETAI
           case 0:
             state = _ref2.state, commit = _ref2.commit, dispatch = _ref2.dispatch, getters = _ref2.getters;
             username = _ref3.username, password = _ref3.password;
-            axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/login', {
+            _context2.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/login', {
               username: username,
               password: password
             }).then(function (response) {
@@ -92905,7 +92814,7 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_DETAI
               commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_TOKEN, token);
             });
 
-          case 3:
+          case 4:
           case "end":
             return _context2.stop();
         }
@@ -92921,11 +92830,12 @@ var actions = (_actions = {}, _defineProperty(_actions, ACTION_TYPES.FETCH_DETAI
           case 0:
             state = _ref4.state, commit = _ref4.commit, dispatch = _ref4.dispatch, getters = _ref4.getters;
             axios__WEBPACK_IMPORTED_MODULE_5___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + getters[_getters__WEBPACK_IMPORTED_MODULE_3__["default"].GET_TOKEN];
-            axios__WEBPACK_IMPORTED_MODULE_5___default.a.get('/api/user', {}).then(function (response) {
+            _context3.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_5___default.a.get('/api/user', {}).then(function (response) {
               commit(_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].SET_USER, response.data);
             });
 
-          case 3:
+          case 4:
           case "end":
             return _context3.stop();
         }
