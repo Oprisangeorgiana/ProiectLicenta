@@ -47,23 +47,20 @@
         ></v-text-field>
 
 
+<!--        <v-text-field-->
+<!--          v-model="employee.phone_number"-->
+<!--          label="Phone number"-->
+<!--        ></v-text-field>-->
 
-        <v-col cols="3">
-          <v-label>Phone number</v-label>
-        </v-col>
-        <v-col cols="7">
-          <v-text-field placeholder="Phone number" v-model="employee.phone_number"></v-text-field>
-        </v-col>
-      <v-col cols="2">
-        <v-btn
-          @click="modifyPhoneNumber"
-          color="teal">
-          SUBMIT
-        </v-btn>
+<!--        <v-btn-->
+<!--          @click="modifyPhoneNumber"-->
+<!--          color="teal">-->
+<!--          SUBMIT-->
+<!--        </v-btn>-->
 
-      </v-col>
 
-        <v-btn color="accent" @click="onSaveClick">Save</v-btn>
+
+        <v-btn color="blue" @click="onSaveClick">Save</v-btn>
       </v-form>
     </v-card-text>
   </v-card>

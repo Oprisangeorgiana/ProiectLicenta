@@ -104,7 +104,7 @@
         listTasks:globalGetters.GET_TASKS,
         listSubtasks:globalGetters.GET_SUBTASKS,
         user: globalGetters.GET_USER,
-        userAuthorisation: globalGetters.GET_USER_AUTH,
+        userAuthorisation: globalGetters.GET_USER_AUTH
       }),
 
 

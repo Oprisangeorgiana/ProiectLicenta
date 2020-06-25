@@ -1,5 +1,5 @@
 export default {
-    phone_number: null,
+  phone_number: null,
   user: null,
   employee: null,
   password: null,
