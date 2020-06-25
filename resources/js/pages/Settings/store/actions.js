@@ -8,10 +8,7 @@ import axios from 'axios'
 
 const ACTION_TYPES = {
   FETCH_DATA: 'settings/FETCH_DATA',
-
   UPDATE_USER: 'settings/UPDATE_USER',
-
-  UPDATE_IMG: 'settings/UPDATE_IMG',
   UPDATE_FIRST_NAME: 'settings/UPDATE_FIRST_NAME',
   UPDATE_LAST_NAME: 'settings/UPDATE_LAST_NAME',
   UPDATE_PASSWORD: 'settings/UPDATE_PASSWORD'
@@ -38,7 +35,6 @@ export const actions = {
     if (getters[localGetters.GET_PASSWORD]) {
       user['password'] = getters[localGetters.GET_PASSWORD]
     }
-
     const response = await axios.patch(`/api/update`, user)
 
   }

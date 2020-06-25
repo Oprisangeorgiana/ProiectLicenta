@@ -6,6 +6,7 @@ import settingsStore from '../pages/Settings/store/index'
 import globalStore from './global/index'
 import workspaceStore from '../pages/Workspaces/store/index'
 import calendarStore from '../pages/Calendar/store/index'
+import AddEmployee from '../pages/AddEmployee/store/index'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
         globalStore: globalStore,
         workspaceStore: workspaceStore,
         calendarStore: calendarStore,
+        AddEmployee:AddEmployee,
 
     }
 })

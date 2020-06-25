@@ -10,12 +10,12 @@
         v-model="valid"
       >
 
-        <v-text-field
-          v-model="name"
-          label="Name"
-          :rules="nameRules"
-          required
-        ></v-text-field>
+<!--        <v-text-field-->
+<!--          v-model="name"-->
+<!--          label="Name"-->
+<!--          :rules="nameRules"-->
+<!--          required-->
+<!--        ></v-text-field>-->
 
         <v-text-field
           v-model="email"
@@ -46,25 +46,16 @@
           required
         ></v-text-field>
 
-
-<!--        <v-text-field-->
-<!--          v-model="employee.phone_number"-->
-<!--          label="Phone number"-->
-<!--        ></v-text-field>-->
-
-<!--        <v-btn-->
-<!--          @click="modifyPhoneNumber"-->
-<!--          color="teal">-->
-<!--          SUBMIT-->
-<!--        </v-btn>-->
-
-
+        <v-text-field
+          v-model="employee.phone_number"
+          label="Phone number"
+          required
+        ></v-text-field>
 
         <v-btn color="blue" @click="onSaveClick">Save</v-btn>
       </v-form>
     </v-card-text>
   </v-card>
-
 </template>
 
 <script>
@@ -106,7 +97,6 @@
 
       }),
 
-
       name: {
         get () {
           return this.$store.getters[pageGetters.GET_NAME]
@@ -143,13 +133,13 @@
     },
 
     methods: {
-      modifyPhoneNumber: async function (item) {
-        let modifyPhoneNumber = {
-          id: this.employee.id,
-          phone_number: this.employee.phone_number
-        }
-        await new EmployeesRepository().update(modifyPhoneNumber)
-      },
+      // modifyPhoneNumber: async function () {
+      //   let modifyPhoneNumber = {
+      //     id: this.employee.id,
+      //     phone_number: this.employee.phone_number
+      //   }
+      //   await new EmployeesRepository().update(modifyPhoneNumber)
+      // },
 
       async init () {
         await this.$store.dispatch(pageActions.FETCH_DATA)
@@ -163,6 +153,11 @@
         if (await this.$refs.form.validate()) {
           await this.$store.dispatch(pageActions.UPDATE_USER)
           await this.$store.dispatch(pageActions.FETCH_DATA)
+          let modifyPhoneNumber = {
+            id: this.employee.id,
+            phone_number: this.employee.phone_number
+          }
+          await new EmployeesRepository().update(modifyPhoneNumber)
           await this.$router.push('/')
         }
       }

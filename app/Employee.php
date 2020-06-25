@@ -19,7 +19,7 @@ class Employee extends Model
 
 
 
-    protected $with = ['authorisations', 'department'];
+    protected $with = ['authorisations', 'department', 'user'];
 
     public function authorisations()
     {
