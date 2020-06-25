@@ -1,4 +1,5 @@
 const MUTATIONS_TYPES = {
+    SET_PHONE_NUMBER: 'settings/SET_PHONE_NUMBER',
   SET_USER: 'settings/SET_USER',
   SET_EMPLOYEE: 'settings/SET_EMPLOYEE',
   SET_IMG: 'settings/SET_IMG',
@@ -10,6 +11,11 @@ const MUTATIONS_TYPES = {
 export default MUTATIONS_TYPES
 
 export const mutations = {
+
+    [MUTATIONS_TYPES.SET_PHONE_NUMBER]: (state, data) => {
+        state.phone_number = data
+    },
+
   [MUTATIONS_TYPES.SET_USER]: (state, data) => {
     state.user = data
   },

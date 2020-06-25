@@ -8,6 +8,7 @@ const GETTER_TYPES = {
   GET_END_HOUR: 'board/GET_END_HOUR',
   GET_TASK_PROJECT: 'board/GET_TASK_PROJECT',
   GET_TASK_CREATED_BY: 'board/GET_TASK_CREATED_BY',
+  GET_EMPLOYEE_ASSIGNED: 'board/GET_EMPLOYEE_ASSIGNED',
 }
 export default GETTER_TYPES
 
@@ -44,6 +45,10 @@ export const getters = {
   [GETTER_TYPES.GET_TASK_CREATED_BY]: (state, getters) => {
     return state.created_by
   },
+  [GETTER_TYPES.GET_EMPLOYEE_ASSIGNED]: (state, getters) => {
+    return state.employee_assigned
+  },
+
 }
 
 

@@ -9,6 +9,7 @@ import Settings from "./pages/Settings/Settings";
 import Workspaces from "./pages/Workspaces/Workspaces";
 import Help from "./pages/Help/Help";
 import store from './store/store'
+import EmployeeProfile from '../js/layout/UI-kit/EmployeeProfile'
 
 
 Vue.use(VueRouter)
@@ -56,6 +57,11 @@ const router = new VueRouter({
             path: '/login',
             name: 'login',
             component: Login
+        },
+{
+            path: '/workspaces/:id',
+            name: 'employee-profile',
+            component: EmployeeProfile
         },
 
     ],

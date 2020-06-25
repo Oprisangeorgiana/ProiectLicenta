@@ -12,11 +12,15 @@ class Department extends Model
 
     protected $hidden = [];
 
-    protected $with = ['locations'];
+//    protected $with = ['locations'];
 
     public function locations()
     {
         return $this->belongsTo(Location::class);
+    }
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
     }
 
 

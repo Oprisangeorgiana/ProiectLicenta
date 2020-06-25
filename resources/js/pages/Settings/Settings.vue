@@ -46,21 +46,67 @@
           required
         ></v-text-field>
 
-        <v-btn color="accent" @click="onSaveClick">Save</v-btn>
+
+<!--        <v-text-field-->
+<!--          v-model="employee.phone_number"-->
+<!--          label="Phone number"-->
+<!--        ></v-text-field>-->
+
+<!--        <v-btn-->
+<!--          @click="modifyPhoneNumber"-->
+<!--          color="teal">-->
+<!--          SUBMIT-->
+<!--        </v-btn>-->
+
+
+
+        <v-btn color="blue" @click="onSaveClick">Save</v-btn>
       </v-form>
     </v-card-text>
   </v-card>
+
 </template>
 
 <script>
 
+  import { mapGetters } from 'vuex'
+  import globalGetters from '../../../js/store/global/getters'
+  import globalActions from '../../../js/store/global/actions'
+  import EmployeesRepository from '../../repositories/EmployeesRepository'
   import pageActions from './store/actions'
   import pageGetters from './store/getters'
   import pageMutations from './store/mutations'
 
   export default {
-    name: 'Settings',
+
+    name: "Settings",
+
+    data: () => ({
+      loaded: false,
+      valid: true,
+      showPassword: false,
+      showRePassword: false,
+      rePassword: null,
+      nameRules: [
+        v => !!v || 'Name is required'
+      ],
+      passwordRules: [
+        v => (!v || v.length >= 6) || 'Password must be more than 6 characters'
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ]
+    }),
     computed: {
+
+      ...mapGetters({
+        user: globalGetters.GET_USER,
+        employee: globalGetters.GET_CURRENT_EMPLOYEE,
+
+      }),
+
+
       name: {
         get () {
           return this.$store.getters[pageGetters.GET_NAME]
@@ -93,25 +139,18 @@
           return true
         return () => (this.password === this.rePassword) || 'Password must match'
       }
+
     },
-    data: () => ({
-      loaded: false,
-      valid: true,
-      showPassword: false,
-      showRePassword: false,
-      rePassword: null,
-      nameRules: [
-        v => !!v || 'Name is required'
-      ],
-      passwordRules: [
-        v => (!v || v.length >= 6) || 'Password must be more than 6 characters'
-      ],
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-      ]
-    }),
+
     methods: {
+      modifyPhoneNumber: async function (item) {
+        let modifyPhoneNumber = {
+          id: this.employee.id,
+          phone_number: this.employee.phone_number
+        }
+        await new EmployeesRepository().update(modifyPhoneNumber)
+      },
+
       async init () {
         await this.$store.dispatch(pageActions.FETCH_DATA)
         this.loaded = true
@@ -128,10 +167,13 @@
         }
       }
     },
-    mounted () {
+
+    async mounted () {
+      await this.$store.dispatch(globalActions.FETCH_CURRENT_EMPLOYEE)
       this.init()
-    }
+    },
   }
+
 
 </script>
 

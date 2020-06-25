@@ -59,8 +59,10 @@ Route::post('/tasks', 'TaskController@create');
 Route::patch('/tasks/{id}', 'TaskController@update');
 Route::delete('/tasks/{id}', 'TaskController@delete');
 
-//Route::post('login', 'API\EmployeeController@login');
-//Route::post('register', 'API\EmployeeController@register');
-//Route::group(['middleware' => 'auth:api'], function(){
-//    Route::post('details', 'API\EmployeeController@details');
-//});
+Route::get('/subtasks', 'SubtaskController@getAll');
+Route::get('/subtasks/{id}', 'SubtaskController@getOne');
+Route::post('/subtasks', 'SubtaskController@create');
+Route::patch('/subtasks/{id}', 'SubtaskController@update');
+Route::delete('/subtasks/{id}', 'SubtaskController@delete');
+
+

@@ -10,6 +10,5 @@ $factory->define(\App\Project::class, function (Faker $faker) {
     return [
         'name'=>$faker->userName,
         'deadline'=>$faker->date(),
-        'department_id'=>Department::first(),
     ];
 });

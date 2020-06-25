@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
-        'name', 'deadline', 'department_id'
+        'name', 'deadline'
     ];
 
     protected $hidden = [];
 
-    protected $with = ['department'];
 
-    public function department()
+    public function task()
     {
-        return $this->belongsTo(Department::class);
+        return $this->hasMany(Task::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectsTable extends Migration
+class CreateAddStateOfTaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('name')->unique();
-            $table->date('deadline')->nullable();
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->string('state')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn('state');
+        });
     }
 }

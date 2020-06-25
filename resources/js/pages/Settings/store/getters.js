@@ -3,6 +3,7 @@ const GETTER_TYPES = {
     GET_USER: 'settings/GET_USER',
     GET_EMPLOYEE: 'settings/GET_EMPLOYEE',
     GET_IMG: 'settings/GET_IMG',
+    GET_PHONE_NUMBER: 'settings/GET_PHONE_NUMBER',
     GET_NAME: 'settings/GET_NAME',
     GET_PASSWORD: 'settings/GET_PASSWORD',
     GET_EMAIL: 'settings/GET_EMAIL',
@@ -17,9 +18,11 @@ export const getters = {
     [GETTER_TYPES.GET_EMPLOYEE]: state => {
         return state.employee
     },
-
     [GETTER_TYPES.GET_IMG]: state => {
         return state.img
+    },
+    [GETTER_TYPES.GET_PHONE_NUMBER]: state => {
+        return state.phone_number
     },
     [GETTER_TYPES.GET_NAME]: state => {
         return state.user.name

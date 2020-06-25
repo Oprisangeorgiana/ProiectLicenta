@@ -6,11 +6,13 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-icon v-on="on"> mdi-pen</v-icon>
+
+        <v-icon v-on="on"> mdi-pen</v-icon>
+
     </template>
     <v-card>
       <v-card-title class="grey darken-3">
-        <span class="headline">Modify task</span>
+        <span class="headline">Modify subtask</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -18,12 +20,13 @@
           <v-row>
             <v-col cols="12">
               <v-text-field
-                v-model="currentTask.task"
+                v-model="currentSubtask.description"
                 clearable
               >
               </v-text-field>
             </v-col>
           </v-row>
+
 
           <v-row>
             <v-col>
@@ -37,16 +40,14 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="currentTask.start_date"
+                    v-model="currentSubtask.start_subtask_date"
                     v-on="on"
-                    readonly
-                    label="Pick start date*"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="currentTask.start_date" no-title scrollable>
+                <v-date-picker v-model="currentSubtask.start_subtask_date" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuStartDate = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menuDate.save(currentTask.start_date)">OK</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuDate.save(currentSubtask.start_subtask_date)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -65,16 +66,16 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="currentTask.deadline"
+                    v-model="currentSubtask.end_subtask_date"
                     label="Pick end date*"
                     readonly
                     v-on="on"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="currentTask.deadline" no-title scrollable>
+                <v-date-picker v-model="currentSubtask.end_subtask_date" no-title scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="primary" @click="menuDeadline = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menuEndDate.save(currentTask.deadline)">OK</v-btn>
+                  <v-btn text color="primary" @click="$refs.menuEndDate.save(currentSubtask.end_subtask_date)">OK</v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -87,13 +88,13 @@
                 ref="menu1"
                 v-model="menuStartHour"
                 :close-on-content-click="false"
-                :return-value.sync="currentTask.start_hour"
+                :return-value.sync="currentSubtask.start_subtask_hour"
                 transition="scale-transition"
                 offset-y
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="currentTask.start_hour"
+                    v-model="currentSubtask.start_subtask_hour"
                     label="Pick start hour*"
                     readonly
                     v-on="on"
@@ -102,8 +103,8 @@
                 <v-time-picker
                   use-seconds
                   v-if="menuStartHour"
-                  v-model="currentTask.start_hour"
-                  @click:minute="$refs.menu1.save(currentTask.start_hour)"
+                  v-model="currentSubtask.start_subtask_hour"
+                  @click:minute="$refs.menu1.save(currentSubtask.start_subtask_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
@@ -116,13 +117,13 @@
                 ref="menu"
                 v-model="menuEndHour"
                 :close-on-content-click="false"
-                :return-value.sync="currentTask.end_hour"
+                :return-value.sync="currentSubtask.end_subtask_hour"
                 transition="scale-transition"
                 offset-y
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="currentTask.end_hour"
+                    v-model="currentSubtask.end_subtask_hour"
                     label="Pick end hour*"
                     readonly
                     v-on="on"
@@ -131,27 +132,12 @@
                 <v-time-picker
                   use-seconds
                   v-if="menuEndHour"
-                  v-model="currentTask.end_hour"
-                  @click:minute="$refs.menu.save(currentTask.end_hour)"
+                  v-model="currentSubtask.end_subtask_hour"
+                  @click:minute="$refs.menu.save(currentSubtask.end_subtask_hour)"
                 ></v-time-picker>
               </v-menu>
             </v-col>
             <v-spacer></v-spacer>
-          </v-row>
-
-          <v-row>
-            <v-col>
-
-<!--              <v-select-->
-<!--                required-->
-<!--                :items="listProjects"-->
-<!--                item-text="name"-->
-<!--                return-object-->
-<!--                v-model="currentTask.project"-->
-<!--              >-->
-<!--              </v-select>-->
-
-            </v-col>
           </v-row>
 
         </v-container>
@@ -167,6 +153,7 @@
 </template>
 
 <script>
+
   import boardMutations from '../../pages/Board/store/mutations'
   import boardGetters from '../../pages/Board/store/getters'
   import globalGetters from '../../store/global/getters'
@@ -175,51 +162,61 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: "modify-task",
+    name: "modify-subtask",
     data () {
       return {
         dialog: false,
+
         menuStartDate: false,
         menuDeadline: false,
+
         menuStartHour: false,
         menuEndHour: false,
+
         startDate: null,
       };
     },
     props: {
-      currentTask: Object,
+      currentSubtask: Object,
     },
     computed: {
+
       ...mapGetters({
         listProjects: globalGetters.GET_PROJECTS,
         user: globalGetters.GET_USER,
-        currentEmployee: globalGetters.GET_CURRENT_EMPLOYEE,
+        employees: globalGetters.GET_EMPLOYEES
       }),
 
     },
+
     mounted () {},
+
     methods: {
+
       modifyTask () {
-        let updated = {
-          id: this.currentTask.id,
-          task_type: `${this.currentEmployee.last_name} ${this.currentEmployee.first_name}`,
-          task: this.currentTask.task,
-          deadline: this.currentTask.deadline,
-          start_date: this.currentTask.start_date,
-          start_hour: this.currentTask.start_hour,
-          end_hour: this.currentTask.end_hour,
+
+        let updatedTask = {
+          id: this.currentSubtask.id,
+          description: this.currentSubtask.description,
+          end_subtask_date: this.currentSubtask.end_subtask_date,
+          start_subtask_date: this.currentSubtask.start_subtask_date,
+          start_subtask_hour: this.currentSubtask.start_subtask_hour,
+          end_subtask_hour: this.currentSubtask.end_subtask_hour,
 
         }
-
-        this.$store.dispatch(boardActions.UPDATE_TASK, updated)
+        this.$store.dispatch(boardActions.UPDATE_SUBTASK, updatedTask)
 
         return this.dialog = false
+
       },
+
     },
     async mounted () {
+
     }
   }
 </script>
 
 <style scoped>
+
 </style>

@@ -10,9 +10,9 @@ class Location extends Model
         'location'
     ];
 
-//    public function departments()
-//    {
-//        return $this->hasMany(Department::class);
-//    }
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
 
 }

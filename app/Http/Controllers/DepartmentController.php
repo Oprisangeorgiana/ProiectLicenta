@@ -25,7 +25,7 @@ class DepartmentController extends Controller
     public function update(Request $request)
     {
         $department= Department::findOrFail($request->id);
-        return $department->fill($request->all());
+        return $department->fill($request->all())->save();
     }
 
     public function delete(Request $request)
