@@ -5,7 +5,7 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-btn fab dark x-small color="grey">
+      <v-btn fab x-small color="accent">
         <v-icon dark v-on="on">mdi-plus</v-icon>
       </v-btn>
     </template>

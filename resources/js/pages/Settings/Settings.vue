@@ -1,144 +1,137 @@
 <template>
-    <div>
-        <v-row class="mb-8">
-            <v-expansion-panels popout>
-                <v-expansion-panel>
-                    <v-expansion-panel-header>
-                        <v-layout justify-center>
-                            <v-avatar
-                                color="teal"
-                                size="100px"
-                            >
-                                <v-icon large>mdi-account-circle</v-icon>
-                            </v-avatar>
-                        </v-layout>
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                        <v-file-input
-                            accept="image/png, image/jpeg, image/bmp"
-                            placeholder="Change your photo"
-                            prepend-icon="mdi-camera"
-                        >
-                        </v-file-input>
-                    </v-expansion-panel-content>
-                </v-expansion-panel>
-            </v-expansion-panels>
-        </v-row>
+  <v-card v-if="loaded" width="100%" max-width="800" height="100%" class="pa-4 mx-auto">
+    <v-card-title collor="secondary">
+      <h2>Edit Profile</h2>
+    </v-card-title>
+    <v-spacer></v-spacer>
+    <v-card-text>
+      <v-form
+        ref="form"
+        v-model="valid"
+      >
 
+        <v-text-field
+          v-model="name"
+          label="Name"
+          :rules="nameRules"
+          required
+        ></v-text-field>
 
-        <v-row class="mb-6">
-            <v-col cols="3">
-                <v-label>First Name</v-label>
-            </v-col>
-            <v-col cols="7">
-                <v-text-field placeholder="First Name"></v-text-field>
-            </v-col>
-            <v-col class="2">
-                <v-btn
-                    v-model="firstName"
-                    v-on:click="submitFirstName"
-                    color="teal"
-                >
-                    SUBMIT
-                </v-btn>
-            </v-col>
-        </v-row>
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          :rules="emailRules"
+          required
+        ></v-text-field>
 
-        <v-row class="mb-6">
-            <v-col cols="3">
-                <v-label>Last Name</v-label>
-            </v-col>
-            <v-col cols="7">
-                <v-text-field placeholder="Last Name"></v-text-field>
-            </v-col>
-            <v-col class="2">
-                <v-btn
-                    v-model="lastName"
-                    v-on:click="submitLastName"
-                    color="teal"
-                >
-                    SUBMIT
-                </v-btn>
-            </v-col>
-        </v-row>
+        <v-text-field
+          v-model="password"
+          ref="password"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          :rules="passwordRules"
+          data-vv-name="pass"
+          @click:append="showPassword = !showPassword"
+          label="Password"
+          required
+        ></v-text-field>
 
-        <v-row class="mb-6">
-            <v-col cols="3">
-                <v-label>New Password</v-label>
-            </v-col>
-            <v-col cols="7">
-                <v-text-field placeholder="password"></v-text-field>
-            </v-col>
-            <v-col class="2">
-                <v-btn
-                    v-model ="password"
-                    v-on:click="submitPassword"
-                    color="teal" >
-                    SUBMIT
-                </v-btn>
-            </v-col>
-        </v-row>
+        <v-text-field
+          v-model="rePassword"
+          :append-icon="showRePassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showRePassword ? 'text' : 'password'"
+          :rules="[passwordConfirmationRule]"
+          @click:append="showRePassword = !showRePassword"
+          label="Retype password"
+          required
+        ></v-text-field>
 
-    </div>
+        <v-btn color="accent" @click="onSaveClick">Save</v-btn>
+      </v-form>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
 
-    import settingsActions from './store/actions'
-    import settingsGetters from './store/getters'
-    import settingsMutations from './store/mutations'
+  import pageActions from './store/actions'
+  import pageGetters from './store/getters'
+  import pageMutations from './store/mutations'
 
-    export default {
-
-        name: "Settings",
-
-
-        computed: {
-
-            firstName: {
-
-                get() {
-                    return this.$store.getters[settingsGetters.GET_FIRST_NAME]
-                },
-
-                set(value) {
-                    this.$store.commit(settingsMutations.SET_FIRST_NAME, value)
-                }
-            },
-            lastName: {
-                get() {
-                    return this.$store.getters[settingsGetters.GET_LAST_NAME]
-                },
-
-                set(value) {
-                    this.$store.commit(settingsMutations.SET_LAST_NAME, value)
-                }
-            },
-            password: {
-                get () {
-                    return this.$store.getters[settingsGetters.GET_PASSWORD]
-                },
-
-                set (value) {
-                    this.$store.commit(settingsMutations.SET_PASSWORD, value)
-                }
-            },
+  export default {
+    name: 'Settings',
+    computed: {
+      name: {
+        get () {
+          return this.$store.getters[pageGetters.GET_NAME]
         },
 
-
-        methods: {
-            submitFirstName() {
-                this.$store.dispatch(settingsActions.UPDATE_FIRST_NAME)
-            },
-            submitLastName() {
-                this.$store.dispatch(settingsActions.UPDATE_LAST_NAME)
-            },
-            submitPassword() {
-                this.$store.dispatch(settingsActions.UPDATE_PASSWORD)
-            }
+        set (value) {
+          this.$store.commit(pageMutations.SET_NAME, value)
+        }
+      },
+      password: {
+        get () {
+          return this.$store.getters[pageGetters.GET_PASSWORD]
         },
+
+        set (value) {
+          this.$store.commit(pageMutations.SET_PASSWORD, value)
+        }
+      },
+      email: {
+        get () {
+          return this.$store.getters[pageGetters.GET_EMAIL]
+        },
+
+        set (value) {
+          this.$store.commit(pageMutations.SET_EMAIL, value)
+        }
+      },
+      passwordConfirmationRule () {
+        if (!this.password)
+          return true
+        return () => (this.password === this.rePassword) || 'Password must match'
+      }
+    },
+    data: () => ({
+      loaded: false,
+      valid: true,
+      showPassword: false,
+      showRePassword: false,
+      rePassword: null,
+      nameRules: [
+        v => !!v || 'Name is required'
+      ],
+      passwordRules: [
+        v => (!v || v.length >= 6) || 'Password must be more than 6 characters'
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ]
+    }),
+    methods: {
+      async init () {
+        await this.$store.dispatch(pageActions.FETCH_DATA)
+        this.loaded = true
+      },
+      async validate () {
+        await this.$refs.form.validate()
+      },
+
+      async onSaveClick () {
+        if (await this.$refs.form.validate()) {
+          await this.$store.dispatch(pageActions.UPDATE_USER)
+          await this.$store.dispatch(pageActions.FETCH_DATA)
+          await this.$router.push('/')
+        }
+      }
+    },
+    mounted () {
+      this.init()
     }
-
+  }
 
 </script>
 

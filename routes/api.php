@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
+Route::patch('/update', 'AuthController@update');
 Route::middleware('auth:api')->post('/logout', 'AuthController@logout');
 
 
