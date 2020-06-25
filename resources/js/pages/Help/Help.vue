@@ -1,12 +1,14 @@
 <template>
   <div>
-<h1>Hello</h1>
-<!--    <v-img-->
-<!--      aspect-ratio="1.1"-->
-<!--      src="../../../js/pages/Help/Screenshot_1.png"-->
-<!--    ></v-img>-->
-        <img src="../../../js/pages/Help/Screenshot_1.png" alt="help">
-
+    <v-card align="center" >
+      <v-card-subtitle class="align-content-center">
+        <h1>Hello!</h1>
+      </v-card-subtitle>
+      <v-card-subtitle>
+        <h1>Here it is what you need to know.</h1>
+      </v-card-subtitle>
+      <img src="../../../js/pages/Help/Screenshot_1.png" alt="help">
+    </v-card>
   </div>
 </template>
 
@@ -42,8 +44,7 @@
     //  ============================   LOCAL STATE   ===================================
     //  ================================================================================
     data: function () {
-      return {
-      }
+      return {}
     },
     computed: {},
     //  ================================================================================
