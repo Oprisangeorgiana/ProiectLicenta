@@ -3,7 +3,7 @@
     <v-layout align-content-center justify-start>
 
       <v-card width="400" class="mr-8">
-        <v-toolbar color="teal">
+        <v-toolbar color="grey darken-3">
           <v-toolbar-title class="align-content-center">PROJECTS</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon>
@@ -28,24 +28,16 @@
                 <v-list-item-title v-html="currentProject.name"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item
-              v-for="currentProject in filteredProjects"
-              :key="currentProject.id"
-            >
-              <v-list-item-content>
-                <v-list-item-title v-html="currentProject.name"></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item
-              v-if="!selectedProject"
-              disabled
-            >
-              <v-list-item-content>
-                <v-list-item-title>
-                  There are no projects
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
+<!--            <v-list-item-->
+<!--              v-if="!selectedProject"-->
+<!--              disabled-->
+<!--            >-->
+<!--              <v-list-item-content>-->
+<!--                <v-list-item-title>-->
+<!--                  There are no projects-->
+<!--                </v-list-item-title>-->
+<!--              </v-list-item-content>-->
+<!--            </v-list-item>-->
           </v-list-item-group>
         </v-list>
         <v-card-actions
@@ -56,7 +48,7 @@
       </v-card>
 
       <v-card width="700">
-        <v-toolbar color="teal">
+        <v-toolbar color="grey darken-3">
           <v-toolbar-title class="align-content-center">TASKS</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>

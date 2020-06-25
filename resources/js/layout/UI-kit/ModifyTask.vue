@@ -9,7 +9,7 @@
       <v-icon v-on="on"> mdi-pen</v-icon>
     </template>
     <v-card>
-      <v-card-title class="teal">
+      <v-card-title class="grey darken-3">
         <span class="headline">Modify task</span>
       </v-card-title>
       <v-card-text>

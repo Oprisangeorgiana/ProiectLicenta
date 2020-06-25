@@ -1,12 +1,12 @@
 <template>
-  <v-container class="teal" >
-    <v-container class="white pt-6 pb-6 pr-6 pl-6">
+  <v-container class="grey darken-3" >
+    <v-container class="black pt-6 pb-6 pr-6 pl-6">
       <div>
       <v-row class="mb-8"
              align="center"
              justify="center"
       >
-        <v-card color="teal">
+        <v-card color="grey darken-3">
           <h1 class="ma-8">
             {{`${employee.last_name} ${employee.first_name}`}}
           </h1>
@@ -21,7 +21,7 @@
         class="mb-6"
       >
         <v-card
-          color="teal lighten-4"
+          color="grey darken-3"
           width="700"
           >
           <v-card-title>
@@ -39,7 +39,7 @@
         class="mb-8"
       >
         <v-card
-          color="teal lighten-4"
+          color="grey darken-3"
           width="700"
         >
           <v-card-title          >
@@ -57,7 +57,7 @@
         class="mb-8"
       >
         <v-card
-          color="teal lighten-4"
+          color="grey darken-3"
           width="700"
         >
           <v-card-title>
@@ -79,7 +79,7 @@
         class="mb-8"
       >
         <v-card
-          color="teal lighten-4"
+          color="grey darken-3"
           width="700"
         >
           <v-card-title>

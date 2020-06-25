@@ -5,12 +5,12 @@
     max-width="700"
   >
     <template v-slot:activator="{on}">
-      <v-btn fab x-small color="accent">
-        <v-icon dark v-on="on">mdi-plus-circle-outline</v-icon>
-      </v-btn>
+
+        <v-icon x-large v-on="on">mdi-plus-circle-outline</v-icon>
+
     </template>
     <v-card>
-      <v-card-title class="teal">
+      <v-card-title class="grey darken-3">
         <span class="headline">New task</span>
       </v-card-title>
       <v-card-text>
@@ -309,7 +309,7 @@
       async register () {
         await this.$store.dispatch(boardActions.CREATE_TASK)
         return this.dialog = false
-
+      },
     },
     async mounted () {
       await this.$store.dispatch(globalActions.FETCH_EMPLOYEES)

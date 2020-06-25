@@ -188,19 +188,21 @@ export const actions = {
     let employees = await new EmployeesRepository().getAll()
     commit(pageMutations.SET_EMPLOYEES, employees)
   },
-  async [ACTION_TYPES.FETCH_SUBTASKS] ({ commit, state }) {
-    let subtasks = await new SubtasksRepository().getAll()
+  async [ACTION_TYPES.FETCH_SUBTASKS] ({ commit, state, getters }) {
     let tasks = getters[pageGetters.GET_TASKS]
-    let currentEmployee = getters[pageGetters.GET_CURRENT_EMPLOYEE]
+    let subtasks = await new SubtasksRepository().getAll()
+    // let currentEmployee = getters[pageGetters.GET_CURRENT_EMPLOYEE]
     let listSubtasks = []
 
-    Object.keys(tasks).forEach(key1 =>{
-      Object.keys(subtasks).forEach(key2=>{
+    Object.keys(subtasks).forEach(key2=>{
+      // console.log('subtasks',subtasks[key2])
+      Object.keys(tasks).forEach(key1 =>{
+        // console.log('tasks',tasks[key1])
         if(subtasks[key2].task_id === tasks[key1].id)
-          listSubtasks.push(subtasks[key])
+          listSubtasks.push(subtasks[key2])
       })
     })
-
+    // console.log('subtasks',listSubtasks)
     commit(pageMutations.SET_SUBTASKS, listSubtasks)
   },
 
@@ -299,9 +301,6 @@ export const actions = {
     Object.keys(notifications).forEach(key =>{
       count = count + 1;
     })
-
-    console.log('count', count)
-
     commit(pageMutations.SET_COUNT_NOTIFICATIONS, count)
   }
 

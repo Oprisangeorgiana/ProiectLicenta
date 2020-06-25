@@ -10,7 +10,7 @@
 <!--      </v-btn>-->
     </template>
     <v-card>
-      <v-card-title class="teal">
+      <v-card-title class="grey darken-3">
         <span class="headline">New subtask</span>
       </v-card-title>
       <v-card-text>

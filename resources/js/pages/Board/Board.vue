@@ -2,14 +2,14 @@
   <v-container>
     <v-row>
       <v-col cols="3">
-        <v-card tile flat color="grey lighten-1">
-          <h1>COMING
+        <v-card tile flat color="grey darken-2">
+          <h1 align="center">COMING
             <add-task v-if="userAuthorisation > 1">
             </add-task>
           </h1>
         </v-card>
         <v-card
-          color="grey lighten-2"
+          color="grey"
           v-if="user"
         >
           <draggable
@@ -18,7 +18,7 @@
             @add="onAddComing($event)">
             <transition-group type="transition">
               <v-card
-                color="teal lighten-4"
+                color="black lighten-4"
                 v-for="listTask in listTasks"
                 v-if="listTask.state === 'COMING' "
                 :key="listTask.id"
@@ -127,12 +127,12 @@
       </v-col>
 
       <v-col cols="3">
-        <v-card tile flat color="teal lighten-2">
-          <h1>TO DO
+        <v-card tile flat color="grey darken-3">
+          <h1 align="center">TO DO
           </h1>
         </v-card>
         <v-card
-          color="grey lighten-2"
+          color="grey"
           v-if="user"
         >
           <draggable
@@ -140,7 +140,7 @@
             group="tasks"
             @add="onAddToDo($event)">
             <v-card
-              color="teal lighten-4"
+              color="black lighten-4"
               v-for="listTask in listTasks"
               v-if="listTask.state === 'TO DO' "
               :key="listTask.id"
@@ -243,12 +243,12 @@
       </v-col>
 
       <v-col cols="3">
-        <v-card tile flat color="teal lighten-1">
-          <h1>FINISHED
+        <v-card tile flat color="grey darken-2">
+          <h1 align="center">FINISHED
           </h1>
         </v-card>
         <v-card
-          color="grey lighten-2"
+          color="grey"
           v-if="user"
         >
           <draggable
@@ -264,7 +264,7 @@
               <v-card
                 outlined
                 class="ma-2"
-                color="teal lighten-4"
+                color="black lighten-4"
               >
                 <v-card-title>
                   {{ listTask.task }}
@@ -329,13 +329,13 @@
       </v-col>
 
       <v-col cols="3">
-        <v-card tile flat color="teal lighten-2">
-          <h1>CANCELED
+        <v-card tile flat color="grey darken-3">
+          <h1 align="center">CANCELED
           </h1>
         </v-card>
         <v-card
           v-if="user"
-          color="grey lighten-2"
+          color="grey"
         >
           <draggable
             class="list-group-item"
@@ -344,7 +344,7 @@
             ghost-class="ghost"
           >
             <v-card
-              color="teal lighten-4"
+              color="black lighten-4"
               v-for="listTask in listTasks"
               v-if="listTask.state === 'CANCELED' "
               :key="listTask.id"
