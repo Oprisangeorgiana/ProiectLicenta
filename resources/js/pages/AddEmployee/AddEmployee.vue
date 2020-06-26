@@ -9,35 +9,6 @@
         ref="form"
         v-model="valid"
       >
-        <!-- pentru partea de user-->
-        <v-text-field
-          v-model="email"
-          label="E-mail"
-          :rules="emailRules"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="password"
-          ref="password"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'"
-          :rules="passwordRules"
-          data-vv-name="pass"
-          @click:append="showPassword = !showPassword"
-          label="Password"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="rePassword"
-          :append-icon="showRePassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showRePassword ? 'text' : 'password'"
-          :rules="[passwordConfirmationRule]"
-          @click:append="showRePassword = !showRePassword"
-          label="Retype password"
-          required
-        ></v-text-field>
 
         <!--        pentru partea de employee-->
 
@@ -161,7 +132,41 @@
         >
         </v-select>
 
-        <v-btn color="blue" @click="register">Create</v-btn>
+          <v-btn color="blue" @click="registerEmployee">Create EMPLOYEE</v-btn>
+
+        <!-- pentru partea de user-->
+
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          :rules="emailRules"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="password"
+          ref="password"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          :rules="passwordRules"
+          data-vv-name="pass"
+          @click:append="showPassword = !showPassword"
+          label="Password"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="rePassword"
+          :append-icon="showRePassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showRePassword ? 'text' : 'password'"
+          :rules="[passwordConfirmationRule]"
+          @click:append="showRePassword = !showRePassword"
+          label="Retype password"
+          required
+        ></v-text-field>
+
+        <v-btn color="blue" @click="registerUSER">Create USER</v-btn>
+
       </v-form>
     </v-card-text>
   </v-card>
@@ -324,16 +329,17 @@
 
     methods: {
 
-      async init () {
-        await this.$store.dispatch(pageActions.FETCH_DATA)
-        console.log('authorisationsList',this.authorisationsList)
-
-      },
       async validate () {
         await this.$refs.form.validate()
       },
 
-      async register () {
+      async registerEmployee () {
+        if (await this.$refs.form.validate()) {
+          await this.$store.dispatch(pageActions.CREATE_EMPLOYEE)
+          await this.$router.push('/admin')
+        }
+      },
+      async registerUSER () {
         if (await this.$refs.form.validate()) {
           await this.$store.dispatch(pageActions.CREATE_USER)
           await this.$router.push('/')
@@ -342,7 +348,6 @@
     },
 
     async mounted () {
-      this.init()
     },
   }
 
