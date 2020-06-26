@@ -132,8 +132,6 @@
         >
         </v-select>
 
-          <v-btn color="blue" @click="registerEmployee">Create EMPLOYEE</v-btn>
-
         <!-- pentru partea de user-->
 
         <v-text-field
@@ -333,12 +331,7 @@
         await this.$refs.form.validate()
       },
 
-      async registerEmployee () {
-        if (await this.$refs.form.validate()) {
-          await this.$store.dispatch(pageActions.CREATE_EMPLOYEE)
-          await this.$router.push('/admin')
-        }
-      },
+
       async registerUSER () {
         if (await this.$refs.form.validate()) {
           await this.$store.dispatch(pageActions.CREATE_USER)

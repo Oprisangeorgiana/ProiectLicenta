@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -36,25 +38,52 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
+
+            'CNP' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birthday' => 'required',
+            'phone_number' => 'required',
+            'hire_date' => 'required',
+            'authorisation' => 'required',
+            'department' => 'required',
+            'sex' => 'required',
         ]);
 
-        return User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
 
-        ]);
+        $user = null;
+        DB::transaction(function () use (&$user, $request) {
+            $employee = Employee::create([
+                'CNP' => $request->CNP,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'birthday' => $request->birthday,
+                'phone_number' => $request->phone_number,
+                'hire_date' => $request->hire_date,
+                'authorisation_id' => $request->authorisation,
+                'department_id' => $request->department,
+                'sex' => $request->sex,
+                'address' => "WTF",
+                'mail' => $request->personal_email
+            ]);
+
+            $user = User::create([
+                'intern_email' => $request->email,
+                'password' => Hash::make($request->password),
+                'employee_id' => $employee->id
+            ]);
+        });
+
+        return $user;
     }
 
     public function update(Request $request)
     {
-
         $request->validate([
-            'name' => 'required|string|max:255',
             'intern_email' => 'required|string|email|max:255',
             'password' => 'sometimes|string|min:6',
         ]);

@@ -11,5 +11,4 @@ export default {
   personal_email: null,
   authorisation: null,
   department: null
-
 }
