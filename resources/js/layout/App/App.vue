@@ -7,7 +7,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">
-            Fake Clickup
+            Task Management
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -81,13 +81,26 @@
             </v-list-item-content>
           </v-list-item>
         </router-link>
+
+        <router-link :to="{ name: 'admin' }" style="text-decoration: none">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon>mdi-account-plus-outline</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Add Employee</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app>
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-menu offset-y>
+      <v-menu
+        v-if="user"
+        offset-y>
         <template v-slot:activator="{ on }">
           <v-badge
             v-if="countNotifications !==0"
@@ -207,6 +220,7 @@
         employeesList: globalGetters.GET_EMPLOYEES,
         notificationsList: globalGetters.GET_NOTIFICATIONS,
         countNotifications: globalGetters.GET_COUNT_NOTIFICATIONS,
+        userAuth: globalGetters.GET_USER_AUTH,
       }),
 
 
@@ -223,6 +237,8 @@
       await this.$store.dispatch(globalActions.FETCH_FILTERED_EMPLOYEES)
       await this.$store.dispatch(globalActions.FETCH_NOTIFICATIONS)
       await this.$store.dispatch(globalActions.FETCH_COUNT_NOTIFICATIONS)
+      await this.$store.dispatch(globalActions.FETCH_AUTHORISATIONS)
+
       console.log('notif', this.notificationsList)
       console.log('count', this.countNotifications)
 

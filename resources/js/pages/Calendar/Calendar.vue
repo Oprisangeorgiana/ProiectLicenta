@@ -119,7 +119,6 @@
         let events =[];
         Object.keys(list).forEach( key  =>{
           const item = list[key]
-          // console.log('item', item)
           let data = {}
           data.name = item.task
           data.start = `${item.start_date} ${item.start_hour}`
@@ -128,7 +127,6 @@
           });
         Object.keys(listSubtasks).forEach( key  =>{
           const item = listSubtasks[key]
-          // console.log('item', item)
           let data = {}
           data.name = item.description
           data.start = `${item.start_subtask_date} ${item.start_subtask_hour}`

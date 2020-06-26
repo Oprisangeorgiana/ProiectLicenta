@@ -7,6 +7,7 @@ import DepartmentsRepository from '../../repositories/DepartmentsRepository'
 import EmployeesRepository from '../../repositories/EmployeesRepository'
 import SubtasksRepository from '../../repositories/SubtasksRepository'
 import AuthorisationsRepository from '../../repositories/AuthorisationsRepository'
+import UsersRepository from '../../repositories/UsersRepository'
 
 const ACTION_TYPES = {
   FETCH_PROJECTS: 'global/FETCH_PROJECTS',
@@ -234,15 +235,17 @@ export const actions = {
   },
   async [ACTION_TYPES.FETCH_EMPLOYEE_PAGE] ({ commit, state, getters }, selected) {
     let allEmployees = await new EmployeesRepository().getAll()
-    // let allUsers = await new UserRepository().getAll()
+    let allUsers = await new UsersRepository().getAll()
     let selected_employee = {}
+
     Object.keys(allEmployees).forEach(key => {
       if (parseInt(selected) === allEmployees[key].id) {
-        // console.log('allEmployees', allEmployees[key])
         selected_employee = allEmployees[key]
+        console.log('empl',allEmployees[key])
       }
     })
-    // console.log('allUsers', allUsers)
+    console.log('allEmployees', allEmployees)
+
     commit(pageMutations.SET_EMPLOYEE_PAGE, selected_employee)
   },
   async [ACTION_TYPES.FETCH_FILTERED_EMPLOYEES] ({ commit, state, getters }) {
@@ -292,7 +295,7 @@ export const actions = {
         notificationsList.push(data)
       }
     })
-    console.log('notificationsList', notificationsList)
+    // console.log('notificationsList', notificationsList)
     commit(pageMutations.SET_NOTIFICATIONS, notificationsList)
   },
   async [ACTION_TYPES.FETCH_COUNT_NOTIFICATIONS] ({ commit, state, getters }) {

@@ -28,7 +28,7 @@
             E-mail
           </v-card-title>
           <v-card-text>
-           <h1> {{`${employee.last_name}.${employee.first_name}@intern.com`}} </h1>
+           <h1> {{employee.user.intern_email}} </h1>
           </v-card-text>
         </v-card>
       </v-row>
@@ -129,7 +129,6 @@
     methods: {},
 
     async mounted () {
-
       // modifica fetch page task cu get page employee
       await this.$store.dispatch(globalActions.FETCH_EMPLOYEE_PAGE, this.selectedUserID)
       await this.$store.dispatch(globalActions.FETCH_AUTHORISATIONS)
